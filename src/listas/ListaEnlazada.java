@@ -1,5 +1,8 @@
 package listas;
 
+import java.util.Iterator;
+import java.util.function.Consumer;
+
 /**
  * Clase que contiene lo necesario para hacer una lista enlazada
  * @author Jose Alejandro
@@ -39,6 +42,8 @@ public class ListaEnlazada{
             this.size--;
         }
     }
+
 }
+
 
 

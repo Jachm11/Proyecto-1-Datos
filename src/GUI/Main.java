@@ -20,6 +20,7 @@ public class Main extends Application {
         listaEnlazada.insertarInicio("hola");
         System.out.println(listaEnlazada.getSize());
         System.out.println(listaEnlazada.getHead().getData());
+        System.out.println(listaEnlazada.getHead().getNext());
     }
 
 
