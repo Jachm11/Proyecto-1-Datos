@@ -13,6 +13,9 @@ public class ListaEnlazada{
     private Node head;
     private int size;
 
+    /**
+     * Constructor de la clase
+     */
     public ListaEnlazada(){
         this.head = null;
         this.size = 0;

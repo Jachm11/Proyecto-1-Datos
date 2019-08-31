@@ -4,6 +4,9 @@ import listas.Node;
 
 public class AND extends Compuerta {
 
+    /**
+     * Constructor de la clase
+     */
     public AND(double X, double Y) {
         super(X, Y);
 

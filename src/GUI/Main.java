@@ -1,5 +1,6 @@
 package GUI;
 
+import circuitDesing.AND;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +22,13 @@ public class Main extends Application {
         System.out.println(listaEnlazada.getSize());
         System.out.println(listaEnlazada.getHead().getData());
         System.out.println(listaEnlazada.getHead().getNext());
+        AND hola = new AND(10,10);
+        System.out.println(hola.checkEntries());
+        hola.input(true);
+        hola.input(false);
+        System.out.println(hola.checkEntries());
+        hola.input(true);
+        System.out.println(hola.operar());
     }
 
 

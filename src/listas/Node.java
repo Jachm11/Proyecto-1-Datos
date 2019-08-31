@@ -9,6 +9,9 @@ public class Node {
     private Object data;
     Node next;
 
+    /**
+     * Constructor de la clase
+     */
     public Node(Object data){
         this.next = null;
         this.data = data;
