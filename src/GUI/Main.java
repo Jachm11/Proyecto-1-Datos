@@ -1,9 +1,6 @@
 package GUI;
 
-import circuitDesing.AND;
-import circuitDesing.NAND;
-import circuitDesing.NOR;
-import circuitDesing.OR;
+import circuitDesing.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,17 +22,14 @@ public class Main extends Application {
         System.out.println(listaEnlazada.getSize());
         System.out.println(listaEnlazada.getHead().getData());
         System.out.println(listaEnlazada.getHead().getNext());
-        NOR hola = new NOR(10,10);
+        NOT hola = new NOT(10,10);
         //System.out.println(hola.checkEntries());
-
-        hola.input(true);hola.input(true);hola.input(true);hola.input(true);hola.input(true);
-        hola.input(false);hola.input(true);hola.input(true);hola.input(true);
         hola.input(true);
-
-
+        
         //System.out.println(hola.checkEntries());
         //hola.input(false);
         System.out.println(hola.operar());
+        System.out.println();
     }
 
 

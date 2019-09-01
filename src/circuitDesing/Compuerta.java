@@ -1,6 +1,7 @@
 package circuitDesing;
 
 import listas.ListaEnlazada;
+import listas.Node;
 
 /**
  * Clase abstracta que define las propiedades de una compuerta lógica
@@ -11,6 +12,7 @@ public abstract class  Compuerta {
 
     int numEntradas;
     int numConexiones;
+    int factorX; // Solo para compuertas X
     ListaEnlazada entradas;
     ListaEnlazada conexiones;
     double posX;
@@ -26,6 +28,10 @@ public abstract class  Compuerta {
         this.conexiones = new ListaEnlazada();
     }
 
+    /**
+     * Metedo abstracto que se sobreescribe segun el tipo de compuerta
+     * @return true or false dependiendo deloperardor y las entradas
+     */
     public abstract boolean operar();
 
     public void input(boolean entrada){
@@ -39,5 +45,21 @@ public abstract class  Compuerta {
         else {
             return true;
         }
+    }
+    public int xop(){
+        factorX = 0;
+        Node current = this.entradas.getHead();
+        while( current.getNext() != null) {
+            if (current.getData().equals(true)) {
+                current = current.getNext();
+                factorX++;
+            }else {
+                current = current.getNext();
+            }
+        }
+        if (current.getData().equals(true)){
+            factorX++;
+        }
+        return factorX;
     }
 }
