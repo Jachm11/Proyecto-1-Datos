@@ -22,11 +22,43 @@ public abstract class  Compuerta {
     /**
      * Constructor de la clase
      */
-    public Compuerta(double X,double Y){
+    public Compuerta(double X,double Y,int entradas){
         this.posX = X;
         this.posY = Y;
         this.entradas = new ListaEnlazada();
         this.pinesIn = new ListaEnlazada();
+        this.numEntradas = entradas;
+        int cont = 0;
+        while (cont < entradas){
+            Pin pin = new Pin(cont);
+            this.pinesIn.insertarInicio(pin);
+            cont++;
+        }
+
+    }
+
+    public int getNumEntradas() {
+        return numEntradas;
+    }
+
+    public void setNumEntradas(int numEntradas) {
+        this.numEntradas = numEntradas;
+    }
+
+    public int getNumConexiones() {
+        return numConexiones;
+    }
+
+    public void setNumConexiones(int numConexiones) {
+        this.numConexiones = numConexiones;
+    }
+
+    public ListaEnlazada getPinesIn() {
+        return pinesIn;
+    }
+
+    public void setPinesIn(ListaEnlazada pinesIn) {
+        this.pinesIn = pinesIn;
     }
 
     /**
@@ -56,24 +88,28 @@ public abstract class  Compuerta {
             }else return true;
         }
     }
-    public void conectarOut(Pin pin){
-        this.pinesOut.insertarInicio(pin);
-    }
+    //public void conectarOut(Compuerta compuerta, Pin pin){
+        //compuerta.pinesIn.insertarInicio(pin);
+    //}
 
-    public void conctarIn(int IDpin, Compuerta compuerta){
+    public void conectarIn(int IDpin, Compuerta compuerta){
         buscarIDP(IDpin).setCompuerta(compuerta);
+        buscarIDP(IDpin).setConectado(true);
+
     }
 
     protected Pin buscarIDP(int IDpin){
         Node current = this.pinesIn.getHead();
         Pin PinNode = (Pin) current.getData();
-        while (current != null){
+        while (current.getNext() != null){
             if (PinNode.id != IDpin) {
                 current = current.getNext();
                 PinNode = (Pin) current.getData();
+            }else{
+                return PinNode;
             }
         }
-        return PinNode;
+        return (Pin) current.getData();
     }
     /**
      * Metedo para compuetas NXOR y XOR
@@ -94,6 +130,27 @@ public abstract class  Compuerta {
             factorX++;
         }
         return factorX;
+    }
+    public void askPins(){
+        Node current = this.pinesIn.getHead();
+        Pin pin = (Pin) current.getData();
+        while (current.getNext() != null){
+            this.input(pin.isValor());
+            current = current.getNext();
+            pin = (Pin) current.getData();
+        }
+        this.input(pin.isValor());
+    }
+
+        //Facade
+    public boolean output() {
+        if (checkEntries()){
+            return this.operar();
+        }
+        else{
+            this.askPins();
+        }
+        return this.operar();
     }
 
 }

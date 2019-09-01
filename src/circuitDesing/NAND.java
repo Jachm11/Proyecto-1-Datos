@@ -3,14 +3,16 @@ package circuitDesing;
 import listas.Node;
 
 public class NAND extends AND {
+
     /**
      * Constructor de la clase
      *
-     * @param X Posicion en eje X
-     * @param Y Posicion en eje Y
+     * @param X        Posicion en eje X
+     * @param Y        Posicion en eje Y
+     * @param entradas cantidad de entradas
      */
-    public NAND(double X, double Y) {
-        super(X, Y);
+    public NAND(double X, double Y, int entradas) {
+        super(X, Y, entradas);
     }
 
     /**

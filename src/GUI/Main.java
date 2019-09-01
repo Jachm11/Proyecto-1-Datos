@@ -18,6 +18,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
         System.out.println("hola");
+        /*
         ListaEnlazada listaEnlazada = new ListaEnlazada();
         listaEnlazada.insertarInicio("5");
         listaEnlazada.insertarInicio("4");
@@ -29,6 +30,8 @@ public class Main extends Application {
             System.out.println(este.getData());
             este = este.getNext();
         }
+
+         */
         //listaEnlazada.insetarEn("3",2);
         /*Node este2 = listaEnlazada.getHead();
         while (este2.getNext() != null) {
@@ -38,7 +41,19 @@ public class Main extends Application {
 
          */
         //System.out.println(listaEnlazada.getHead().getNext());
-        //NOT hola = new NOT(10,10);
+        NOT hola = new NOT(10,10);
+        AND holi = new AND(10,20,2);
+        System.out.println(holi.getNumEntradas());
+        System.out.println(holi.getPinesIn().getSize());
+        System.out.println(hola.getNumEntradas());
+        System.out.println(hola.getPinesIn().getSize());
+        hola.conectarIn(1,holi);
+        Pin temp = (Pin) hola.getPinesIn().getHead().getData();
+        System.out.println(temp.getId());
+        System.out.println(temp.getCompuerta());
+        System.out.println(hola.output());
+
+
         //System.out.println(hola.checkEntries());
         //hola.input(true);
 

@@ -4,15 +4,15 @@ import listas.Node;
 
 public class OR extends Compuerta {
 
-
     /**
      * Constructor de la clase
      *
-     * @param X Posicion en X
-     * @param Y Posicion en Y
+     * @param X Posicion en eje X
+     * @param Y Posicion en eje Y
+     * @param entradas cantidad de entradas
      */
-    public OR(double X, double Y) {
-        super(X, Y);
+    public OR(double X, double Y, int entradas) {
+        super(X, Y, entradas);
     }
 
     /**

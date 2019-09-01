@@ -5,16 +5,18 @@ import listas.Node;
 
 public class AND extends Compuerta {
 
+
     /**
      * Constructor de la clase
      *
      * @param X Posicion en eje X
      * @param Y Posicion en eje Y
+     * @param entradas cantidad de entradas
      */
-    public AND(double X, double Y) {
-        super(X, Y);
-
+    public AND(double X, double Y, int entradas) {
+        super(X, Y, entradas);
     }
+
     /**
      * Operacion logica de AND
      * @return true or false segun la operacion
