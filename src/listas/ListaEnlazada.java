@@ -32,6 +32,7 @@ public class ListaEnlazada{
     public int getSize() {
         return size;
     }
+
     public void insertarInicio(Object data){
         Node newNode = new Node(data);
         newNode.next = this.head;
@@ -45,6 +46,25 @@ public class ListaEnlazada{
             this.size--;
         }
     }
+    /*public void insetarEn(Object data, int indice){
+        Node newNode = new Node(data);
+        Node current = this.head;
+        int cont = 0;
+        if (this.size >= indice) {
+            if (indice == 0) {
+                insertarInicio(data);
+            } else {
+                while (cont < indice-1) {
+                    current = current.getNext();
+                    indice++;
+                }
+                newNode.setNext(current.getNext().getNext());
+                (current.getNext()).setNext(newNode);
+                this.size++;
+            }
+        }
+    }
+     */
 
 }
 

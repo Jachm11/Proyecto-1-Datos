@@ -14,8 +14,8 @@ public abstract class  Compuerta {
     int numConexiones;
     int factorX; // Solo para compuertas X
     ListaEnlazada entradas;
-    ListaEnlazada conexionesIn;
-    ListaEnlazada ConexionesOut;
+    ListaEnlazada pinesIn;
+    ListaEnlazada pinesOut;
     double posX;
     double posY;
 
@@ -26,7 +26,7 @@ public abstract class  Compuerta {
         this.posX = X;
         this.posY = Y;
         this.entradas = new ListaEnlazada();
-        this.conexionesIn = new ListaEnlazada();
+        this.pinesIn = new ListaEnlazada();
     }
 
     /**
@@ -56,8 +56,25 @@ public abstract class  Compuerta {
             }else return true;
         }
     }
-    
+    public void conectarOut(Pin pin){
+        this.pinesOut.insertarInicio(pin);
+    }
 
+    public void conctarIn(int IDpin, Compuerta compuerta){
+        buscarIDP(IDpin).setCompuerta(compuerta);
+    }
+
+    protected Pin buscarIDP(int IDpin){
+        Node current = this.pinesIn.getHead();
+        Pin PinNode = (Pin) current.getData();
+        while (current != null){
+            if (PinNode.id != IDpin) {
+                current = current.getNext();
+                PinNode = (Pin) current.getData();
+            }
+        }
+        return PinNode;
+    }
     /**
      * Metedo para compuetas NXOR y XOR
      * @return retorna la cantidad de entradas verdaderas a la compuerta
@@ -78,4 +95,5 @@ public abstract class  Compuerta {
         }
         return factorX;
     }
+
 }

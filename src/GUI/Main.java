@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import listas.ListaEnlazada;
+import listas.Node;
 
 public class Main extends Application {
 
@@ -18,18 +19,33 @@ public class Main extends Application {
         primaryStage.show();
         System.out.println("hola");
         ListaEnlazada listaEnlazada = new ListaEnlazada();
-        listaEnlazada.insertarInicio("hola");
+        listaEnlazada.insertarInicio("5");
+        listaEnlazada.insertarInicio("4");
+        listaEnlazada.insertarInicio("2");
+        listaEnlazada.insertarInicio("1");
         System.out.println(listaEnlazada.getSize());
-        System.out.println(listaEnlazada.getHead().getData());
-        System.out.println(listaEnlazada.getHead().getNext());
-        NOT hola = new NOT(10,10);
+        Node este = listaEnlazada.getHead();
+        while (este.getNext() != null) {
+            System.out.println(este.getData());
+            este = este.getNext();
+        }
+        //listaEnlazada.insetarEn("3",2);
+        /*Node este2 = listaEnlazada.getHead();
+        while (este2.getNext() != null) {
+            System.out.println(este2.getData());
+            este2 = este2.getNext();
+        }
+
+         */
+        //System.out.println(listaEnlazada.getHead().getNext());
+        //NOT hola = new NOT(10,10);
         //System.out.println(hola.checkEntries());
-        hola.input(true);
+        //hola.input(true);
 
         //System.out.println(hola.checkEntries());
         //hola.input(false);
-        System.out.println(hola.operar());
-        System.out.println();
+        //System.out.println(hola.operar());
+        //System.out.println();
     }
 
 
