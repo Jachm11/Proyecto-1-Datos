@@ -2,34 +2,34 @@ package circuitDesing;
 
 import listas.Node;
 
-public class AND extends Compuerta {
+public class OR extends Compuerta {
+
 
     /**
      * Constructor de la clase
      *
-     * @param X Posicion en eje X
-     * @param Y Posicion en eje Y
+     * @param X Posicion en X
+     * @param Y Posicion en Y
      */
-    public AND(double X, double Y) {
+    public OR(double X, double Y) {
         super(X, Y);
-
     }
+
     /**
-     * Operacion logica de AND
+     * Operacion logica de OR
      * @return true or false segun la operacion
      */
     @Override
-    public boolean operar(){
+    public boolean operar() {
         Node current = this.entradas.getHead();
-        while( current.getNext() != null){
-            if (current.getData().equals(true)){
+        while( current.getNext() != null) {
+            if (!(current.getData().equals(true))) {
                 current = current.getNext();
-            }
-            else {
-                return false;
+            }else {
+                return true;
             }
         }
-        if( current.getData().equals(true)){
+        if (current.getData().equals(true)){
             return true;
         }else {
             return false;
