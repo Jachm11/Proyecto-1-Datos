@@ -13,6 +13,10 @@ public class NOR extends OR {
         super(X, Y);
     }
 
+    /**
+     * Operacion logica de NOR
+     * @return true or false segun la operacion
+     */
     @Override
     public boolean operar() {
         Node current = this.entradas.getHead();

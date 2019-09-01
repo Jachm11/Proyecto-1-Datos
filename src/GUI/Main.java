@@ -25,7 +25,7 @@ public class Main extends Application {
         NOT hola = new NOT(10,10);
         //System.out.println(hola.checkEntries());
         hola.input(true);
-        
+
         //System.out.println(hola.checkEntries());
         //hola.input(false);
         System.out.println(hola.operar());

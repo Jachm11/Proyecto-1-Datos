@@ -11,7 +11,10 @@ public class XOR extends Compuerta {
     public XOR(double X, double Y) {
         super(X, Y);
     }
-
+    /**
+     * Operacion logica de XOR
+     * @return true or false segun la operacion
+     */
     @Override
     public boolean operar() {
         if(xop()%2 == 0){

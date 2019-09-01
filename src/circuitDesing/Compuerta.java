@@ -34,10 +34,18 @@ public abstract class  Compuerta {
      */
     public abstract boolean operar();
 
+    /**
+     * Inserta el valor a la lista enlazada de entradas
+     * @param entrada corresponde la valor booleano de la entrada electronica
+     */
     public void input(boolean entrada){
         this.entradas.insertarInicio(entrada);
     }
 
+    /**
+     * Checkea si todas las entradas estan asignadas
+     * @return true or false
+     */
     public boolean checkEntries(){
         if (this.entradas.getHead() == null){
             return false;
@@ -46,6 +54,11 @@ public abstract class  Compuerta {
             return true;
         }
     }
+
+    /**
+     * Metedo para compuetas NXOR y XOR
+     * @return retorna la cantidad de entradas verdaderas a la compuerta
+     */
     public int xop(){
         factorX = 0;
         Node current = this.entradas.getHead();

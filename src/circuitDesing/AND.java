@@ -2,6 +2,7 @@ package circuitDesing;
 
 import listas.Node;
 
+
 public class AND extends Compuerta {
 
     /**

@@ -11,6 +11,10 @@ public class NXOR extends XOR {
         super(X, Y);
     }
 
+    /**
+     * Operacion logica de NXOR
+     * @return true or false segun la operacion
+     */
     @Override
     public boolean operar() {
         if(xop()%2 == 0){
