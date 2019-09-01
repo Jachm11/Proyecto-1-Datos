@@ -14,7 +14,8 @@ public abstract class  Compuerta {
     int numConexiones;
     int factorX; // Solo para compuertas X
     ListaEnlazada entradas;
-    ListaEnlazada conexiones;
+    ListaEnlazada conexionesIn;
+    ListaEnlazada ConexionesOut;
     double posX;
     double posY;
 
@@ -25,7 +26,7 @@ public abstract class  Compuerta {
         this.posX = X;
         this.posY = Y;
         this.entradas = new ListaEnlazada();
-        this.conexiones = new ListaEnlazada();
+        this.conexionesIn = new ListaEnlazada();
     }
 
     /**
@@ -41,7 +42,6 @@ public abstract class  Compuerta {
     public void input(boolean entrada){
         this.entradas.insertarInicio(entrada);
     }
-
     /**
      * Checkea si todas las entradas estan asignadas
      * @return true or false
@@ -51,9 +51,12 @@ public abstract class  Compuerta {
             return false;
         }
         else {
-            return true;
+            if (this.entradas.getSize() != numEntradas){
+                return false;
+            }else return true;
         }
     }
+    
 
     /**
      * Metedo para compuetas NXOR y XOR
