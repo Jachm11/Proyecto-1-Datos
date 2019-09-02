@@ -15,7 +15,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("UI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("UI2.fxml"));
         primaryStage.setTitle("Hephaestus Circuit Designer");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
