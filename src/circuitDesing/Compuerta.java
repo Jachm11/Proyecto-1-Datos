@@ -1,5 +1,6 @@
 package circuitDesing;
 
+import AbstractFactory.CompuertaLogica;
 import listas.ListaEnlazada;
 import listas.Node;
 
@@ -8,7 +9,7 @@ import listas.Node;
  * @author Jose Alejandro
  * @since 31-08-19
  */
-public abstract class  Compuerta {
+public abstract class Compuerta implements CompuertaLogica {
 
     int numEntradas;
     int numConexiones;
@@ -34,8 +35,11 @@ public abstract class  Compuerta {
             this.pinesIn.insertarInicio(pin);
             cont++;
         }
-
     }
+
+    //public deleteCompuerta(){
+        //while ()
+    //}
 
     public int getNumEntradas() {
         return numEntradas;
@@ -88,14 +92,14 @@ public abstract class  Compuerta {
             }else return true;
         }
     }
-    //public void conectarOut(Compuerta compuerta, Pin pin){
-        //compuerta.pinesIn.insertarInicio(pin);
-    //}
 
     public void conectarIn(int IDpin, Compuerta compuerta){
         buscarIDP(IDpin).setCompuerta(compuerta);
         buscarIDP(IDpin).setConectado(true);
-
+    }
+    public void desconectarIn(int IDpin){
+        buscarIDP(IDpin).setCompuerta(null);
+        buscarIDP(IDpin).setConectado(false);
     }
 
     protected Pin buscarIDP(int IDpin){

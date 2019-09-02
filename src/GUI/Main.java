@@ -41,7 +41,7 @@ public class Main extends Application {
 
          */
         //System.out.println(listaEnlazada.getHead().getNext());
-        NOT hola = new NOT(10,10);
+        AND hola = new AND(10,10,3);
         AND holi = new AND(10,20,2);
         System.out.println(holi.getNumEntradas());
         System.out.println(holi.getPinesIn().getSize());

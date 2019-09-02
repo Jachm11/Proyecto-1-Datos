@@ -2,7 +2,10 @@ package circuitDesing;
 
 import java.util.Scanner;
 
-public class Pin {
+/**
+ * Clase dependiente de compuerta se encarga de almancenar las conexiones y valores de las entradas de una compuerta
+ */
+ public class Pin {
 
     int id;
     boolean valor;
@@ -46,7 +49,7 @@ public class Pin {
     }
 
     public boolean askforinput() {
-        return false;
+        return true;
     }
 
     public void setValor(boolean valor) {
