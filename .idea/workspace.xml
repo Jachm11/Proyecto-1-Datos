@@ -2,16 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AbstractFactory/AbsCompuertaFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AbstractFactory/CompuertaFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AbstractFactory/CompuertaLogica.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utilidades/java_fx_node_link_demo-master/.idea/java_fx_node_link_demo-master.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/Utilidades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/compuertas logicas Nor.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/out/production/Utilidades/sample/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/out/production/Utilidades/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/out/production/Utilidades/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/src/sample/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/src/sample/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/src/sample/sample.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/UI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Pin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Pin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/UI.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +120,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Tutorias/ITCR-DatosI-2019-Snake/Preparacion2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Utilidades/java_fx_node_link_demo-master" />
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RunDashboard">
@@ -228,7 +242,8 @@
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
       <workItem from="1567272773114" duration="25853000" />
-      <workItem from="1567318247922" duration="27379000" />
+      <workItem from="1567318247922" duration="28392000" />
+      <workItem from="1567395165258" duration="3488000" />
     </task>
     <servers />
   </component>
