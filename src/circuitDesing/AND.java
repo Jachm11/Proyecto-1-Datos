@@ -1,6 +1,7 @@
 package circuitDesing;
 
 import listas.Node;
+import AbstractFactory.tipoCompuerta;
 
 
 public class AND extends Compuerta {
@@ -13,8 +14,9 @@ public class AND extends Compuerta {
      * @param Y Posicion en eje Y
      * @param entradas cantidad de entradas
      */
-    public AND(double X, double Y, int entradas) {
-        super(X, Y, entradas);
+    public AND(double X, double Y, int entradas, int ID) {
+        super(X, Y, entradas,ID);
+        this.tipo = tipoCompuerta.AND;
     }
 
     /**
@@ -32,10 +34,6 @@ public class AND extends Compuerta {
                 return false;
             }
         }
-        if( current.getData().equals(true)){
-            return true;
-        }else {
-            return false;
-        }
+        return current.getData().equals(true);
     }
 }

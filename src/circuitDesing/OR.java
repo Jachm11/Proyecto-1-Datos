@@ -1,5 +1,6 @@
 package circuitDesing;
 
+import AbstractFactory.tipoCompuerta;
 import listas.Node;
 
 public class OR extends Compuerta {
@@ -11,8 +12,9 @@ public class OR extends Compuerta {
      * @param Y Posicion en eje Y
      * @param entradas cantidad de entradas
      */
-    public OR(double X, double Y, int entradas) {
-        super(X, Y, entradas);
+    public OR(double X, double Y, int entradas,int ID) {
+        super(X, Y, entradas,ID);
+        this.tipo = tipoCompuerta.OR;
     }
 
     /**

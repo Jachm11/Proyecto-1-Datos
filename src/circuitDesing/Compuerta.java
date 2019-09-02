@@ -1,6 +1,7 @@
 package circuitDesing;
 
 import AbstractFactory.CompuertaLogica;
+import AbstractFactory.tipoCompuerta;
 import listas.ListaEnlazada;
 import listas.Node;
 
@@ -11,24 +12,27 @@ import listas.Node;
  */
 public abstract class Compuerta implements CompuertaLogica {
 
-    int numEntradas;
-    int numConexiones;
-    int factorX; // Solo para compuertas X
+    private int numEntradas;
+    private int numConexiones;
+    private int factorX; // Solo para compuertas X
     ListaEnlazada entradas;
-    ListaEnlazada pinesIn;
+    private ListaEnlazada pinesIn;
     ListaEnlazada pinesOut;
-    double posX;
-    double posY;
+    private double posX;
+    private double posY;
+    tipoCompuerta tipo;
+    int ID;
 
     /**
      * Constructor de la clase
      */
-    public Compuerta(double X,double Y,int entradas){
+    public Compuerta(double X,double Y,int entradas,int ID){
         this.posX = X;
         this.posY = Y;
         this.entradas = new ListaEnlazada();
         this.pinesIn = new ListaEnlazada();
         this.numEntradas = entradas;
+        this.ID = ID;
         int cont = 0;
         while (cont < entradas){
             Pin pin = new Pin(cont);
@@ -40,6 +44,23 @@ public abstract class Compuerta implements CompuertaLogica {
     //public deleteCompuerta(){
         //while ()
     //}
+
+
+    public tipoCompuerta getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(tipoCompuerta tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public int getNumEntradas() {
         return numEntradas;

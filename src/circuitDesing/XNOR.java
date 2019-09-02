@@ -1,6 +1,8 @@
 package circuitDesing;
 
-public class NXOR extends XOR {
+import AbstractFactory.tipoCompuerta;
+
+public class XNOR extends XOR {
 
 
     /**
@@ -10,8 +12,9 @@ public class NXOR extends XOR {
      * @param Y        Posicion en eje Y
      * @param entradas cantidad de entradas
      */
-    public NXOR(double X, double Y, int entradas) {
-        super(X, Y, entradas);
+    public XNOR(double X, double Y, int entradas,int ID) {
+        super(X, Y, entradas,ID);
+        this.tipo = tipoCompuerta.XNOR;
     }
 
     /**

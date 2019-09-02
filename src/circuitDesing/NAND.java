@@ -1,5 +1,6 @@
 package circuitDesing;
 
+import AbstractFactory.tipoCompuerta;
 import listas.Node;
 
 public class NAND extends AND {
@@ -11,8 +12,9 @@ public class NAND extends AND {
      * @param Y        Posicion en eje Y
      * @param entradas cantidad de entradas
      */
-    public NAND(double X, double Y, int entradas) {
-        super(X, Y, entradas);
+    public NAND(double X, double Y, int entradas,int ID) {
+        super(X, Y, entradas,ID);
+        this.tipo = tipoCompuerta.NAND;
     }
 
     /**

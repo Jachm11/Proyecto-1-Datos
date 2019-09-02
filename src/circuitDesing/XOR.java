@@ -1,5 +1,7 @@
 package circuitDesing;
 
+import AbstractFactory.tipoCompuerta;
+
 public class XOR extends Compuerta {
 
     /**
@@ -9,8 +11,9 @@ public class XOR extends Compuerta {
      * @param Y Posicion en eje Y
      * @param entradas cantidad de entradas
      */
-    public XOR(double X, double Y, int entradas) {
-        super(X, Y, entradas);
+    public XOR(double X, double Y, int entradas, int ID) {
+        super(X, Y, entradas,ID);
+        this.tipo = tipoCompuerta.XOR;
     }
 
     /**

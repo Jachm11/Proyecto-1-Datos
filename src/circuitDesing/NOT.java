@@ -1,13 +1,16 @@
 package circuitDesing;
 
+import AbstractFactory.tipoCompuerta;
+
 public class NOT extends Compuerta {
     /**
      * Constructor de la clase
      *  @param X Posicion en X
      * @param Y Posicion en Y
      */
-    public NOT(double X, double Y) {
-        super(X, Y,1);
+    public NOT(double X, double Y, int ID) {
+        super(X, Y,1,ID);
+        this.tipo = tipoCompuerta.NOT;
     }
 
 
