@@ -7,9 +7,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseDragEvent;
 import javafx.stage.Stage;
 import listas.ListaEnlazada;
 import listas.Node;
+
 
 public class Main extends Application {
 
@@ -58,6 +60,11 @@ public class Main extends Application {
         System.out.println(temp.getId());
         System.out.println(temp.getCompuerta());
         System.out.println(hola.output());
+
+
+
+
+
 
 
 
