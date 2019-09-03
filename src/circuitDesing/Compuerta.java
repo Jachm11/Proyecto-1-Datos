@@ -19,17 +19,13 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     ListaEnlazada entradas;
     private ListaEnlazada pinesIn;
     ListaEnlazada pinesOut;
-    private double posX;
-    private double posY;
     tipoCompuerta tipo;
     int ID;
 
     /**
      * Constructor de la clase
      */
-    public Compuerta(double X,double Y,int entradas,int ID){
-        this.posX = X;
-        this.posY = Y;
+    public Compuerta(int entradas,int ID){
         this.entradas = new ListaEnlazada();
         this.pinesIn = new ListaEnlazada();
         this.numEntradas = entradas;

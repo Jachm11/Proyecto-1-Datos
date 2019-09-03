@@ -9,12 +9,11 @@ public class NOR extends OR {
     /**
      * Constructor de la clase
      *
-     * @param X        Posicion en eje X
-     * @param Y        Posicion en eje Y
+     * @param ID identificador numérico para la compuerta
      * @param entradas cantidad de entradas
      */
-    public NOR(double X, double Y, int entradas, int ID) {
-        super(X, Y, entradas,ID);
+    public NOR(int entradas, int ID) {
+        super(entradas,ID);
         this.tipo = tipoCompuerta.NOR;
     }
 

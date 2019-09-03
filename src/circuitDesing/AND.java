@@ -10,12 +10,11 @@ public class AND extends Compuerta {
     /**
      * Constructor de la clase
      *
-     * @param X Posicion en eje X
-     * @param Y Posicion en eje Y
      * @param entradas cantidad de entradas
+     * @param ID identificador numérico para la compuerta
      */
-    public AND(double X, double Y, int entradas, int ID) {
-        super(X, Y, entradas,ID);
+    public AND(int entradas, int ID) {
+        super(entradas,ID);
         this.tipo = tipoCompuerta.AND;
     }
 

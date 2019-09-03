@@ -8,13 +8,11 @@ public class CustomGate extends Compuerta {
 
     /**
      * Constructor de la clase
-     *
-     * @param X
-     * @param Y
+     * @param ID identificador numérico para la compuerta
      * @param entradas
      */
-    public CustomGate(double X, double Y, int entradas, int salidas, int ID) {
-        super(X, Y, entradas,ID);
+    public CustomGate( int entradas, int salidas, int ID) {
+        super(entradas,ID);
         this.salidas = salidas;
     }
 

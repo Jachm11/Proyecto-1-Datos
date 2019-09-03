@@ -8,12 +8,11 @@ public class XNOR extends XOR {
     /**
      * Constructor de la clase
      *
-     * @param X        Posicion en eje X
-     * @param Y        Posicion en eje Y
+     * @param ID identificador numérico para la compuerta
      * @param entradas cantidad de entradas
      */
-    public XNOR(double X, double Y, int entradas,int ID) {
-        super(X, Y, entradas,ID);
+    public XNOR(int entradas,int ID) {
+        super(entradas,ID);
         this.tipo = tipoCompuerta.XNOR;
     }
 
