@@ -1,7 +1,15 @@
 package GUI;
+
+import AbstractFactory.CompuertaFactory;
+import AbstractFactory.tipoCompuerta;
+import circuitDesing.Circuito;
+import circuitDesing.Compuerta;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -9,8 +17,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Sample Skeleton for 'UI2.fxml' Controller Class
@@ -19,6 +25,15 @@ public class Controller {
 
     double orgSceneX, orgSceneY;
     double orgTranslateX, orgTranslateY;
+    int entradasDefault;
+    Image ImageAND = new Image("GUI/gates/AND.png");
+    Image ImageNAND = new Image("GUI/gates/NAND.png");
+    Image ImageOR = new Image("GUI/gates/OR.png");
+    Image ImageNOR = new Image("GUI/gates/NOR.png");
+    Image ImageNOT = new Image("GUI/gates/NOT.png");
+    Image ImageXOR = new Image("GUI/gates/XOR.png");
+    Image ImageXNOR = new Image("GUI/gates/XNOR.png");
+
 
         @FXML // fx:id="x1"
         private Font x1; // Value injected by FXMLLoader
@@ -57,27 +72,68 @@ public class Controller {
         private Color x4; // Value injected by FXMLLoader
 
         @FXML // fx:id="Grid"
-        private GridPane Grid; // Value injected by FXMLLoader
+        private Circuito Circuito; // Value injected by FXMLLoader
+
+
+    public void clickedOnAND(MouseEvent t){
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,10,10,entradasDefault,0));
+        newCompuerta.setImage(ImageAND);
+        
+    }
+    public void clickedOnNAND(MouseEvent t){
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NAND,10,10,entradasDefault,0));
+
+    }
+    public void clickedOnOR(MouseEvent t){
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.OR,10,10,entradasDefault,0));
+
+    }
+    public void clickedOnNOR(MouseEvent t){
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOR,10,10,entradasDefault,0));
+
+    }
+    public void clickedOnNOT(MouseEvent t){
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,10,10,entradasDefault,0));
+
+    }
+    public void clickedOnXOR(MouseEvent t){
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,10,10,entradasDefault,0));
+
+    }
+
+    public void clickedOnXNOR(MouseEvent t){
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XNOR,10,10,entradasDefault,0));
+    }
+    private void setCompuerta(Compuerta newCompuerta){
+        Circuito.add(newCompuerta,3,3);
+        Circuito.getCompuertas().insertarInicio(newCompuerta);
+        newCompuerta.setCursor(Cursor.HAND);
+        newCompuerta.setOnMousePressed(this::handle);
+        newCompuerta.setOnMouseDragged(this::handle2);
+
+    }
+
+
 
     public void handle(MouseEvent t) {
         orgSceneX = t.getSceneX();
         orgSceneY = t.getSceneY();
-        orgTranslateX = ((ImageView)(t.getSource())).getTranslateX();
-        orgTranslateY = ((ImageView)(t.getSource())).getTranslateY();
+        orgTranslateX = ((Compuerta)(t.getSource())).getTranslateX();
+        orgTranslateY = ((Compuerta)(t.getSource())).getTranslateY();
                 }
 
-                public void handle2(MouseEvent t) {
-                    double offsetX = t.getSceneX() - orgSceneX;
-                    double offsetY = t.getSceneY() - orgSceneY;
-                    double newTranslateX = orgTranslateX + offsetX;
-                    double newTranslateY = orgTranslateY + offsetY;
+    public void handle2(MouseEvent t) {
+        double offsetX = t.getSceneX() - orgSceneX;
+        double offsetY = t.getSceneY() - orgSceneY;
+        double newTranslateX = orgTranslateX + offsetX;
+        double newTranslateY = orgTranslateY + offsetY;
 
-                    ((ImageView)(t.getSource())).setTranslateX(newTranslateX);
-                    ((ImageView)(t.getSource())).setTranslateY(newTranslateY);
+        ((Compuerta)(t.getSource())).setTranslateX(newTranslateX);
+        ((Compuerta)(t.getSource())).setTranslateY(newTranslateY);
                 }
 
     public void showGrid(MouseEvent event){
-        Grid.setGridLinesVisible(!Grid.isGridLinesVisible());
+        Circuito.setGridLinesVisible(!Circuito.isGridLinesVisible());
     }
 
 

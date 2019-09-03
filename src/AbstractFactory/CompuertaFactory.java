@@ -24,7 +24,7 @@ public class CompuertaFactory implements AbsCompuertaFactory {
         return instance;
     }
 
-    public Compuerta crearCompuerta (tipoCompuerta tipo, int X, int Y, int entradas, int salidas){
+    public Compuerta crearCompuerta (tipoCompuerta tipo, double X, double Y, int entradas, int salidas){
         if (entradas==0){
            return crearCompuertaAux(tipo,X,Y,2,salidas);
         }else{
@@ -32,7 +32,7 @@ public class CompuertaFactory implements AbsCompuertaFactory {
         }
     }
     //Facade
-    private Compuerta crearCompuertaAux(tipoCompuerta tipo, int X, int Y, int entradas,int salidas){
+    private Compuerta crearCompuertaAux(tipoCompuerta tipo, double X, double Y, int entradas,int salidas){
         switch (tipo){
             case AND:
                 this.AND++;
@@ -62,42 +62,42 @@ public class CompuertaFactory implements AbsCompuertaFactory {
     }
 
     @Override
-    public Compuerta crearAND(int X, int Y, int entradas, int ID) {
+    public Compuerta crearAND(double X, double Y, int entradas, int ID) {
         return new AND(X,Y,entradas,ID);
     }
 
     @Override
-    public Compuerta crearNAND(int X, int Y, int entradas, int ID) {
+    public Compuerta crearNAND(double X, double Y, int entradas, int ID) {
         return new NAND(X,Y,entradas,ID);
     }
 
     @Override
-    public Compuerta crearOR(int X, int Y, int entradas, int ID) {
+    public Compuerta crearOR(double X, double Y, int entradas, int ID) {
         return new OR(X,Y,entradas,ID);
     }
 
     @Override
-    public Compuerta crearNOR(int X, int Y, int entradas, int ID) {
+    public Compuerta crearNOR(double X, double Y, int entradas, int ID) {
         return new NOR(X,Y,entradas,ID);
     }
 
     @Override
-    public Compuerta crearNOT(int X, int Y, int ID) {
+    public Compuerta crearNOT(double X, double Y, int ID) {
         return new NOT(X,Y,ID);
     }
 
     @Override
-    public Compuerta crearXOR(int X, int Y, int entradas, int ID) {
+    public Compuerta crearXOR(double X, double Y, int entradas, int ID) {
         return new XOR(X,Y,entradas,ID);
     }
 
     @Override
-    public Compuerta crearXNOR(int X, int Y, int entradas, int ID) {
+    public Compuerta crearXNOR(double X, double Y, int entradas, int ID) {
         return new XNOR(X,Y,entradas,ID);
     }
 
     @Override
-    public Compuerta crearCustomGate(int X, int Y, int entradas, int salidas) {
+    public Compuerta crearCustomGate(double X, double Y, int entradas, int salidas) {
         return null;
     }
 }

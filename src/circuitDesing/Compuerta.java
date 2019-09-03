@@ -2,6 +2,7 @@ package circuitDesing;
 
 import AbstractFactory.CompuertaLogica;
 import AbstractFactory.tipoCompuerta;
+import javafx.scene.image.ImageView;
 import listas.ListaEnlazada;
 import listas.Node;
 
@@ -10,7 +11,7 @@ import listas.Node;
  * @author Jose Alejandro
  * @since 31-08-19
  */
-public abstract class Compuerta implements CompuertaLogica {
+public abstract class Compuerta extends ImageView implements CompuertaLogica {
 
     private int numEntradas;
     private int numConexiones;
