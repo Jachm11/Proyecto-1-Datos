@@ -78,31 +78,39 @@ public class Controller {
     public void clickedOnAND(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,10,10,entradasDefault,0));
         newCompuerta.setImage(ImageAND);
-        
+        setCompuerta(newCompuerta);
     }
+
     public void clickedOnNAND(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NAND,10,10,entradasDefault,0));
-
+        newCompuerta.setImage(ImageNAND);
+        setCompuerta(newCompuerta);
     }
     public void clickedOnOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.OR,10,10,entradasDefault,0));
-
+        newCompuerta.setImage(ImageOR);
+        setCompuerta(newCompuerta);
     }
     public void clickedOnNOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOR,10,10,entradasDefault,0));
-
+        newCompuerta.setImage(ImageNOR);
+        setCompuerta(newCompuerta);
     }
     public void clickedOnNOT(MouseEvent t){
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,10,10,entradasDefault,0));
-
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,10,10,1,0));
+        newCompuerta.setImage(ImageNOT);
+        setCompuerta(newCompuerta);
     }
     public void clickedOnXOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,10,10,entradasDefault,0));
-
+        newCompuerta.setImage(ImageXOR);
+        setCompuerta(newCompuerta);
     }
 
     public void clickedOnXNOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XNOR,10,10,entradasDefault,0));
+        newCompuerta.setImage(ImageXNOR);
+        setCompuerta(newCompuerta);
     }
     private void setCompuerta(Compuerta newCompuerta){
         Circuito.add(newCompuerta,3,3);
@@ -110,9 +118,7 @@ public class Controller {
         newCompuerta.setCursor(Cursor.HAND);
         newCompuerta.setOnMousePressed(this::handle);
         newCompuerta.setOnMouseDragged(this::handle2);
-
     }
-
 
 
     public void handle(MouseEvent t) {
