@@ -8,12 +8,11 @@ public class NAND extends AND {
     /**
      * Constructor de la clase
      *
-     * @param X        Posicion en eje X
-     * @param Y        Posicion en eje Y
+     * @param ID identificador numérico para la compuerta
      * @param entradas cantidad de entradas
      */
-    public NAND(double X, double Y, int entradas,int ID) {
-        super(X, Y, entradas,ID);
+    public NAND(int entradas,int ID) {
+        super(entradas,ID);
         this.tipo = tipoCompuerta.NAND;
     }
 

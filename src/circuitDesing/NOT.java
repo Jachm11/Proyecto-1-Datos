@@ -5,11 +5,10 @@ import AbstractFactory.tipoCompuerta;
 public class NOT extends Compuerta {
     /**
      * Constructor de la clase
-     *  @param X Posicion en X
-     * @param Y Posicion en Y
+     * @param ID identificador numérico para la compuerta
      */
-    public NOT(double X, double Y, int ID) {
-        super(X, Y,1,ID);
+    public NOT(int ID) {
+        super(1,ID);
         this.tipo = tipoCompuerta.NOT;
     }
 
