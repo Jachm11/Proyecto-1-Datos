@@ -41,9 +41,23 @@ public class ListaEnlazada{
     }
     public void eliminarInicio(){
         if (this.head != null){
-            Node temp = this.head;
             this.head = this.head.next;
             this.size--;
+        }
+    }
+
+    public void eliminarX(Object data) {
+        Node current= this.getHead();
+        if (current.getNext() == null){
+            if (current.getData() == data){
+                eliminarInicio();
+            }
+        }
+        else {
+            while (current.getNext().getData() != data) {
+                current = current.getNext();
+            }
+            current.setNext(current.getNext().getNext());
         }
     }
     /*public void insetarEn(Object data, int indice){

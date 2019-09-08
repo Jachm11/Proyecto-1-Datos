@@ -18,29 +18,77 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     private int factorX; // Solo para compuertas X
     ListaEnlazada entradas;
     private ListaEnlazada pinesIn;
-    ListaEnlazada pinesOut;
+    ListaEnlazada compuertasOut;
     tipoCompuerta tipo;
     int ID;
 
     /**
      * Constructor de la clase
      */
-    public Compuerta(int entradas,int ID){
+    public Compuerta(int entradas, int ID) {
         this.entradas = new ListaEnlazada();
         this.pinesIn = new ListaEnlazada();
         this.numEntradas = entradas;
+        this.compuertasOut = new ListaEnlazada();
         this.ID = ID;
         int cont = 0;
-        while (cont < entradas){
+        while (cont < entradas) {
             Pin pin = new Pin(cont);
             this.pinesIn.insertarInicio(pin);
             cont++;
         }
     }
 
-    //public deleteCompuerta(){
-        //while ()
-    //}
+    public void deleteCompuerta(Compuerta this) {
+        Circuito.compuertas.eliminarX(this);
+
+        Node currentNode = pinesIn.getHead();
+        if (currentNode.getNext() == null) {
+            Pin currentPin = (Pin) currentNode.getData();
+            currentPin.desconectar(this);
+        } else {
+            while (currentNode.getNext() != null) {
+                Pin currentPin = (Pin) currentNode.getData();
+                currentPin.desconectar(this);
+                currentNode = currentNode.getNext();
+            }
+        }
+
+        Node currentNode2 = compuertasOut.getHead();
+        if (currentNode2 != null){
+            if (currentNode2.getNext() == null) {
+                Compuerta currentCompuerta = (Compuerta) currentNode.getData();
+                currentCompuerta.desconectarPinesCon(this);
+            } else {
+                while (currentNode2.getNext() != null) {
+                    Compuerta currentCompuerta = (Compuerta) currentNode.getData();
+                    currentCompuerta.desconectarPinesCon(this);
+                    currentNode2 = currentNode.getNext();
+                }
+            }
+        }
+
+        this.setImage(null);
+    }
+
+
+    private void desconectarPinesCon(Compuerta compuerta){
+        Node current = compuerta.pinesIn.getHead();
+        Pin firstPin = (Pin)current.getData();
+        if (firstPin.getCompuerta() == compuerta){
+            firstPin.setCompuerta(null);
+            firstPin.setConectado(false);
+        }
+        while (current.getNext() != null){
+            Pin currentPin = (Pin)current.getData();
+            if (currentPin.getCompuerta() == compuerta){
+                currentPin.setCompuerta(null);
+                currentPin.setConectado(false);
+            }
+            current = current.getNext();
+        }
+
+    }
 
 
     public tipoCompuerta getTipo() {
@@ -83,6 +131,14 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         this.pinesIn = pinesIn;
     }
 
+    public void setCompuertasOut(Compuerta compuerta) {
+        this.compuertasOut.insertarInicio(compuerta);
+    }
+
+    public ListaEnlazada getCompuertasOut() {
+        return compuertasOut;
+    }
+
     /**
      * Metedo abstracto que se sobreescribe segun el tipo de compuerta
      * @return true or false dependiendo deloperardor y las entradas
@@ -107,18 +163,22 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         else {
             if (this.entradas.getSize() != numEntradas){
                 return false;
-            }else return true;
+            }else
+                return true;
         }
     }
 
-    public void conectarIn(int IDpin, Compuerta compuerta){
+    public void conectarPin(int IDpin, Compuerta compuerta){
         buscarIDP(IDpin).setCompuerta(compuerta);
         buscarIDP(IDpin).setConectado(true);
+        compuerta.setCompuertasOut(this);
     }
-    public void desconectarIn(int IDpin){
+    public void desconectarPin(int IDpin){
         buscarIDP(IDpin).setCompuerta(null);
         buscarIDP(IDpin).setConectado(false);
     }
+
+
 
     protected Pin buscarIDP(int IDpin){
         Node current = this.pinesIn.getHead();

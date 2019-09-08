@@ -7,7 +7,7 @@ public class Circuito extends GridPane {
 
     int entradas;
     int salidas;
-    ListaEnlazada compuertas;
+    static ListaEnlazada compuertas;
 
     public int getEntradas() {
         return entradas;

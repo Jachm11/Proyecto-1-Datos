@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseDragEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import listas.ListaEnlazada;
 import listas.Node;
@@ -22,20 +23,22 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
         System.out.println("hola");
-        /*
+
+
+
         ListaEnlazada listaEnlazada = new ListaEnlazada();
         listaEnlazada.insertarInicio("5");
-        listaEnlazada.insertarInicio("4");
-        listaEnlazada.insertarInicio("2");
-        listaEnlazada.insertarInicio("1");
         System.out.println(listaEnlazada.getSize());
         Node este = listaEnlazada.getHead();
-        while (este.getNext() != null) {
+        System.out.println(listaEnlazada.getHead().getNext());
+        /*while (este.getNext() != null) {
             System.out.println(este.getData());
             este = este.getNext();
         }
 
          */
+
+
         //listaEnlazada.insetarEn("3",2);
         /*Node este2 = listaEnlazada.getHead();
         while (este2.getNext() != null) {
@@ -55,7 +58,7 @@ public class Main extends Application {
         System.out.println(holi.getPinesIn().getSize());
         System.out.println(hola.getNumEntradas());
         System.out.println(hola.getPinesIn().getSize());
-        hola.conectarIn(1,holi);
+        //hola.conectarPin(1,holi);
         Pin temp = (Pin) hola.getPinesIn().getHead().getData();
         System.out.println(temp.getId());
         System.out.println(temp.getCompuerta());
