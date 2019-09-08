@@ -17,7 +17,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     private int numConexiones;
     private int factorX; // Solo para compuertas X
     ListaEnlazada entradas;
-    private ListaEnlazada pinesIn;
+    ListaEnlazada pinesIn;
     ListaEnlazada compuertasOut;
     tipoCompuerta tipo;
     int ID;
@@ -28,21 +28,25 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     public Compuerta(int entradas, int ID) {
         this.entradas = new ListaEnlazada();
         this.pinesIn = new ListaEnlazada();
-        this.numEntradas = entradas;
-        this.compuertasOut = new ListaEnlazada();
-        this.ID = ID;
         int cont = 0;
         while (cont < entradas) {
             Pin pin = new Pin(cont);
             this.pinesIn.insertarInicio(pin);
+            System.out.println("Pin creado");
             cont++;
         }
+        this.numEntradas = entradas;
+        this.compuertasOut = new ListaEnlazada();
+        this.ID = ID;
+
     }
 
     public void deleteCompuerta(Compuerta this) {
         Circuito.compuertas.eliminarX(this);
 
         Node currentNode = pinesIn.getHead();
+        System.out.println(pinesIn.getHead());
+        System.out.println(currentNode);
         if (currentNode.getNext() == null) {
             Pin currentPin = (Pin) currentNode.getData();
             currentPin.desconectar(this);

@@ -49,20 +49,20 @@ public class Main extends Application {
          */
         //System.out.println(listaEnlazada.getHead().getNext());
 
-        Compuerta hola = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,0));
+        //Compuerta hola = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,0));
         //AND hola = new AND(10,20,2,1);
 
-        System.out.println(hola.getNumEntradas());
-        AND holi = new AND(2,1);
-        System.out.println(holi.getNumEntradas());
-        System.out.println(holi.getPinesIn().getSize());
-        System.out.println(hola.getNumEntradas());
-        System.out.println(hola.getPinesIn().getSize());
+        //System.out.println(hola.getNumEntradas());
+        //AND holi = new AND(2,1);
+        //System.out.println(holi.getNumEntradas());
+        //System.out.println(holi.getPinesIn().getSize());
+        //System.out.println(hola.getNumEntradas());
+        //System.out.println(hola.getPinesIn().getSize());
         //hola.conectarPin(1,holi);
-        Pin temp = (Pin) hola.getPinesIn().getHead().getData();
-        System.out.println(temp.getId());
-        System.out.println(temp.getCompuerta());
-        System.out.println(hola.output());
+        //Pin temp = (Pin) hola.getPinesIn().getHead().getData();
+        //System.out.println(temp.getId());
+        //System.out.println(temp.getCompuerta());
+        //System.out.println(hola.output());
 
 
 

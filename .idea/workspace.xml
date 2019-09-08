@@ -5,15 +5,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/UI2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/UI2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/AND.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/AND.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/listas/ListaEnlazada.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/listas/ListaEnlazada.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/UI2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/UI2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/circuitDesing/AND.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/AND.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/Pin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Pin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/listas/ListaEnlazada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/listas/ListaEnlazada.java" afterDir="false" />
@@ -249,7 +247,7 @@
       <workItem from="1567395165258" duration="10907000" />
       <workItem from="1567448828251" duration="1814000" />
       <workItem from="1567650438533" duration="606000" />
-      <workItem from="1567826836738" duration="18930000" />
+      <workItem from="1567826836738" duration="22495000" />
     </task>
     <servers />
   </component>

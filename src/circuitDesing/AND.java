@@ -14,8 +14,10 @@ public class AND extends Compuerta {
      * @param ID identificador numérico para la compuerta
      */
     public AND(int entradas, int ID) {
+
         super(entradas,ID);
         this.tipo = tipoCompuerta.AND;
+
     }
 
     /**

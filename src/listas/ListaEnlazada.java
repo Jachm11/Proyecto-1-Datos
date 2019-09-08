@@ -54,10 +54,15 @@ public class ListaEnlazada{
             }
         }
         else {
-            while (current.getNext().getData() != data) {
+            while (current.getNext().getNext() != null) {
+                if (current.getNext().getData()==data){
+                    current.setNext(current.getNext().getNext());
+                }
                 current = current.getNext();
             }
-            current.setNext(current.getNext().getNext());
+            if (current.getNext().getData() == data) {
+                current.setNext(null);
+            }
         }
     }
     /*public void insetarEn(Object data, int indice){

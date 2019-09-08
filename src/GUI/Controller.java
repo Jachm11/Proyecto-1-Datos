@@ -34,7 +34,7 @@ public class Controller {
 
     private double orgSceneX, orgSceneY;
     private double orgTranslateX, orgTranslateY;
-    private int entradasDefault;
+    private int entradasDefault = 2;
     private Image ImageAND = new Image("GUI/gates/AND.png");
     private Image ImageNAND = new Image("GUI/gates/NAND.png");
     private Image ImageOR = new Image("GUI/gates/OR.png");
@@ -42,6 +42,7 @@ public class Controller {
     private Image ImageNOT = new Image("GUI/gates/NOT.png");
     private Image ImageXOR = new Image("GUI/gates/XOR.png");
     private Image ImageXNOR = new Image("GUI/gates/XNOR.png");
+
 
     //Click derecho en compuerta
 
@@ -93,6 +94,7 @@ public class Controller {
 
     public void clickedOnAND(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,entradasDefault,1));
+        System.out.println(newCompuerta);
         newCompuerta.setImage(ImageAND);
         setCompuerta(newCompuerta);
     }

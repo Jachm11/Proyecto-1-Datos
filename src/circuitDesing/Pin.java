@@ -65,7 +65,6 @@ import java.util.Scanner;
     }
 
     public void desconectar(Compuerta miCompuerta) {
-        System.out.println(miCompuerta);
         if (miCompuerta.getCompuertasOut().getHead() != null) {
             compuerta.getCompuertasOut().eliminarX(miCompuerta);
         }
