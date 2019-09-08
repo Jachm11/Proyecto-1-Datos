@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6e2b5acf-2044-4e0c-a301-1d47d7fa631b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Utilidades/Graph Algorithm/FXGraphAlgorithmSimulator-master/.idea/FXGraphAlgorithmSimulator-master.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/.idea/project-template.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/drags things.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/out/production/drags things/com/drag/JavaFX_DrawSomething$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/out/production/drags things/com/drag/JavaFX_DrawSomething$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/out/production/drags things/com/drag/JavaFX_DrawSomething.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drags things/src/com/drag/JavaFX_DrawSomething.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Proyecto-1-Datos/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/Proyecto-1-Datos/GUI/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Proyecto-1-Datos/GUI/UI2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/Proyecto-1-Datos/GUI/UI2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/GUI/UI2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../src/GUI/UI2.fxml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Jose\Documents\TEC\Semestre II\Datos I\Proyecto 1\Proyecto-1-Datos\untitled\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/.gitignore" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/junit_4_10_javadoc.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1QYgjyIGrZ1TMSztSnos9JFTTWC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Utilidades/untitled" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jose\Documents\TEC\Semestre II\Datos I\Proyecto 1\Proyecto-1-Datos\untitled\src" />
+      <recent name="C:\Users\Jose\Documents\TEC\Semestre II\Datos I\Proyecto 1\Proyecto-1-Datos\untitled" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="fxsimulator.FXSimulatorMain" />
+      <module name="untitled" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e2b5acf-2044-4e0c-a301-1d47d7fa631b" name="Default Changelist" comment="" />
+      <created>1567953082245</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567953082245</updated>
+      <workItem from="1567953084890" duration="1380000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

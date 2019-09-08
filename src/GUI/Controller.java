@@ -9,6 +9,7 @@ import javafx.collections.ObservableMap;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -18,10 +19,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 
 import javax.swing.*;
@@ -42,11 +45,6 @@ public class Controller {
     private Image ImageNOT = new Image("GUI/gates/NOT.png");
     private Image ImageXOR = new Image("GUI/gates/XOR.png");
     private Image ImageXNOR = new Image("GUI/gates/XNOR.png");
-
-
-    //Click derecho en compuerta
-
-
 
 
         @FXML // fx:id="x1"
@@ -90,6 +88,9 @@ public class Controller {
 
         @FXML // fx:id="Grid"
         private Circuito Circuito; // Value injected by FXMLLoader
+
+        @FXML
+        private AnchorPane Workshop;
 
 
     public void clickedOnAND(MouseEvent t){
@@ -137,17 +138,23 @@ public class Controller {
         newCompuerta.setCursor(Cursor.HAND);
         newCompuerta.setOnMousePressed(this::handle);
         newCompuerta.setOnMouseDragged(this::handle2);
+        newCompuerta.setOnMouseReleased(this::handle3);
         ContextMenu compuertaMenu = new ContextMenu();
         MenuItem item1 = new MenuItem("Connect");
         MenuItem item2 = new MenuItem("Delete");
         compuertaMenu.getItems().addAll(item1, item2);
         newCompuerta.setOnContextMenuRequested(event -> compuertaMenu.show(newCompuerta,event.getScreenX(), event.getScreenY()));
-        item1.setOnAction(e -> conectar());
+        item1.setOnAction(e -> conectar(newCompuerta));
         item2.setOnAction(e -> delete(newCompuerta));
     }
 
-    public void conectar(){
-        System.out.println("Tira una liecita y se conecta alv");
+    public void conectar(Compuerta compuerta){
+        Line linea = new Line(compuerta.getX(),compuerta.getY(),compuerta.getX()+50,compuerta.getY() );
+        Circuito.add(linea,1,1);
+
+
+
+
     }
 
     public void delete(Compuerta compuerta){
@@ -174,6 +181,14 @@ public class Controller {
         ((Compuerta)(t.getSource())).setTranslateX(newTranslateX);
         ((Compuerta)(t.getSource())).setTranslateY(newTranslateY);
                 }
+
+    public void handle3(MouseEvent t) {
+
+        ((Compuerta)(t.getSource())).setX(t.getSceneX());
+        ((Compuerta)(t.getSource())).setY(t.getSceneY());
+        System.out.println(((Compuerta)(t.getSource())).getX());
+        System.out.println(((Compuerta)(t.getSource())).getY());
+    }
 
     public void showGrid(MouseEvent event){
         Circuito.setGridLinesVisible(!Circuito.isGridLinesVisible());
