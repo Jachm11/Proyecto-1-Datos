@@ -22,11 +22,19 @@ import java.util.Scanner;
     boolean conectado;
     Compuerta compuerta;
     Compuerta miCompuerta;
+    boolean In;
+    boolean selected;
+    Color color;
+    final double xI;
+    final double yI;
 
     public boolean IsConectado() {
         return conectado;
     }
 
+    public boolean isIn() {
+        return In;
+    }
 
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
@@ -36,16 +44,24 @@ import java.util.Scanner;
      * Constructor de la clase
      * @param pinId identificador para el numero de pin
      */
-    public Pin(Color color, DoubleProperty x, DoubleProperty y,int pinId,Compuerta miCompuerta){
+    public Pin(Color color, DoubleProperty x,double xI, DoubleProperty y,double yI,int pinId,Compuerta miCompuerta, boolean In){
         super(x.get(), y.get(), 5);
         this.pinId = pinId;
         this.compuerta = null;
         this.conectado = false;
         this.miCompuerta = miCompuerta;
+        this.In = In;
+        this.selected = false;
+        this.color = color;
+        this.xI = xI;
+        this.yI = yI;
         setFill(color.deriveColor(1, 1, 1, 0.5));
         setStroke(color);
         setStrokeWidth(2);
         setStrokeType(StrokeType.OUTSIDE);
+        setCursor(Cursor.HAND);
+
+        setOnMouseClicked(this::crearLinea);
 
         x.bind(centerXProperty());
         y.bind(centerYProperty());
@@ -54,6 +70,17 @@ import java.util.Scanner;
     public int getPinId() {
         return pinId;
     }
+
+    public double getxI() {
+        return xI;
+    }
+
+
+    public  double getyI() {
+        return yI;
+    }
+
+
 
     public void setId(int id) {
         this.pinId = id;
@@ -89,4 +116,24 @@ import java.util.Scanner;
             compuerta.getCompuertasOut().eliminarX(miCompuerta);
         }
     }
+
+    public void crearLinea(MouseEvent e){
+        if(selected){
+            setFill(color.deriveColor(1, 1, 1, 0.5));
+            System.out.println(this.getCenterX());
+        }
+        else{
+            setFill(color.deriveColor(1, 1, 100, 10));
+        }
+
+
+        selected = !selected;
+        Pin soyPin = (Pin)e.getSource();
+        //voyPin = requestPin();
+
+    }
+    //private Pin requestPin(){
+
+    //}
+
 }

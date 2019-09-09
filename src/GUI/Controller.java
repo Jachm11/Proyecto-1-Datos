@@ -185,6 +185,8 @@ public class Controller {
         orgSceneY = t.getSceneY();
         orgTranslateX = ((Compuerta)(t.getSource())).getTranslateX();
         orgTranslateY = ((Compuerta)(t.getSource())).getTranslateY();
+        listas.Node current = ((Compuerta)(t.getSource())).getPinesIn().getHead();
+
     }
 
     public void handle2(MouseEvent t) {
@@ -198,18 +200,23 @@ public class Controller {
         listas.Node current = ((Compuerta)(t.getSource())).getPinesIn().getHead();
         while ( current.getNext() != null){
             Pin pin = (Pin) current.getData();
-            pin.setTranslateX(newTranslateX);
-            pin.setTranslateY(newTranslateY);
+            pin.setCenterX(newTranslateX + pin.getxI());
+            pin.setCenterY(newTranslateY + pin.getyI());
             current = current.getNext();
+
         }
 
         Pin pin = (Pin) current.getData();
-        pin.setTranslateX(newTranslateX);
-        pin.setTranslateY(newTranslateY);
+        pin.setCenterX(newTranslateX + pin.getxI());
+        pin.setCenterY(newTranslateY + pin.getyI());
+        //System.out.println(pin.getX());
+
 
         Pin pinOut = (Pin)((Compuerta)(t.getSource())).getPinOut();
-        pinOut.setTranslateX(newTranslateX);
-        pinOut.setTranslateY(newTranslateY);
+        pinOut.setCenterX(newTranslateX + pinOut.getxI());
+        pinOut.setCenterY(newTranslateY + pinOut.getyI());
+
+
 
                 }
 
