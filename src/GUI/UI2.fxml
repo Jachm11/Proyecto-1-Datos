@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -28,7 +28,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import circuitDesing.Circuito?>
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
   <children>
@@ -75,7 +74,7 @@
       <items>
         <ScrollPane>
           <content>
-            <AnchorPane id="Content" fx:id="Workshop" minHeight="-1.0" minWidth="-1.0" prefHeight="4000.0" prefWidth="4000.0">
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="4000.0" prefWidth="4000.0">
               <children>
                 <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" style="&#10;" text="Hephaestus Circuit Designer" textAlignment="CENTER" wrapText="false">
                            <font>
@@ -85,7 +84,7 @@
                       <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
                            </textFill>
                         </Label>
-                        <Circuito fx:id="Circuito" onKeyTyped="#compuertaKey" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <GridPane fx:id="Grid" disable="true" layoutX="64.0" layoutY="14.0" onKeyTyped="#compuertaKey" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -200,7 +199,11 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
-                        </Circuito>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </GridPane>
+                        <Circuito fx:id="Circuito" />
               </children>
             </AnchorPane>
           </content>

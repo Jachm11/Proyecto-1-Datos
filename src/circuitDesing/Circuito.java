@@ -1,9 +1,12 @@
 package circuitDesing;
 
+import javafx.scene.Group;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import listas.ListaEnlazada;
 
-public class Circuito extends GridPane {
+public class Circuito extends Group {
 
     int entradas;
     int salidas;

@@ -2,7 +2,10 @@ package circuitDesing;
 
 import AbstractFactory.CompuertaLogica;
 import AbstractFactory.tipoCompuerta;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import listas.ListaEnlazada;
 import listas.Node;
 
@@ -21,6 +24,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     ListaEnlazada compuertasOut;
     tipoCompuerta tipo;
     int ID;
+    Pin pinOut;
 
     /**
      * Constructor de la clase
@@ -29,12 +33,20 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         this.entradas = new ListaEnlazada();
         this.pinesIn = new ListaEnlazada();
         int cont = 0;
+        DoubleProperty startX = new SimpleDoubleProperty(this.getX());
         while (cont < entradas) {
-            Pin pin = new Pin(cont);
+            DoubleProperty startY = new SimpleDoubleProperty((this.getY()+(cont*40))+20);
+            Color colorRamdom = Color.color(Math.random(),Math.random(),Math.random());
+            Pin pin = new Pin(colorRamdom,startX,startY ,cont,this);
             this.pinesIn.insertarInicio(pin);
             System.out.println("Pin creado");
+
             cont++;
         }
+        Color colorRamdom = Color.color(Math.random(),Math.random(),Math.random());
+        DoubleProperty startX2 = new SimpleDoubleProperty(this.getX()+ 150);
+        DoubleProperty startY2 = new SimpleDoubleProperty(this.getY()+40);
+        pinOut = new Pin(colorRamdom,startX2,startY2,0,this);
         this.numEntradas = entradas;
         this.compuertasOut = new ListaEnlazada();
         this.ID = ID;
@@ -49,11 +61,11 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         System.out.println(currentNode);
         if (currentNode.getNext() == null) {
             Pin currentPin = (Pin) currentNode.getData();
-            currentPin.desconectar(this);
+            currentPin.desconectar();
         } else {
             while (currentNode.getNext() != null) {
                 Pin currentPin = (Pin) currentNode.getData();
-                currentPin.desconectar(this);
+                currentPin.desconectar();
                 currentNode = currentNode.getNext();
             }
         }
@@ -94,6 +106,9 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
 
     }
 
+    public Pin getPinOut() {
+        return pinOut;
+    }
 
     public tipoCompuerta getTipo() {
         return tipo;
@@ -188,7 +203,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         Node current = this.pinesIn.getHead();
         Pin PinNode = (Pin) current.getData();
         while (current.getNext() != null){
-            if (PinNode.id != IDpin) {
+            if (PinNode.getPinId() != IDpin) {
                 current = current.getNext();
                 PinNode = (Pin) current.getData();
             }else{

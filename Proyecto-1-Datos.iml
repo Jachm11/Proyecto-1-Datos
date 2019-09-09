@@ -10,7 +10,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/controlsfx-8.40.14.jar!/" />
+          <root url="jar://$MODULE_DIR$/Utilidades/untitled/lib/jfoenix-8.0.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/jfoenix-8.0.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/Utilidades/untitled/lib/controlsfx-8.40.14.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,7 +28,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/jfxtras-labs-samples-8.0-r6-SNAPSHOT-all.jar!/" />
+          <root url="jar://$MODULE_DIR$/Utilidades/untitled/lib/jfxtras-labs-samples-8.0-r6-SNAPSHOT-all.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

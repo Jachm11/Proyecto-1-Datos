@@ -10,6 +10,8 @@ public class NOT extends Compuerta {
     public NOT(int ID) {
         super(1,ID);
         this.tipo = tipoCompuerta.NOT;
+        Pin miPin = (Pin)this.pinesIn.getHead().getData();
+        miPin.setCenterY(33);
     }
 
 

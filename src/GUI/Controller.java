@@ -4,6 +4,9 @@ import AbstractFactory.CompuertaFactory;
 import AbstractFactory.tipoCompuerta;
 import circuitDesing.Circuito;
 import circuitDesing.Compuerta;
+import circuitDesing.Pin;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.EventHandler;
@@ -25,6 +28,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 
 import javax.swing.*;
@@ -50,8 +55,6 @@ public class Controller {
         @FXML // fx:id="x1"
         private Font x1; // Value injected by FXMLLoader
 
-        @FXML
-        private VBox vBox;
 
         @FXML // fx:id="x2"
         private Color x2; // Value injected by FXMLLoader
@@ -86,11 +89,12 @@ public class Controller {
         @FXML // fx:id="x4"
         private Color x4; // Value injected by FXMLLoader
 
+        @FXML
+        private GridPane Grid;
+
         @FXML // fx:id="Grid"
         private Circuito Circuito; // Value injected by FXMLLoader
 
-        @FXML
-        private AnchorPane Workshop;
 
 
     public void clickedOnAND(MouseEvent t){
@@ -133,29 +137,39 @@ public class Controller {
     }
 
     private void setCompuerta(Compuerta newCompuerta){
-        Circuito.add(newCompuerta,3,3);
+
+        Circuito.getChildren().add(newCompuerta);
+        listas.Node current = newCompuerta.getPinesIn().getHead();
+        while ( current.getNext() != null){
+            Pin pin = (Pin) current.getData();
+            Circuito.getChildren().add(pin);
+            current = current.getNext();
+        }
+        Pin pin = (Pin) current.getData();
+        Circuito.getChildren().add(pin);
+        Circuito.getChildren().add(newCompuerta.getPinOut());
         Circuito.getCompuertas().insertarInicio(newCompuerta);
         newCompuerta.setCursor(Cursor.HAND);
         newCompuerta.setOnMousePressed(this::handle);
         newCompuerta.setOnMouseDragged(this::handle2);
-        newCompuerta.setOnMouseReleased(this::handle3);
+        //newCompuerta.setOnMouseReleased(this::handle3);
+
+        DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX());
+        DoubleProperty startY = new SimpleDoubleProperty(newCompuerta.getY());
+        DoubleProperty endX   = new SimpleDoubleProperty(300);
+        DoubleProperty endY   = new SimpleDoubleProperty(200);
+
+
         ContextMenu compuertaMenu = new ContextMenu();
         MenuItem item1 = new MenuItem("Connect");
         MenuItem item2 = new MenuItem("Delete");
         compuertaMenu.getItems().addAll(item1, item2);
         newCompuerta.setOnContextMenuRequested(event -> compuertaMenu.show(newCompuerta,event.getScreenX(), event.getScreenY()));
-        item1.setOnAction(e -> conectar(newCompuerta));
+        //item1.setOnAction(e -> conectar(newCompuerta));
         item2.setOnAction(e -> delete(newCompuerta));
+        Line line = new Line();
     }
 
-    public void conectar(Compuerta compuerta){
-        Line linea = new Line(compuerta.getX(),compuerta.getY(),compuerta.getX()+50,compuerta.getY() );
-        Circuito.add(linea,1,1);
-
-
-
-
-    }
 
     public void delete(Compuerta compuerta){
         compuerta.deleteCompuerta();
@@ -165,12 +179,13 @@ public class Controller {
         }
 
 
+        //FRAGMENTO NO ORIGINAL
     public void handle(MouseEvent t) {
         orgSceneX = t.getSceneX();
         orgSceneY = t.getSceneY();
         orgTranslateX = ((Compuerta)(t.getSource())).getTranslateX();
         orgTranslateY = ((Compuerta)(t.getSource())).getTranslateY();
-                }
+    }
 
     public void handle2(MouseEvent t) {
         double offsetX = t.getSceneX() - orgSceneX;
@@ -180,18 +195,27 @@ public class Controller {
 
         ((Compuerta)(t.getSource())).setTranslateX(newTranslateX);
         ((Compuerta)(t.getSource())).setTranslateY(newTranslateY);
+        listas.Node current = ((Compuerta)(t.getSource())).getPinesIn().getHead();
+        while ( current.getNext() != null){
+            Pin pin = (Pin) current.getData();
+            pin.setTranslateX(newTranslateX);
+            pin.setTranslateY(newTranslateY);
+            current = current.getNext();
+        }
+
+        Pin pin = (Pin) current.getData();
+        pin.setTranslateX(newTranslateX);
+        pin.setTranslateY(newTranslateY);
+
+        Pin pinOut = (Pin)((Compuerta)(t.getSource())).getPinOut();
+        pinOut.setTranslateX(newTranslateX);
+        pinOut.setTranslateY(newTranslateY);
+
                 }
 
-    public void handle3(MouseEvent t) {
-
-        ((Compuerta)(t.getSource())).setX(t.getSceneX());
-        ((Compuerta)(t.getSource())).setY(t.getSceneY());
-        System.out.println(((Compuerta)(t.getSource())).getX());
-        System.out.println(((Compuerta)(t.getSource())).getY());
-    }
 
     public void showGrid(MouseEvent event){
-        Circuito.setGridLinesVisible(!Circuito.isGridLinesVisible());
+        Grid.setGridLinesVisible(!Grid.isGridLinesVisible());
     }
 
 
