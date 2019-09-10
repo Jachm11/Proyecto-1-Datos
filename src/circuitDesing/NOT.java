@@ -11,7 +11,9 @@ public class NOT extends Compuerta {
         super(1,ID);
         this.tipo = tipoCompuerta.NOT;
         Pin miPin = (Pin)this.pinesIn.getHead().getData();
-        miPin.setCenterY(33);
+        miPin.setTranslateY(13);
+        pinOut.setTranslateX(-25);
+        pinOut.setTranslateY(-6);
     }
 
 
