@@ -180,17 +180,14 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
             return false;
         }
         else {
-            if (this.entradas.getSize() != numEntradas){
-                return false;
-            }else
-                return true;
+            return this.entradas.getSize() == numEntradas;
         }
     }
 
     public void conectarPin(int IDpin, Compuerta compuerta){
         buscarIDP(IDpin).setCompuerta(compuerta);
         buscarIDP(IDpin).setConectado(true);
-        compuerta.setCompuertasOut(this);
+        compuerta.getCompuertasOut().insertarInicio(this);
     }
     public void desconectarPin(int IDpin){
         buscarIDP(IDpin).setCompuerta(null);

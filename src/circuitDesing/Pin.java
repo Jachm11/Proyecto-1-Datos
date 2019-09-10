@@ -9,8 +9,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
+import listas.ListaEnlazada;
+import listas.Node;
 
 import java.util.Scanner;
+
+import static circuitDesing.Circuito.selectedPin;
 
 /**
  * Clase dependiente de compuerta se encarga de almancenar las conexiones y valores de las entradas de una compuerta
@@ -61,7 +65,7 @@ import java.util.Scanner;
         setStrokeType(StrokeType.OUTSIDE);
         setCursor(Cursor.HAND);
 
-        setOnMouseClicked(this::crearLinea);
+        setOnMouseClicked(this::select);
 
         x.bind(centerXProperty());
         y.bind(centerYProperty());
@@ -76,11 +80,14 @@ import java.util.Scanner;
     }
 
 
+
     public  double getyI() {
         return yI;
     }
 
-
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public void setId(int id) {
         this.pinId = id;
@@ -117,23 +124,76 @@ import java.util.Scanner;
         }
     }
 
-    public void crearLinea(MouseEvent e){
-        if(selected){
+    public void select(MouseEvent e) {
+        if (selected) {
             setFill(color.deriveColor(1, 1, 1, 0.5));
-            System.out.println(this.getCenterX());
-        }
-        else{
+            //System.out.println(this.getCenterX());
+            selectedPin = null;
+        } else {
             setFill(color.deriveColor(1, 1, 100, 10));
+            if (selectedPin == null) {
+                selectedPin = (Pin) e.getSource();
+                System.out.println(selectedPin);
+            } else {
+                boolean selectedType = selectedPin.isIn();
+                System.out.println(compatibles(this,selectedPin));
+                if (compatibles(this,selectedPin)) {
+                    if (selectedType)  {  //si la anterior es In
+                        selectedPin.setFill(this.color);
+                        selectedPin.setStroke(this.color);
+                        System.out.println(selectedPin);
+                        selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta);
+                        //this.miCompuerta.conectarPin(this.getPinId(), selectedPin.getCompuerta());
+                        selected = !selected;
+                        selectedPin.setSelected(false);
+                        selectedPin = null;
+                    }else{  // la anterior es out
+                        setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
+                        setStroke(selectedPin.color);
+                        this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta);
+                        //selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.getCompuerta());
+                        selected = !selected;
+                        selectedPin.setSelected(false);
+                        selectedPin = null;
+                    }
+
+                    }else{
+                    setFill(color.deriveColor(1, 1, 1, 0.5));
+                    selectedPin.setFill(selectedPin.color.deriveColor(1, 1, 1, 0.5));
+                    selectedPin.setSelected(false);
+                    selected = !selected;
+                    selectedPin = null;
+                }
+            }
         }
-
-
         selected = !selected;
-        Pin soyPin = (Pin)e.getSource();
-        //voyPin = requestPin();
-
     }
-    //private Pin requestPin(){
 
-    //}
+    public boolean compatibles(Pin pin1, Pin pin2){
+        if (pin1.In != pin2.In & pin1.miCompuerta != pin2.miCompuerta){
+            if (pin1.In) {
+                return pin2.compatiblesAux(pin1, pin2);
+            }else{
+                return pin1.compatiblesAux(pin2, pin1);
+            }
+        }else {
+            return false;
+        }
+    }
+
+    public boolean compatiblesAux(Pin In , Pin Out){
+        ListaEnlazada listaIn = Out.miCompuerta.getPinesIn();
+        Compuerta CompuertaDeIn = In.miCompuerta;
+        Node current = listaIn.getHead();
+        while (current.getNext() != null){
+            Pin currentPin = (Pin) current.getData();
+            if(currentPin.compuerta == CompuertaDeIn){
+                return false;
+            }
+            current = current.getNext();
+        }
+        Pin currentPin = (Pin) current.getData();
+        return currentPin.compuerta != CompuertaDeIn;
+    }
 
 }

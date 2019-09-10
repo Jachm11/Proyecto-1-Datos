@@ -28,9 +28,9 @@ public class Main extends Application {
 
         ListaEnlazada listaEnlazada = new ListaEnlazada();
         listaEnlazada.insertarInicio("5");
-        System.out.println(listaEnlazada.getSize());
+        //System.out.println(listaEnlazada.getSize());
         Node este = listaEnlazada.getHead();
-        System.out.println(listaEnlazada.getHead().getNext());
+        //System.out.println(listaEnlazada.getHead().getNext());
         /*while (este.getNext() != null) {
             System.out.println(este.getData());
             este = este.getNext();
@@ -49,7 +49,14 @@ public class Main extends Application {
          */
         //System.out.println(listaEnlazada.getHead().getNext());
 
-        //Compuerta hola = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,0));
+        Compuerta hola = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,1));
+        Compuerta hola2 = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,1));
+
+        System.out.println(hola.getCompuertasOut());
+
+        hola.conectarPin(1,hola2);
+        System.out.println(hola.getCompuertasOut());
+
         //AND hola = new AND(10,20,2,1);
 
         //System.out.println(hola.getNumEntradas());

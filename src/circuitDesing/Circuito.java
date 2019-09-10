@@ -11,6 +11,7 @@ public class Circuito extends Group {
     int entradas;
     int salidas;
     static ListaEnlazada compuertas;
+    static Pin selectedPin;
 
     public int getEntradas() {
         return entradas;
