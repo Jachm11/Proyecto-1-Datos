@@ -93,7 +93,7 @@ public class Controller {
         private GridPane Grid;
 
         @FXML // fx:id="Grid"
-        private Circuito Circuito; // Value injected by FXMLLoader
+        public Circuito Circuito; // Value injected by FXMLLoader
 
 
 

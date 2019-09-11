@@ -1,5 +1,6 @@
 package circuitDesing;
 
+import GUI.Controller;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
@@ -31,11 +32,11 @@ import static circuitDesing.Circuito.selectedPin;
     Color color;
     final double xI;
     final double yI;
-
+    DoubleProperty x;
+    DoubleProperty y;
     public boolean IsConectado() {
         return conectado;
     }
-
     public boolean isIn() {
         return In;
     }
@@ -59,6 +60,8 @@ import static circuitDesing.Circuito.selectedPin;
         this.color = color;
         this.xI = xI;
         this.yI = yI;
+        this.x = x;
+        this.y = y;
         setFill(color.deriveColor(1, 1, 1, 0.5));
         setStroke(color);
         setStrokeWidth(2);
@@ -141,17 +144,28 @@ import static circuitDesing.Circuito.selectedPin;
                     if (selectedType)  {  //si la anterior es In
                         selectedPin.setFill(this.color);
                         selectedPin.setStroke(this.color);
-                        System.out.println(selectedPin);
+
                         selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta);
+                        CircuitLine newLine = new CircuitLine(x,y,selectedPin.x,selectedPin.y,this.color);
+                        GUI.Controller.getCircuito.getChildren().add(newLine);
                         //this.miCompuerta.conectarPin(this.getPinId(), selectedPin.getCompuerta());
+
+
                         selected = !selected;
                         selectedPin.setSelected(false);
                         selectedPin = null;
+
                     }else{  // la anterior es out
                         setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
                         setStroke(selectedPin.color);
+
+
                         this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta);
+                        CircuitLine newLine = new CircuitLine(selectedPin.x,selectedPin.y,x,y,this.color);
+                        GUI.Controller.getChildren().add(newLine);
                         //selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.getCompuerta());
+
+
                         selected = !selected;
                         selectedPin.setSelected(false);
                         selectedPin = null;
