@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -24,6 +25,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -33,6 +35,9 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 
 import javax.swing.*;
+import javax.swing.event.TreeModelEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 /**
@@ -50,11 +55,17 @@ public class Controller {
     private Image ImageNOT = new Image("GUI/gates/NOT.png");
     private Image ImageXOR = new Image("GUI/gates/XOR.png");
     private Image ImageXNOR = new Image("GUI/gates/XNOR.png");
+    private static Controller instance = null;
 
+    public Controller() {
+        instance = this;
+    }
+    public static Controller getController(){
+            return instance;
+        }
 
         @FXML // fx:id="x1"
         private Font x1; // Value injected by FXMLLoader
-
 
         @FXML // fx:id="x2"
         private Color x2; // Value injected by FXMLLoader
@@ -94,6 +105,10 @@ public class Controller {
 
         @FXML // fx:id="Grid"
         public Circuito Circuito; // Value injected by FXMLLoader
+
+        @FXML
+        private AnchorPane Content;
+
 
 
 
@@ -154,11 +169,6 @@ public class Controller {
         newCompuerta.setOnMouseDragged(this::handle2);
         //newCompuerta.setOnMouseReleased(this::handle3);
 
-        DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX());
-        DoubleProperty startY = new SimpleDoubleProperty(newCompuerta.getY());
-        DoubleProperty endX   = new SimpleDoubleProperty(300);
-        DoubleProperty endY   = new SimpleDoubleProperty(200);
-
 
         ContextMenu compuertaMenu = new ContextMenu();
         MenuItem item1 = new MenuItem("Connect");
@@ -217,14 +227,11 @@ public class Controller {
         pinOut.setCenterY(newTranslateY + pinOut.getyI());
 
 
-
                 }
-
 
     public void showGrid(MouseEvent event){
         Grid.setGridLinesVisible(!Grid.isGridLinesVisible());
     }
-
 
 }
 

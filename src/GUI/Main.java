@@ -26,6 +26,7 @@ public class Main extends Application {
 
 
 
+
         ListaEnlazada listaEnlazada = new ListaEnlazada();
         listaEnlazada.insertarInicio("5");
         //System.out.println(listaEnlazada.getSize());
@@ -81,6 +82,7 @@ public class Main extends Application {
         //System.out.println(hola.operar());
         //System.out.println();
     }
+
 
 
     public static void main(String[] args) { launch(args); }

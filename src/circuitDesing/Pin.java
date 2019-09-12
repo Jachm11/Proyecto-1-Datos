@@ -147,7 +147,7 @@ import static circuitDesing.Circuito.selectedPin;
 
                         selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta);
                         CircuitLine newLine = new CircuitLine(x,y,selectedPin.x,selectedPin.y,this.color);
-                        GUI.Controller.getCircuito.getChildren().add(newLine);
+                        Controller.getController().Circuito.getChildren().add(newLine);
                         //this.miCompuerta.conectarPin(this.getPinId(), selectedPin.getCompuerta());
 
 
@@ -161,8 +161,9 @@ import static circuitDesing.Circuito.selectedPin;
 
 
                         this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta);
-                        CircuitLine newLine = new CircuitLine(selectedPin.x,selectedPin.y,x,y,this.color);
-                        GUI.Controller.getChildren().add(newLine);
+                        CircuitLine newLine = new CircuitLine(selectedPin.x,selectedPin.y,x,y,selectedPin.color);
+                        Controller.getController().Circuito.getChildren().add(newLine);
+                        //GUI.Controller.getCircuito();
                         //selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.getCompuerta());
 
 
@@ -183,7 +184,9 @@ import static circuitDesing.Circuito.selectedPin;
         selected = !selected;
     }
 
+
     public boolean compatibles(Pin pin1, Pin pin2){
+        // FAlTA VALIDAR SI EL IN YA ESTA CONECTADO
         if (pin1.In != pin2.In & pin1.miCompuerta != pin2.miCompuerta){
             if (pin1.In) {
                 return pin2.compatiblesAux(pin1, pin2);
