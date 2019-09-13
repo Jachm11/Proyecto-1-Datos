@@ -2,6 +2,10 @@ package AbstractFactory;
 
 import circuitDesing.*;
 
+/**
+ * Clase de fabrica concreta, se encarga de la creacion de todos los tipos de compuerta
+ * @author Jose Alejandro
+ */
 public class CompuertaFactory implements AbsCompuertaFactory {
 
     private int AND = 0;

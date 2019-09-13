@@ -6,6 +6,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import listas.ListaEnlazada;
 
+/**
+ * Clase que se encarga del almacenamiento de las compuertas en pantalla, esta es la clase que se almacena
+ * la informacion del circuito para mas tarde ser trasformado a una Custom gate.
+ * @since 31-08-19
+ *
+ */
 public class Circuito extends Group {
 
     int entradas;

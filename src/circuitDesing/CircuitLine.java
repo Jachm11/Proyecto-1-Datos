@@ -5,6 +5,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
 
+/**
+ * Clase que se encarga de la apariencia grafica de las unione entre circuitos.
+ * @author ...
+ * Tomado de:
+ */
+
 public class CircuitLine extends Line {
     CircuitLine(DoubleProperty startX, DoubleProperty startY, DoubleProperty endX, DoubleProperty endY,Color color) {
         startXProperty().bind(startX);

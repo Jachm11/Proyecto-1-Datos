@@ -10,7 +10,7 @@ import listas.ListaEnlazada;
 import listas.Node;
 
 /**
- * Clase abstracta que define las propiedades de una compuerta lógica
+ * Clase abstracta que define las propiedades y metodos de una compuerta lógica
  * @author Jose Alejandro
  * @since 31-08-19
  */
@@ -50,59 +50,6 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         this.numEntradas = entradas;
         this.compuertasOut = new ListaEnlazada();
         this.ID = ID;
-
-    }
-
-    public void deleteCompuerta(Compuerta this) {
-        Circuito.compuertas.eliminarX(this);
-
-        Node currentNode = pinesIn.getHead();
-        System.out.println(pinesIn.getHead());
-        System.out.println(currentNode);
-        if (currentNode.getNext() == null) {
-            Pin currentPin = (Pin) currentNode.getData();
-            currentPin.desconectar();
-        } else {
-            while (currentNode.getNext() != null) {
-                Pin currentPin = (Pin) currentNode.getData();
-                currentPin.desconectar();
-                currentNode = currentNode.getNext();
-            }
-        }
-
-        Node currentNode2 = compuertasOut.getHead();
-        if (currentNode2 != null){
-            if (currentNode2.getNext() == null) {
-                Compuerta currentCompuerta = (Compuerta) currentNode.getData();
-                currentCompuerta.desconectarPinesCon(this);
-            } else {
-                while (currentNode2.getNext() != null) {
-                    Compuerta currentCompuerta = (Compuerta) currentNode.getData();
-                    currentCompuerta.desconectarPinesCon(this);
-                    currentNode2 = currentNode.getNext();
-                }
-            }
-        }
-
-        this.setImage(null);
-    }
-
-
-    private void desconectarPinesCon(Compuerta compuerta){
-        Node current = compuerta.pinesIn.getHead();
-        Pin firstPin = (Pin)current.getData();
-        if (firstPin.getCompuerta() == compuerta){
-            firstPin.setCompuerta(null);
-            firstPin.setConectado(false);
-        }
-        while (current.getNext() != null){
-            Pin currentPin = (Pin)current.getData();
-            if (currentPin.getCompuerta() == compuerta){
-                currentPin.setCompuerta(null);
-                currentPin.setConectado(false);
-            }
-            current = current.getNext();
-        }
 
     }
 
@@ -158,6 +105,60 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         return compuertasOut;
     }
 
+    public void deleteCompuerta(Compuerta this) {
+        Circuito.compuertas.eliminarX(this);
+
+        Node currentNode = pinesIn.getHead();
+        System.out.println(pinesIn.getHead());
+        System.out.println(currentNode);
+        if (currentNode.getNext() == null) {
+            Pin currentPin = (Pin) currentNode.getData();
+            currentPin.desconectar();
+        } else {
+            while (currentNode.getNext() != null) {
+                Pin currentPin = (Pin) currentNode.getData();
+                currentPin.desconectar();
+                currentNode = currentNode.getNext();
+            }
+        }
+
+        Node currentNode2 = compuertasOut.getHead();
+        if (currentNode2 != null){
+            if (currentNode2.getNext() == null) {
+                Compuerta currentCompuerta = (Compuerta) currentNode.getData();
+                currentCompuerta.desconectarPinesCon(this);
+            } else {
+                while (currentNode2.getNext() != null) {
+                    Compuerta currentCompuerta = (Compuerta) currentNode.getData();
+                    currentCompuerta.desconectarPinesCon(this);
+                    currentNode2 = currentNode.getNext();
+                }
+            }
+        }
+
+        this.setImage(null);
+    }
+
+
+    private void desconectarPinesCon(Compuerta compuerta){
+        Node current = compuerta.pinesIn.getHead();
+        Pin firstPin = (Pin)current.getData();
+        if (firstPin.getCompuerta() == compuerta){
+            firstPin.setCompuerta(null);
+            firstPin.setConectado(false);
+        }
+        while (current.getNext() != null){
+            Pin currentPin = (Pin)current.getData();
+            if (currentPin.getCompuerta() == compuerta){
+                currentPin.setCompuerta(null);
+                currentPin.setConectado(false);
+            }
+            current = current.getNext();
+        }
+
+    }
+
+
     /**
      * Metedo abstracto que se sobreescribe segun el tipo de compuerta
      * @return true or false dependiendo deloperardor y las entradas
@@ -193,7 +194,6 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         buscarIDP(IDpin).setCompuerta(null);
         buscarIDP(IDpin).setConectado(false);
     }
-
 
 
     protected Pin buscarIDP(int IDpin){

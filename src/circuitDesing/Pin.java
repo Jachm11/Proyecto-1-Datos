@@ -96,15 +96,6 @@ import static circuitDesing.Circuito.selectedPin;
         this.pinId = id;
     }
 
-    public boolean isValor() {
-        if (conectado){
-            return compuerta.output();
-        }
-        else{
-            return askforinput();
-            }
-    }
-
     public boolean askforinput() {
         return true;
     }
@@ -120,6 +111,16 @@ import static circuitDesing.Circuito.selectedPin;
     public void setCompuerta(Compuerta compuerta) {
         this.compuerta = compuerta;
     }
+
+    public boolean isValor() {
+        if (conectado){
+            return compuerta.output();
+        }
+        else{
+            return askforinput();
+            }
+    }
+
 
     public void desconectar() {
         if (miCompuerta.getCompuertasOut().getHead() != null) {

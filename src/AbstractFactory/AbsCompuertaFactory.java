@@ -2,6 +2,11 @@ package AbstractFactory;
 
 import circuitDesing.Compuerta;
 
+/**
+ * Interfaz para la implementacion del abstractact factory de compuertas
+ * @author Jose Alejandro
+ */
+
 public interface AbsCompuertaFactory {
     public Compuerta crearAND(int entradas, int ID);
     public Compuerta crearNAND(int entradas,int ID);

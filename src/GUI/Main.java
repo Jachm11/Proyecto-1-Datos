@@ -13,6 +13,11 @@ import javafx.stage.Stage;
 import listas.ListaEnlazada;
 import listas.Node;
 
+/**
+ * Clase main par el diseñador de circuitos, desde aqui se inicialiaza la interfaz principal
+ * @author Jose ALejandro
+ * @since 31-08-19
+ */
 
 public class Main extends Application {
 

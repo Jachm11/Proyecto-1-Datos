@@ -41,7 +41,10 @@ import java.util.ResourceBundle;
 
 
 /**
- * Sample Skeleton for 'UI2.fxml' Controller Class
+ * Clase controller para el UI2, en ella se manejan la mayoria de las interacciones en pantalla. Y se
+ * definen los tags para los elementos del fxml
+ * @author Jose Alejandro
+ * @since 31-08-19
  */
 public class Controller {
 
