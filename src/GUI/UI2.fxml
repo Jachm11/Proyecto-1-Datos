@@ -203,7 +203,7 @@
                                         <Cursor fx:constant="OPEN_HAND" />
                                     </cursor>
                                 </GridPane>
-                                <Group fx:id="Circuito" />
+                        <Circuito fx:id="Circuito" AnchorPane.bottomAnchor="4001.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="4001.0" AnchorPane.topAnchor="0.0" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -301,15 +301,15 @@
                                     <children>
                                         <ToolBar layoutX="-14.0" orientation="VERTICAL" prefHeight="130.0" prefWidth="139.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
-                                                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="128.0" text="Run Circuit" />
+                                                <Button fx:id="Run" alignment="CENTER" mnemonicParsing="false" onAction="#runCircuit" prefHeight="55.0" prefWidth="128.0" text="Run Circuit" />
                                                 <Button mnemonicParsing="false" text="Generate Truth Table" />
                                                 <CheckBox fx:id="ShowGrid" mnemonicParsing="false" onMouseClicked="#showGrid" text="Show Grid Lines" />
-                                                <MenuButton mnemonicParsing="false" text="Gate Entries">
+                                                <MenuButton fx:id="GateEntries" mnemonicParsing="false" text="Gate Entries">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="2" />
-                                                        <MenuItem mnemonicParsing="false" text="3" />
-                                                        <MenuItem mnemonicParsing="false" text="4" />
-                                                        <MenuItem mnemonicParsing="false" text="Custom" />
+                                                        <MenuItem fx:id="DosEntradas" mnemonicParsing="false" onAction="#its2Entries" text="2" />
+                                                        <MenuItem fx:id="TresEntradas" mnemonicParsing="false" onAction="#its3Entries" text="3" />
+                                                        <MenuItem fx:id="CuatroEntradas" mnemonicParsing="false" onAction="#its4Entries" text="4" />
+                                                        <MenuItem fx:id="CustomEntradas" mnemonicParsing="false" onAction="#itsXEntries" text="Custom" />
                                                     </items>
                                                 </MenuButton>
                                             </items>

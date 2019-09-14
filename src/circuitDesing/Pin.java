@@ -13,6 +13,7 @@ import javafx.scene.shape.StrokeType;
 import listas.ListaEnlazada;
 import listas.Node;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 import static circuitDesing.Circuito.selectedPin;
@@ -97,7 +98,9 @@ import static circuitDesing.Circuito.selectedPin;
     }
 
     public boolean askforinput() {
-        return true;
+        boolean valor = Boolean.parseBoolean(JOptionPane.showInputDialog("Pin numero "+this.pinId+"de compuerta "+this.miCompuerta.getTipo().toString()+this.miCompuerta.getID()));
+        //boolean valor = Boolean.parseBoolean(JOptionPane.showInputDialog("True or False"));
+        return valor;
     }
 
     public void setValor(boolean valor) {
@@ -187,7 +190,6 @@ import static circuitDesing.Circuito.selectedPin;
 
 
     public boolean compatibles(Pin pin1, Pin pin2){
-        // FAlTA VALIDAR SI EL IN YA ESTA CONECTADO
         if (pin1.In != pin2.In & pin1.miCompuerta != pin2.miCompuerta){
             if (pin1.In) {
                 return pin2.compatiblesAux(pin1, pin2);
@@ -199,19 +201,22 @@ import static circuitDesing.Circuito.selectedPin;
         }
     }
 
-    public boolean compatiblesAux(Pin In , Pin Out){
-        ListaEnlazada listaIn = Out.miCompuerta.getPinesIn();
-        Compuerta CompuertaDeIn = In.miCompuerta;
-        Node current = listaIn.getHead();
-        while (current.getNext() != null){
-            Pin currentPin = (Pin) current.getData();
-            if(currentPin.compuerta == CompuertaDeIn){
-                return false;
+    public boolean compatiblesAux(Pin In , Pin Out) {
+        if (!In.conectado) {
+            ListaEnlazada listaIn = Out.miCompuerta.getPinesIn();
+            Compuerta CompuertaDeIn = In.miCompuerta;
+            Node current = listaIn.getHead();
+            while (current.getNext() != null) {
+                Pin currentPin = (Pin) current.getData();
+                if (currentPin.compuerta == CompuertaDeIn) {
+                    return false;
+                }
+                current = current.getNext();
             }
-            current = current.getNext();
+            Pin currentPin = (Pin) current.getData();
+            return currentPin.compuerta != CompuertaDeIn;
         }
-        Pin currentPin = (Pin) current.getData();
-        return currentPin.compuerta != CompuertaDeIn;
+        return false;
     }
 
 }

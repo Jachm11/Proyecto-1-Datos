@@ -245,20 +245,22 @@ public class Controller {
         Grid.setGridLinesVisible(!Grid.isGridLinesVisible());
     }
 
-    public void its2Entries(MouseEvent e){
+    public void its2Entries(){
         this.entradasDefault = 2;
     }
-    public void its3Entries(MouseEvent e){
-        this.entradasDefault = 2;
+    public void its3Entries(){
+        this.entradasDefault = 3;
     }
-    public void its4Entries(MouseEvent e){
-        this.entradasDefault = 2;
+    public void its4Entries(){
+        this.entradasDefault = 4;
     }
-    public void itsXEntries(MouseEvent e){
+    public void itsXEntries(){
     }
 
-    public void runCircuit(MouseEvent e){
-        ListaEnlazada compuertasActuales = Circuito.getCompuertas();
+    public void runCircuit(){
+        //ListaEnlazada compuertasActuales = Circuito.getCompuertas();
+        Circuito.setRol();
+        Circuito.execute();
     }
 
 }

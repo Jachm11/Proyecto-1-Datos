@@ -55,13 +55,38 @@ public class Main extends Application {
          */
         //System.out.println(listaEnlazada.getHead().getNext());
 
-        Compuerta hola = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,1));
-        Compuerta hola2 = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,1));
+        //Compuerta and1 = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,2,1));
+        //Compuerta and2 = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,1));
+        //Compuerta and3 = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,1));
 
-        System.out.println(hola.getCompuertasOut());
+        //System.out.println(hola.getCompuertasOut());
 
-        hola.conectarPin(1,hola2);
-        System.out.println(hola.getCompuertasOut());
+        //hola.input(false);
+        //hola.input(true);
+        //System.out.println(hola.operar());
+
+        //and3.conectarPin(1,and1);
+        //and3.conectarPin(2,and3);
+
+        //and1.setValorPinX(1,true);
+        //and1.setValorPinX(2,true);
+
+        //and2.setValorPinX(1,true);
+        //and2.setValorPinX(2,true);
+
+        //System.out.println(and3.output());
+        //System.out.println(and1.output());
+        //System.out.println(and2.output());
+
+
+        //hola.conectarPin(1,hola2);
+        //System.out.println(hola.output());
+        //Pin pinHola2 = (Pin) hola.getPinesIn().getHead().getData();
+        //pinHola2.setValor(false);
+        //Pin pinHola1 = (Pin) hola.getPinesIn().getHead().getNext().getData();
+        //pinHola1.setValor(true);
+        //System.out.println(hola2.output());
+
 
         //AND hola = new AND(10,20,2,1);
 

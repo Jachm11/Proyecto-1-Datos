@@ -42,13 +42,12 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
             Pin pin = new Pin(colorRamdom,startX, this.getX(),startY,this.getY()+(cont*40)+20 ,cont,this,true);
             this.pinesIn.insertarInicio(pin);
             System.out.println("Pin creado");
-
             cont++;
         }
         Color colorRamdom = Color.color(Math.random(),Math.random(),Math.random());
         DoubleProperty startX2 = new SimpleDoubleProperty(this.getX()+ 150);
         DoubleProperty startY2 = new SimpleDoubleProperty(this.getY()+40);
-        pinOut = new Pin(colorRamdom,startX2,this.getX()+ 150,startY2,this.getY()+40,0,this,false);
+        pinOut = new Pin(colorRamdom,startX2,this.getX()+ 150,startY2,this.getY()+40,-1,this,false);
         this.numEntradas = entradas;
         this.compuertasOut = new ListaEnlazada();
         this.ID = ID;
@@ -206,6 +205,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     public void conectarPin(int IDpin, Compuerta compuerta){
         buscarIDP(IDpin).setCompuerta(compuerta);
         buscarIDP(IDpin).setConectado(true);
+        compuerta.getPinOut().setConectado(true);
         compuerta.getCompuertasOut().insertarInicio(this);
     }
     public void desconectarPin(int IDpin){
@@ -226,6 +226,16 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
             }
         }
         return (Pin) current.getData();
+    }
+
+    /**
+     * Herramienta de desarrllo, el programa no utiliza este metodo
+     * @param IDpin Id del pin al que se desea asignar el valor
+     * @param valor Valor para el pin
+     */
+    public void setValorPinX(int IDpin,boolean valor){
+        buscarIDP(IDpin).setValor(valor);
+        buscarIDP(IDpin).setConectado(false);
     }
     /**
      * Metedo para compuetas NXOR y XOR
@@ -270,6 +280,23 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     }
 
     public boolean isOutIn() {
-        return pinOut.isConectado();
+        return pinOut.IsConectado();
+    }
+
+    public int getUnpluggeds() {
+        Node current = pinesIn.getHead();
+        int unplugged = 0;
+        while (current.getNext() != null){
+            Pin currentPin = (Pin)current.getData();
+            if (!currentPin.IsConectado()){
+                unplugged++;
+            }
+            current = current.getNext();
+        }
+        Pin currentPin = (Pin)current.getData();
+        if (!currentPin.IsConectado()){
+            unplugged++;
+        }
+        return unplugged;
     }
 }

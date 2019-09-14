@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import listas.ListaEnlazada;
 import listas.Node;
 
@@ -13,7 +14,7 @@ import listas.Node;
  * @since 31-08-19
  *
  */
-public class Circuito extends Group {
+public class Circuito extends Pane {
 
     int entradas;
     int salidas;
@@ -43,6 +44,8 @@ public class Circuito extends Group {
         return compuertas;
     }
     public void setRol(){
+        entradas = 0;
+        salidas = 0;
         ListaEnlazada circuitoActual = compuertas;
         Node current = circuitoActual.getHead();
         while (current.getNext() != null){
@@ -60,7 +63,27 @@ public class Circuito extends Group {
             currentGate.setLast(false);
         }else{
             currentGate.setLast(true);
-            salidas ++;
+            System.out.println(currentGate.getTipo().toString()+currentGate.getID());
+            salidas++;
+        }
+
+    }
+
+    public void execute() {
+        Node current = compuertas.getHead();
+        while (current.getNext() != null){
+            Compuerta currentGate = (Compuerta) current.getData();
+            if (currentGate.isLast()){
+                System.out.println(currentGate.output());
+
+            }
+            current = current.getNext();
+        }
+        System.out.println(entradas);
+        System.out.println(salidas);
+        Compuerta currentGate = (Compuerta) current.getData();
+        if (currentGate.isLast()) {
+            System.out.println(currentGate.output());
         }
     }
 }
