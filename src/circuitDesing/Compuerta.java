@@ -25,6 +25,8 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     tipoCompuerta tipo;
     int ID;
     Pin pinOut;
+    boolean last;
+    boolean mid;
 
     /**
      * Constructor de la clase
@@ -103,6 +105,22 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
 
     public ListaEnlazada getCompuertasOut() {
         return compuertasOut;
+    }
+
+    public boolean isLast() {
+        return last;
+    }
+
+    public void setLast(boolean last) {
+        this.last = last;
+    }
+
+    public boolean isMid() {
+        return mid;
+    }
+
+    public void setMid(boolean mid) {
+        this.mid = mid;
     }
 
     public void deleteCompuerta(Compuerta this) {
@@ -251,4 +269,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         return this.operar();
     }
 
+    public boolean isOutIn() {
+        return pinOut.isConectado();
+    }
 }

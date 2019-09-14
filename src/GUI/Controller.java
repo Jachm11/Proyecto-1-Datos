@@ -15,10 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -33,6 +30,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
+import listas.ListaEnlazada;
 
 import javax.swing.*;
 import javax.swing.event.TreeModelEvent;
@@ -103,16 +101,32 @@ public class Controller {
         @FXML // fx:id="x4"
         private Color x4; // Value injected by FXMLLoader
 
-        @FXML
+        @FXML// fx:id="Grid"
         private GridPane Grid;
 
-        @FXML // fx:id="Grid"
+        @FXML // fx:id="Circuito"
         public Circuito Circuito; // Value injected by FXMLLoader
 
         @FXML
         private AnchorPane Content;
 
+        @FXML // fx:id="GateEntries"
+        private MenuButton GateEntries; // Value injected by FXMLLoader
 
+        @FXML // fx:id="DosEntradas"
+        private MenuItem DosEntradas; // Value injected by FXMLLoader
+
+        @FXML // fx:id="TresEntradas"
+        private MenuItem TresEntradas; // Value injected by FXMLLoader
+
+        @FXML // fx:id="CuatroEntradas"
+        private MenuItem CuatroEntradas; // Value injected by FXMLLoader
+
+        @FXML // fx:id="CustomEntradas"
+        private MenuItem CustomEntradas; // Value injected by FXMLLoader
+
+        @FXML // fx:id="Run"
+        private Button Run; // Value injected by FXMLLoader
 
 
     public void clickedOnAND(MouseEvent t){
@@ -170,7 +184,6 @@ public class Controller {
         newCompuerta.setCursor(Cursor.HAND);
         newCompuerta.setOnMousePressed(this::handle);
         newCompuerta.setOnMouseDragged(this::handle2);
-        //newCompuerta.setOnMouseReleased(this::handle3);
 
 
         ContextMenu compuertaMenu = new ContextMenu();
@@ -180,16 +193,12 @@ public class Controller {
         newCompuerta.setOnContextMenuRequested(event -> compuertaMenu.show(newCompuerta,event.getScreenX(), event.getScreenY()));
         //item1.setOnAction(e -> conectar(newCompuerta));
         item2.setOnAction(e -> delete(newCompuerta));
-        Line line = new Line();
     }
 
 
     public void delete(Compuerta compuerta){
         compuerta.deleteCompuerta();
     }
-    public void compuertaKey() {
-        System.out.println("jola");
-        }
 
 
         //FRAGMENTO NO ORIGINAL
@@ -202,7 +211,7 @@ public class Controller {
 
     }
 
-    public void handle2(MouseEvent t) {
+    private void handle2(MouseEvent t) {
         double offsetX = t.getSceneX() - orgSceneX;
         double offsetY = t.getSceneY() - orgSceneY;
         double newTranslateX = orgTranslateX + offsetX;
@@ -234,6 +243,22 @@ public class Controller {
 
     public void showGrid(MouseEvent event){
         Grid.setGridLinesVisible(!Grid.isGridLinesVisible());
+    }
+
+    public void its2Entries(MouseEvent e){
+        this.entradasDefault = 2;
+    }
+    public void its3Entries(MouseEvent e){
+        this.entradasDefault = 2;
+    }
+    public void its4Entries(MouseEvent e){
+        this.entradasDefault = 2;
+    }
+    public void itsXEntries(MouseEvent e){
+    }
+
+    public void runCircuit(MouseEvent e){
+        ListaEnlazada compuertasActuales = Circuito.getCompuertas();
     }
 
 }

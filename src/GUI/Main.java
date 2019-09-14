@@ -15,7 +15,7 @@ import listas.Node;
 
 /**
  * Clase main par el diseñador de circuitos, desde aqui se inicialiaza la interfaz principal
- * @author Jose ALejandro
+ * @author Jose Alejandro
  * @since 31-08-19
  */
 

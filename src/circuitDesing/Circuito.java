@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import listas.ListaEnlazada;
+import listas.Node;
 
 /**
  * Clase que se encarga del almacenamiento de las compuertas en pantalla, esta es la clase que se almacena
@@ -37,12 +38,29 @@ public class Circuito extends Group {
 
     public ListaEnlazada getCompuertas() {
         if (compuertas==null){
-            this.compuertas = new ListaEnlazada();
+            compuertas = new ListaEnlazada();
         }
         return compuertas;
     }
+    public void setRol(){
+        ListaEnlazada circuitoActual = compuertas;
+        Node current = circuitoActual.getHead();
+        while (current.getNext() != null){
+            rolAux(current);
+            current = current.getNext();
+        }
+        rolAux(current);
+    }
 
-    public void setCompuertas(ListaEnlazada compuertas) {
-        this.compuertas = compuertas;
+    private void rolAux(Node current) {
+        Compuerta currentGate = (Compuerta) current.getData();
+        boolean OutIn = currentGate.isOutIn();
+        entradas += currentGate.getUnpluggeds();
+        if (OutIn){
+            currentGate.setLast(false);
+        }else{
+            currentGate.setLast(true);
+            salidas ++;
+        }
     }
 }

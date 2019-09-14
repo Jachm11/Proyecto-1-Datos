@@ -34,12 +34,6 @@ import static circuitDesing.Circuito.selectedPin;
     final double yI;
     DoubleProperty x;
     DoubleProperty y;
-    public boolean IsConectado() {
-        return conectado;
-    }
-    public boolean isIn() {
-        return In;
-    }
 
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
@@ -82,7 +76,13 @@ import static circuitDesing.Circuito.selectedPin;
         return xI;
     }
 
+    public boolean IsConectado() {
+        return conectado;
+    }
 
+    public boolean isIn() {
+        return In;
+    }
 
     public  double getyI() {
         return yI;
