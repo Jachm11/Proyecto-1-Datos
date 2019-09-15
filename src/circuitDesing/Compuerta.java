@@ -214,7 +214,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     }
 
 
-    protected Pin buscarIDP(int IDpin){
+    public Pin buscarIDP(int IDpin){
         Node current = this.pinesIn.getHead();
         Pin PinNode = (Pin) current.getData();
         while (current.getNext() != null){

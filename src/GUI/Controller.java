@@ -261,9 +261,6 @@ public class Controller {
         Circuito.setRol();
         TableController.getController().setTable();
 
-
-
-
     }
 
     //public ObservableList<Integer> getValues(){

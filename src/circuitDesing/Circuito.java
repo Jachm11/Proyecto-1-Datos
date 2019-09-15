@@ -16,27 +16,27 @@ import listas.Node;
  */
 public class Circuito extends Pane {
 
-    int entradas;
-    int salidas;
+    int NumEntradas;
+    int NumSalidas;
     static ListaEnlazada compuertas;
     static Pin selectedPin;
     public ListaEnlazada absIn;
     public ListaEnlazada absOut;
 
-    public int getEntradas() {
-        return entradas;
+    public int getNumEntradas() {
+        return NumEntradas;
     }
 
     public void setEntradas(int entradas) {
-        this.entradas = entradas;
+        this.NumEntradas = entradas;
     }
 
-    public int getSalidas() {
-        return salidas;
+    public int getNumSalidas() {
+        return NumSalidas;
     }
 
     public void setSalidas(int salidas) {
-        this.salidas = salidas;
+        this.NumSalidas = salidas;
     }
 
     public ListaEnlazada getCompuertas() {
@@ -46,8 +46,8 @@ public class Circuito extends Pane {
         return compuertas;
     }
     public void setRol(){
-        entradas = 0;
-        salidas = 0;
+        NumEntradas = 0;
+        NumSalidas = 0;
         absIn = new ListaEnlazada();
         absOut = new ListaEnlazada();
         ListaEnlazada circuitoActual = compuertas;
@@ -62,7 +62,7 @@ public class Circuito extends Pane {
     private void rolAux(Node current) {
         Compuerta currentGate = (Compuerta) current.getData();
         boolean OutIn = currentGate.isOutIn();
-        entradas += currentGate.getUnpluggeds();
+        NumEntradas += currentGate.getUnpluggeds();
         if (currentGate.getUnpluggeds() > 0){
             absIn.insertarInicio(currentGate);
         }
@@ -72,7 +72,7 @@ public class Circuito extends Pane {
             currentGate.setLast(true);
             System.out.println(currentGate.getTipo().toString()+currentGate.getID());
             absOut.insertarInicio(currentGate);
-            salidas++;
+            NumSalidas++;
         }
 
     }
@@ -87,8 +87,8 @@ public class Circuito extends Pane {
             }
             current = current.getNext();
         }
-        System.out.println(entradas);
-        System.out.println(salidas);
+        System.out.println(NumEntradas);
+        System.out.println(NumSalidas);
         Compuerta currentGate = (Compuerta) current.getData();
         if (currentGate.isLast()) {
             System.out.println(currentGate.output());
