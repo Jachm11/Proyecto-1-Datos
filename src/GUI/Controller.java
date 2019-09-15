@@ -255,9 +255,10 @@ public class Controller {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("TruthTable.fxml"));
         Stage stage = new Stage();
-        stage.setScene(new Scene(loader.load(), 800, 500));
+        stage.setScene(new Scene(loader.load(), 400, 250));
         stage.show();
 
+        Circuito.setRol();
         TableController.getController().setTable();
 
 

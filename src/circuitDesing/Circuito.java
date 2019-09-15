@@ -20,6 +20,8 @@ public class Circuito extends Pane {
     int salidas;
     static ListaEnlazada compuertas;
     static Pin selectedPin;
+    public ListaEnlazada absIn;
+    public ListaEnlazada absOut;
 
     public int getEntradas() {
         return entradas;
@@ -46,6 +48,8 @@ public class Circuito extends Pane {
     public void setRol(){
         entradas = 0;
         salidas = 0;
+        absIn = new ListaEnlazada();
+        absOut = new ListaEnlazada();
         ListaEnlazada circuitoActual = compuertas;
         Node current = circuitoActual.getHead();
         while (current.getNext() != null){
@@ -59,11 +63,15 @@ public class Circuito extends Pane {
         Compuerta currentGate = (Compuerta) current.getData();
         boolean OutIn = currentGate.isOutIn();
         entradas += currentGate.getUnpluggeds();
+        if (currentGate.getUnpluggeds() > 0){
+            absIn.insertarInicio(currentGate);
+        }
         if (OutIn){
             currentGate.setLast(false);
         }else{
             currentGate.setLast(true);
             System.out.println(currentGate.getTipo().toString()+currentGate.getID());
+            absOut.insertarInicio(currentGate);
             salidas++;
         }
 
