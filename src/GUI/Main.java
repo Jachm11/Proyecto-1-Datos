@@ -1,14 +1,9 @@
 package GUI;
 
-import AbstractFactory.CompuertaFactory;
-import AbstractFactory.tipoCompuerta;
-import circuitDesing.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import listas.ListaEnlazada;
 import listas.Node;
@@ -23,7 +18,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("UI2.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Hepheastus.fxml"));
         primaryStage.setTitle("Hephaestus Circuit Designer");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();

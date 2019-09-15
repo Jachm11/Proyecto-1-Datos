@@ -299,4 +299,5 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         }
         return unplugged;
     }
+
 }

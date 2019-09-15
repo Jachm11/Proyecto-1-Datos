@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -203,7 +202,7 @@
                                         <Cursor fx:constant="OPEN_HAND" />
                                     </cursor>
                                 </GridPane>
-                        <Circuito fx:id="Circuito" AnchorPane.bottomAnchor="4001.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="4001.0" AnchorPane.topAnchor="0.0" />
+                                <Circuito fx:id="Circuito" AnchorPane.bottomAnchor="4001.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="4001.0" AnchorPane.topAnchor="0.0" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -302,7 +301,7 @@
                                         <ToolBar layoutX="-14.0" orientation="VERTICAL" prefHeight="130.0" prefWidth="139.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
                                                 <Button fx:id="Run" alignment="CENTER" mnemonicParsing="false" onAction="#runCircuit" prefHeight="55.0" prefWidth="128.0" text="Run Circuit" />
-                                                <Button mnemonicParsing="false" text="Generate Truth Table" />
+                                                <Button mnemonicParsing="false" onAction="#generateTable" text="Generate Truth Table" />
                                                 <CheckBox fx:id="ShowGrid" mnemonicParsing="false" onMouseClicked="#showGrid" text="Show Grid Lines" />
                                                 <MenuButton fx:id="GateEntries" mnemonicParsing="false" text="Gate Entries">
                                                     <items>

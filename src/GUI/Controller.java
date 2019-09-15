@@ -5,37 +5,24 @@ import AbstractFactory.tipoCompuerta;
 import circuitDesing.Circuito;
 import circuitDesing.Compuerta;
 import circuitDesing.Pin;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.Group;
-import javafx.scene.Node;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.StrokeLineCap;
-import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
-import listas.ListaEnlazada;
+import javafx.stage.Stage;
 
 import javax.swing.*;
-import javax.swing.event.TreeModelEvent;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
 
 /**
@@ -127,6 +114,7 @@ public class Controller {
 
         @FXML // fx:id="Run"
         private Button Run; // Value injected by FXMLLoader
+
 
 
     public void clickedOnAND(MouseEvent t){
@@ -245,16 +233,15 @@ public class Controller {
         Grid.setGridLinesVisible(!Grid.isGridLinesVisible());
     }
 
-    public void its2Entries(){
-        this.entradasDefault = 2;
-    }
+    public void its2Entries(){ this.entradasDefault = 2; }
     public void its3Entries(){
         this.entradasDefault = 3;
     }
     public void its4Entries(){
         this.entradasDefault = 4;
     }
-    public void itsXEntries(){
+    public void itsXEntries(){int numEntrdas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de entradas"));
+    this.entradasDefault = numEntrdas;
     }
 
     public void runCircuit(){
@@ -262,6 +249,27 @@ public class Controller {
         Circuito.setRol();
         Circuito.execute();
     }
+
+    public void generateTable() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("TruthTable.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(loader.load(), 800, 500));
+        stage.show();
+
+        TableController.getController().setTable();
+
+
+
+
+    }
+
+    //public ObservableList<Integer> getValues(){
+        //ObservableList<Integer> Values = FXCollections.observableArrayList();
+        //Values.add(1);
+        //return Values;
+    //}
 
 }
 
