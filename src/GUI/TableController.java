@@ -91,12 +91,6 @@ public class TableController {
             current = current.getNext();
             cont++;
         }
-        //ObservableList<Integer> values = FXCollections.observableArrayList();
-        //values.add(1);
-        //values.add(1);
-        //values.add(1);
-        //values.add(1);
-        //TruthTable.getItems().add(values);
 
         populate(posiblidades, numEntradas,numSalidas,AbsInputPins,Outputs);
     }
@@ -173,7 +167,7 @@ public class TableController {
             return 1;
         }
     }
-    
+
 
 }
 
