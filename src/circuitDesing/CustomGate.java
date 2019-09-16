@@ -1,10 +1,16 @@
 package circuitDesing;
 
+import AbstractFactory.tipoCompuerta;
+import GUI.BigPin;
+import listas.ListaEnlazada;
+
 /**
  * Clase donde se almacena un circuito guardado y para ser tratado como compuerta
  */
 public class CustomGate extends Compuerta {
-    int salidas;
+    int NumSalidas;
+    ListaEnlazada pinesOut;
+    BigPin bigPinOut;
 
     /**
      * Constructor de la clase
@@ -13,15 +19,28 @@ public class CustomGate extends Compuerta {
      */
     public CustomGate( int entradas, int salidas, int ID) {
         super(entradas,salidas);
-        this.salidas = salidas;
+        this.NumSalidas = salidas;
+        this.tipo = tipoCompuerta.Custom;
     }
 
     public int getSalidas() {
-        return salidas;
+        return NumSalidas;
     }
 
     public void setSalidas(int salidas) {
-        this.salidas = salidas;
+        this.NumSalidas = salidas;
+    }
+
+    public ListaEnlazada getPinesOut() {
+        return pinesOut;
+    }
+
+    public BigPin getBigPinOut() {
+        return bigPinOut;
+    }
+
+    public void setBigPinOut(BigPin bigPinOut) {
+        this.bigPinOut = bigPinOut;
     }
 
     @Override

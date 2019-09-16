@@ -1,4 +1,4 @@
-package circuitDesing;
+package GUI;
 
 import javafx.scene.Cursor;
 import javafx.scene.control.Tooltip;
@@ -23,5 +23,38 @@ public class SavedCircuit extends ImageView {
         this.setCursor(Cursor.HAND);
         this.setImage(image);
         Tooltip.install(this,new Tooltip(nomine));
+        setOnMouseClicked(e ->Controller.getController().clickedOnCustom(e));
+    }
+
+    public int getEntradas() {
+        return entradas;
+    }
+
+    public void setEntradas(int entradas) {
+        this.entradas = entradas;
+    }
+
+    public int getSalidas() {
+        return salidas;
+    }
+
+    public void setSalidas(int salidas) {
+        this.salidas = salidas;
+    }
+
+    public ListaEnlazada getCircuito() {
+        return circuito;
+    }
+
+    public void setCircuito(ListaEnlazada circuito) {
+        this.circuito = circuito;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

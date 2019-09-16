@@ -2,6 +2,7 @@ package circuitDesing;
 
 import AbstractFactory.CompuertaLogica;
 import AbstractFactory.tipoCompuerta;
+import GUI.BigPin;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.image.ImageView;
@@ -28,6 +29,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     boolean last;
     boolean mid;
     boolean first;
+    BigPin bigPin = null;
 
     /**
      * Constructor de la clase
@@ -42,8 +44,8 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         DoubleProperty startX = new SimpleDoubleProperty(this.getX());
         while (cont < entradas) {
             DoubleProperty startY = new SimpleDoubleProperty((this.getY()+(cont*40))+20);
-            Color colorRamdom = Color.color(Math.random(),Math.random(),Math.random());
-            Pin pin = new Pin(colorRamdom,startX, this.getX(),startY,this.getY()+(cont*40)+20 ,cont,this,true);
+            Color colorRandom = Color.color(Math.random(),Math.random(),Math.random());
+            Pin pin = new Pin(colorRandom,startX, this.getX(),startY,this.getY()+(cont*40)+20 ,cont,this,true);
             this.pinesIn.insertarInicio(pin);
             System.out.println("Pin creado");
             cont++;
@@ -122,6 +124,14 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
 
     public void setMid(boolean mid) {
         this.mid = mid;
+    }
+
+    public BigPin getBigPin() {
+        return bigPin;
+    }
+
+    public void setBigPin(BigPin bigPin) {
+        this.bigPin = bigPin;
     }
 
     public void deleteCompuerta(Compuerta this) {

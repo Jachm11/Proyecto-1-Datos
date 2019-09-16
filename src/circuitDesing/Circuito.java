@@ -1,7 +1,7 @@
 package circuitDesing;
 
+import GUI.SavedCircuit;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import listas.ListaEnlazada;
 import listas.Node;

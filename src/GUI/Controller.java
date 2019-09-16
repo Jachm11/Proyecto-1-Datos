@@ -3,21 +3,18 @@ package GUI;
 import AbstractFactory.CompuertaFactory;
 import AbstractFactory.tipoCompuerta;
 import circuitDesing.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -181,25 +178,55 @@ public class Controller implements Initializable {
         setCompuerta(newCompuerta);
     }
     public void clickedOnCustom(MouseEvent t){
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,1,1));
+        SavedCircuit savedCircuit = (SavedCircuit) (t.getSource());
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas()));
+        newCompuerta.setImage(CustomImg);
+        setCompuerta(newCompuerta);
     }
 
     private void setCompuerta(Compuerta newCompuerta){
 
         Circuito.getChildren().add(newCompuerta);
-        listas.Node current = newCompuerta.getPinesIn().getHead();
-        while ( current.getNext() != null){
+
+        System.out.println("soy tipo:"+(newCompuerta.getTipo().toString()));
+        if(newCompuerta.getTipo() != tipoCompuerta.Custom & newCompuerta.getNumEntradas()<4) {
+            listas.Node current = newCompuerta.getPinesIn().getHead();
+            while (current.getNext() != null) {
+                Pin pin = (Pin) current.getData();
+                Circuito.getChildren().add(pin);
+                Tooltip.install(pin, new Tooltip((pin.getMiCompuerta().getTipo().toString()) + pin.getMiCompuerta().getID() + "_" + pin.IdString()));
+                current = current.getNext();
+            }
             Pin pin = (Pin) current.getData();
             Circuito.getChildren().add(pin);
-            Tooltip.install(pin,new Tooltip((pin.getMiCompuerta().getTipo().toString())+pin.getMiCompuerta().getID()+"_"+pin.IdString()));
-            current = current.getNext();
+            Tooltip.install(pin, new Tooltip((pin.getMiCompuerta().getTipo().toString()) + pin.getMiCompuerta().getID() + "_" + pin.IdString()));
+
         }
-        Pin pin = (Pin) current.getData();
-        Circuito.getChildren().add(pin);
-        Tooltip.install(pin,new Tooltip((pin.getMiCompuerta().getTipo().toString())+pin.getMiCompuerta().getID()+"_"+pin.IdString()));
-        Pin pinOut =newCompuerta.getPinOut();
-        Circuito.getChildren().add(pinOut);
-        Tooltip.install(pinOut,new Tooltip((pinOut.getMiCompuerta().getTipo().toString())+pinOut.getMiCompuerta().getID()+"_"+pinOut.IdString()));
+        else {
+            DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX());
+            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(40)));
+            Color colorRandom = Color.color(Math.random(),Math.random(),Math.random());
+            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX(),startY,newCompuerta.getY()+40 ,newCompuerta,true,newCompuerta.getPinesIn());
+            newCompuerta.setBigPin(bigPin);
+            Circuito.getChildren().add(bigPin);
+            Tooltip.install(bigPin, new Tooltip((bigPin.getMiCompuerta().getTipo().toString())+"_x"+bigPin.getSize()+"I"));
+        }
+        if(newCompuerta.getTipo()==tipoCompuerta.Custom){
+            DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX());
+            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(40)));
+            Color colorRandom = Color.color(Math.random(),Math.random(),Math.random());
+            CustomGate thisCustomGate = (CustomGate) newCompuerta;
+            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX(),startY,newCompuerta.getY()+40 ,newCompuerta,false,thisCustomGate.getPinesOut());
+            thisCustomGate.setBigPinOut(bigPin);
+            Circuito.getChildren().add(bigPin);
+            Tooltip.install(bigPin, new Tooltip((bigPin.getMiCompuerta().getTipo().toString())+"_x"+bigPin.getSize()+"O"));
+
+        }else {
+            Pin pinOut = newCompuerta.getPinOut();
+            Circuito.getChildren().add(pinOut);
+            Tooltip.install(pinOut, new Tooltip((pinOut.getMiCompuerta().getTipo().toString()) + pinOut.getMiCompuerta().getID() + "_" + pinOut.IdString()));
+        }
+
         Circuito.getCompuertas().insertarInicio(newCompuerta);
         newCompuerta.setCursor(Cursor.HAND);
         newCompuerta.setOnMousePressed(this::handle);
@@ -237,29 +264,44 @@ public class Controller implements Initializable {
         double newTranslateX = orgTranslateX + offsetX;
         double newTranslateY = orgTranslateY + offsetY;
 
-        ((Compuerta)(t.getSource())).setTranslateX(newTranslateX);
-        ((Compuerta)(t.getSource())).setTranslateY(newTranslateY);
-        listas.Node current = ((Compuerta)(t.getSource())).getPinesIn().getHead();
-        while ( current.getNext() != null){
+        Compuerta compuerta = (Compuerta)(t.getSource());
+        compuerta.setTranslateX(newTranslateX);
+        compuerta.setTranslateY(newTranslateY);
+
+        if (compuerta.getNumEntradas() > 4){
+            BigPin bigPin = compuerta.getBigPin();
+            bigPin.setCenterX(newTranslateX + bigPin.getxI());
+            bigPin.setCenterY(newTranslateY + bigPin.getyI());
+        }
+        else {
+            listas.Node current = ((Compuerta) (t.getSource())).getPinesIn().getHead();
+            while (current.getNext() != null) {
+                Pin pin = (Pin) current.getData();
+                pin.setCenterX(newTranslateX + pin.getxI());
+                pin.setCenterY(newTranslateY + pin.getyI());
+                current = current.getNext();
+
+            }
+
             Pin pin = (Pin) current.getData();
             pin.setCenterX(newTranslateX + pin.getxI());
             pin.setCenterY(newTranslateY + pin.getyI());
-            current = current.getNext();
+            //System.out.println(pin.getX());
+        }
+            if (compuerta.getTipo() == tipoCompuerta.Custom){
+                CustomGate thisCustomGate = (CustomGate) compuerta;
+                BigPin bigPin =  thisCustomGate.getBigPinOut();
+                bigPin.setCenterX(newTranslateX + bigPin.getxI());
+                bigPin.setCenterY(newTranslateY + bigPin.getyI());
 
+
+            }else {
+                Pin pinOut = (Pin) ((Compuerta) (t.getSource())).getPinOut();
+                pinOut.setCenterX(newTranslateX + pinOut.getxI());
+                pinOut.setCenterY(newTranslateY + pinOut.getyI());
+            }
         }
 
-        Pin pin = (Pin) current.getData();
-        pin.setCenterX(newTranslateX + pin.getxI());
-        pin.setCenterY(newTranslateY + pin.getyI());
-        //System.out.println(pin.getX());
-
-
-        Pin pinOut = (Pin)((Compuerta)(t.getSource())).getPinOut();
-        pinOut.setCenterX(newTranslateX + pinOut.getxI());
-        pinOut.setCenterY(newTranslateY + pinOut.getyI());
-
-
-                }
 
     public void showGrid(MouseEvent event){
         Grid.setGridLinesVisible(!Grid.isGridLinesVisible());
@@ -277,8 +319,7 @@ public class Controller implements Initializable {
     }
 
     public void runCircuit(){
-        //ListaEnlazada compuertasActuales = Circuito.getCompuertas();
-        //Circuito.setRol();
+
         if (Circuito.checkCircuit()){
             Circuito.execute();
         }
@@ -298,6 +339,7 @@ public class Controller implements Initializable {
 
 
     public void saveCurrentCircuit() {
+
         if(Circuito.checkCircuit()){
             SavedCircuit newCustomC = Circuito.saveThis(CustomImg);
             customVbox.getChildren().add(newCustomC);
