@@ -65,6 +65,23 @@ public class ListaEnlazada{
             }
         }
     }
+
+    public void setByIndex(int index,Object data){
+        Node current= this.getHead();
+        for (int x = 0; x < index ; x++ ){
+            current = current.getNext();
+        }
+        current.setData(data);
+
+    }
+
+    public Object serchByIndex(int index) {
+        Node current= this.getHead();
+        for (int x = 0; x < index ; x++ ){
+            current = current.getNext();
+        }
+        return current.getData();
+    }
     /*public void insetarEn(Object data, int indice){
         Node newNode = new Node(data);
         Node current = this.head;

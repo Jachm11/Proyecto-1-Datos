@@ -3,6 +3,8 @@ package GUI;
 import circuitDesing.Circuito;
 import circuitDesing.Compuerta;
 import circuitDesing.Pin;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableIntegerValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +14,8 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import listas.ListaEnlazada;
 import listas.Node;
+
+import java.util.Iterator;
 
 public class TableController {
     private static TableController instance = new TableController();
@@ -46,9 +50,19 @@ public class TableController {
             while (contPin < currentGate.getNumEntradas()) {
                 Pin currentPin = currentGate.buscarIDP(contPin);
                 if (!currentPin.IsConectado()) {
-                    TableColumn column = new TableColumn<ObservableList<Integer>, Integer>(currentGate.getTipo().toString() + currentGate.getID() + "In" + contPin);
-                    TruthTable.getColumns().addAll(column);
-                    System.out.println(absPin);
+                    TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "In" + contPin);
+
+                    int finalAbsPin = absPin;
+                    column.setCellValueFactory(row -> {
+                        Iterator<Integer> iterator = row.getValue().iterator();
+                        for(int i = 0; i < finalAbsPin; ++i) {
+                            iterator.next();
+                        }
+                        return new SimpleIntegerProperty(iterator.next()).asObject();
+                    });
+
+                    TruthTable.getColumns().add(column);
+                    //System.out.println(absPin);
                     absPin++;
                 }
                 contPin++;
@@ -65,10 +79,49 @@ public class TableController {
             current = current.getNext();
             cont++;
         }
+        //ObservableList<Integer> values = FXCollections.observableArrayList();
+        //values.add(1);
+        //values.add(1);
+        //values.add(1);
+        //values.add(1);
+        //TruthTable.getItems().add(values);
+
+        populate(posiblidades, numEntradas,numSalidas);
+    }
+
+    private void populate(int posibilidades, int entradas, int salidas) {
+        ListaEnlazada valores = new ListaEnlazada();
+        for(int x=0; x < entradas; x++){
+            valores.insertarInicio(1);
+        }
+        for(int i = 0 ; i < posibilidades; i++){
+            ObservableList<Integer> values = FXCollections.observableArrayList();
+            for(int j = 0; j < entradas; j++){
+
+                values.add((Integer) valores.serchByIndex(j));
+
+                System.out.println(i+1%(posibilidades/Math.pow(2,i+1)));
+                if ((int)(i%(posibilidades/Math.pow(2,j+1)))==0){
+
+                    valores.setByIndex(j,intBool((int)valores.serchByIndex(j)));
+                    System.out.println("valor " + j );
+                }
+            }
+            TruthTable.getItems().add(values);
+        }
+
+    }
+
+    private int intBool(int bool) {
+        if (bool==1){
+            return 0;
+        }else {
+            return 1;
+        }
     }
 
 
-
+/*
     private ObservableList<Integer> setValues(int posiblidades, int pin) {
         int repeticion = 0;
         ObservableList<Integer> values = FXCollections.observableArrayList();
@@ -91,44 +144,7 @@ public class TableController {
         return values;
     }
 
-    /*
-    private void calculateForEachRow(ListaEnlazada inputs, ListaEnlazada outputs,int posibilidades) {
-        int columnas = inputs.getSize() + outputs.getSize();
-        int filas = posibilidades;
-        int cont = 0;
-        int absPin = 0;
-
-        Node current = inputs.getHead();
-
-        while (cont < posibilidades) {
-            Compuerta currentGate = (Compuerta)current.getData();
-            int contPin = 0;
-            while (contPin<currentGate.getNumEntradas()) {
-
-                TableColumn<ObservableList, ?> currentColumn = TruthTable.getColumns().get(absPin);
-                ? valor = currentColumn.getCellData(cont);
-
-
-                contPin++;
-                System.out.println(absPin);
-                absPin++;
-            }
-            current = current.getNext();
-            cont++;
-        }
-        cont = 0;
-        current = Outputs.getHead();
-        while (cont < Outputs.getSize()) {
-            Compuerta currentGate = (Compuerta) current.getData();
-            TableColumn column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
-            TruthTable.getColumns().addAll(column);
-            current = current.getNext();
-            cont++;
-        }
-    }
-
-     */
-
+ */
 
 }
 
