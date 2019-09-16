@@ -1,9 +1,7 @@
 package circuitDesing;
 
-import javafx.scene.Group;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import listas.ListaEnlazada;
 import listas.Node;
@@ -63,8 +61,17 @@ public class Circuito extends Pane {
         Compuerta currentGate = (Compuerta) current.getData();
         boolean OutIn = currentGate.isOutIn();
         NumEntradas += currentGate.getUnpluggeds();
-        if (currentGate.getUnpluggeds() > 0){
+        int unpluggeds = currentGate.getUnpluggeds();
+        if (unpluggeds > 0){
             absIn.insertarInicio(currentGate);
+            if (unpluggeds == currentGate.getNumEntradas()) {
+                System.out.println("soloito");
+                currentGate.setFirst(true);
+            }
+            else{
+                currentGate.setMid(true);
+                currentGate.setFirst(false);
+            }
         }
         if (OutIn){
             currentGate.setLast(false);
@@ -93,5 +100,39 @@ public class Circuito extends Pane {
         if (currentGate.isLast()) {
             System.out.println(currentGate.output());
         }
+    }
+
+    public boolean checkCircuit() {
+        if (compuertas == null){
+            System.out.println("Circuito vacío:No hay compuertas");
+            return false;
+        }else {
+            setRol();
+            int cont = 0;
+            Node current = compuertas.getHead();
+            while (current.getNext() != null){
+                Compuerta currentGate = (Compuerta)current.getData();
+                if(currentGate.isLast() & currentGate.isFirst()){
+                    cont++;
+                }
+                current = current.getNext();
+            }
+            Compuerta currentGate = (Compuerta)current.getData();
+            if(currentGate.isLast() & currentGate.isFirst()){
+                cont++;
+            }
+            if (cont > 1){
+                System.out.println("Circuito invalido: Hay compuertas sin conectar");
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+    }
+
+    public SavedCircuit saveThis(Image customImg) {
+        SavedCircuit circuit = new SavedCircuit(NumEntradas,NumSalidas,compuertas,customImg);
+        return circuit;
     }
 }

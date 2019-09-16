@@ -15,6 +15,7 @@ public class CompuertaFactory implements AbsCompuertaFactory {
     private int NOT = 0;
     private int XOR = 0;
     private int XNOR = 0;
+    private int custom = 0;
     private static CompuertaFactory instance = null;
 
     /**
@@ -57,7 +58,8 @@ public class CompuertaFactory implements AbsCompuertaFactory {
                 this.XNOR++;
                 return crearXNOR(entradas,this.XNOR);
             case Custom:
-                return crearCustomGate(entradas,salidas);
+                this.custom++;
+                return crearCustomGate(entradas,salidas,this.custom);
         }
         return null;
     }
@@ -98,7 +100,7 @@ public class CompuertaFactory implements AbsCompuertaFactory {
     }
 
     @Override
-    public Compuerta crearCustomGate(int entradas, int salidas) {
-        return null;
+    public Compuerta crearCustomGate(int entradas, int salidas, int ID) {
+        return new CustomGate(entradas,salidas,ID);
     }
 }

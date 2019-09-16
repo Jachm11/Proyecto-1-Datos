@@ -4,6 +4,7 @@ import GUI.Controller;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -28,7 +29,7 @@ import static circuitDesing.Circuito.selectedPin;
     boolean conectado;
     Compuerta compuerta;
     Compuerta miCompuerta;
-    boolean In;
+    boolean Input;
     boolean selected;
     Color color;
     final double xI;
@@ -52,7 +53,7 @@ import static circuitDesing.Circuito.selectedPin;
         this.compuerta = null;
         this.conectado = false;
         this.miCompuerta = miCompuerta;
-        this.In = In;
+        this.Input = In;
         this.selected = false;
         this.color = color;
         this.xI = xI;
@@ -65,10 +66,19 @@ import static circuitDesing.Circuito.selectedPin;
         setStrokeType(StrokeType.OUTSIDE);
         setCursor(Cursor.HAND);
 
+
         setOnMouseClicked(this::select);
 
         x.bind(centerXProperty());
         y.bind(centerYProperty());
+    }
+
+    public String IdString() {
+        if (Input){
+            return "I"+pinId;
+        }else {
+            return "O"+(pinId+1);
+        }
     }
 
     public int getPinId() {
@@ -84,7 +94,11 @@ import static circuitDesing.Circuito.selectedPin;
     }
 
     public boolean isIn() {
-        return In;
+        return Input;
+    }
+
+    public Compuerta getMiCompuerta() {
+        return miCompuerta;
     }
 
     public  double getyI() {
@@ -212,8 +226,8 @@ import static circuitDesing.Circuito.selectedPin;
 
 
     public boolean compatibles(Pin pin1, Pin pin2){
-        if (pin1.In != pin2.In & pin1.miCompuerta != pin2.miCompuerta){
-            if (pin1.In) {
+        if (pin1.Input != pin2.Input & pin1.miCompuerta != pin2.miCompuerta){
+            if (pin1.Input) {
                 return pin2.compatiblesAux(pin1, pin2);
             }else{
                 return pin1.compatiblesAux(pin2, pin1);

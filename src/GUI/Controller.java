@@ -2,13 +2,13 @@ package GUI;
 
 import AbstractFactory.CompuertaFactory;
 import AbstractFactory.tipoCompuerta;
-import circuitDesing.Circuito;
-import circuitDesing.Compuerta;
-import circuitDesing.Pin;
+import circuitDesing.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,12 +17,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 /**
@@ -31,7 +35,7 @@ import java.io.IOException;
  * @author Jose Alejandro
  * @since 31-08-19
  */
-public class Controller {
+public class Controller implements Initializable {
 
     private double orgSceneX, orgSceneY;
     private double orgTranslateX, orgTranslateY;
@@ -43,6 +47,7 @@ public class Controller {
     private Image ImageNOT = new Image("GUI/gates/NOT.png");
     private Image ImageXOR = new Image("GUI/gates/XOR.png");
     private Image ImageXNOR = new Image("GUI/gates/XNOR.png");
+    private Image CustomImg = new Image("GUI/gates/custom.png");
     private static Controller instance = null;
 
     public Controller() {
@@ -51,6 +56,10 @@ public class Controller {
     public static Controller getController(){
             return instance;
         }
+
+        @FXML
+        private Label Title;
+
 
         @FXML // fx:id="x1"
         private Font x1; // Value injected by FXMLLoader
@@ -115,6 +124,22 @@ public class Controller {
         @FXML // fx:id="Run"
         private Button Run; // Value injected by FXMLLoader
 
+        @FXML
+        private VBox customVbox;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //ToolTips
+        Tooltip.install(AND, new Tooltip("AND"));
+        Tooltip.install(NAND, new Tooltip("NAND"));
+        Tooltip.install(OR, new Tooltip("OR"));
+        Tooltip.install(NOR, new Tooltip("NOR"));
+        Tooltip.install(NOT, new Tooltip("NOT"));
+        Tooltip.install(XOR, new Tooltip("XOR"));
+        Tooltip.install(XNOR, new Tooltip("XNOR"));
+    }
+
 
 
     public void clickedOnAND(MouseEvent t){
@@ -155,6 +180,9 @@ public class Controller {
         newCompuerta.setImage(ImageXNOR);
         setCompuerta(newCompuerta);
     }
+    public void clickedOnCustom(MouseEvent t){
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,1,1));
+    }
 
     private void setCompuerta(Compuerta newCompuerta){
 
@@ -163,11 +191,15 @@ public class Controller {
         while ( current.getNext() != null){
             Pin pin = (Pin) current.getData();
             Circuito.getChildren().add(pin);
+            Tooltip.install(pin,new Tooltip((pin.getMiCompuerta().getTipo().toString())+pin.getMiCompuerta().getID()+"_"+pin.IdString()));
             current = current.getNext();
         }
         Pin pin = (Pin) current.getData();
         Circuito.getChildren().add(pin);
-        Circuito.getChildren().add(newCompuerta.getPinOut());
+        Tooltip.install(pin,new Tooltip((pin.getMiCompuerta().getTipo().toString())+pin.getMiCompuerta().getID()+"_"+pin.IdString()));
+        Pin pinOut =newCompuerta.getPinOut();
+        Circuito.getChildren().add(pinOut);
+        Tooltip.install(pinOut,new Tooltip((pinOut.getMiCompuerta().getTipo().toString())+pinOut.getMiCompuerta().getID()+"_"+pinOut.IdString()));
         Circuito.getCompuertas().insertarInicio(newCompuerta);
         newCompuerta.setCursor(Cursor.HAND);
         newCompuerta.setOnMousePressed(this::handle);
@@ -175,11 +207,11 @@ public class Controller {
 
 
         ContextMenu compuertaMenu = new ContextMenu();
-        MenuItem item1 = new MenuItem("Connect");
+        MenuItem item1 = new MenuItem("Save Circuit as Custom Gate");
         MenuItem item2 = new MenuItem("Delete");
         compuertaMenu.getItems().addAll(item1, item2);
         newCompuerta.setOnContextMenuRequested(event -> compuertaMenu.show(newCompuerta,event.getScreenX(), event.getScreenY()));
-        //item1.setOnAction(e -> conectar(newCompuerta));
+        item1.setOnAction(e -> saveCurrentCircuit());
         item2.setOnAction(e -> delete(newCompuerta));
     }
 
@@ -246,28 +278,33 @@ public class Controller {
 
     public void runCircuit(){
         //ListaEnlazada compuertasActuales = Circuito.getCompuertas();
-        Circuito.setRol();
-        Circuito.execute();
+        //Circuito.setRol();
+        if (Circuito.checkCircuit()){
+            Circuito.execute();
+        }
     }
 
     public void generateTable() throws IOException {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("TruthTable.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(loader.load(), 400, 250));
-        stage.show();
-
-        Circuito.setRol();
-        TableController.getController().setTable();
-
+        if (Circuito.checkCircuit()) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("TruthTable.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), 400, 250));
+            stage.show();
+            TableController.getController().setTable();
+        }
     }
 
-    //public ObservableList<Integer> getValues(){
-        //ObservableList<Integer> Values = FXCollections.observableArrayList();
-        //Values.add(1);
-        //return Values;
-    //}
+
+    public void saveCurrentCircuit() {
+        if(Circuito.checkCircuit()){
+            SavedCircuit newCustomC = Circuito.saveThis(CustomImg);
+            customVbox.getChildren().add(newCustomC);
+
+        }
+    }
+
 
 }
 

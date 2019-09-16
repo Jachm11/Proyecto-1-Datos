@@ -15,5 +15,5 @@ public interface AbsCompuertaFactory {
     public Compuerta crearNOT(int ID);
     public Compuerta crearXOR(int entradas, int ID);
     public Compuerta crearXNOR( int entradas, int ID);
-    public Compuerta crearCustomGate(int entradas, int salidas);
+    public Compuerta crearCustomGate(int entradas, int salidas,int ID);
 }

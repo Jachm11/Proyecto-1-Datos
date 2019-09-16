@@ -27,6 +27,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     Pin pinOut;
     boolean last;
     boolean mid;
+    boolean first;
 
     /**
      * Constructor de la clase
@@ -35,6 +36,9 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         this.entradas = new ListaEnlazada();
         this.pinesIn = new ListaEnlazada();
         int cont = 0;
+        this.ID = ID;
+        this.numEntradas = entradas;
+        this.compuertasOut = new ListaEnlazada();
         DoubleProperty startX = new SimpleDoubleProperty(this.getX());
         while (cont < entradas) {
             DoubleProperty startY = new SimpleDoubleProperty((this.getY()+(cont*40))+20);
@@ -48,9 +52,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         DoubleProperty startX2 = new SimpleDoubleProperty(this.getX()+ 150);
         DoubleProperty startY2 = new SimpleDoubleProperty(this.getY()+40);
         pinOut = new Pin(colorRamdom,startX2,this.getX()+ 150,startY2,this.getY()+40,-1,this,false);
-        this.numEntradas = entradas;
-        this.compuertasOut = new ListaEnlazada();
-        this.ID = ID;
+
 
     }
 
@@ -300,4 +302,10 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         return unplugged;
     }
 
+    public void setFirst(boolean b) {
+        this.first = b;
+    }
+    public boolean isFirst(){
+        return first;
+    }
 }
