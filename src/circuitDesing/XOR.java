@@ -1,6 +1,7 @@
 package circuitDesing;
 
 import AbstractFactory.tipoCompuerta;
+import listas.ListaEnlazada;
 
 public class XOR extends Compuerta {
 
@@ -22,8 +23,10 @@ public class XOR extends Compuerta {
     @Override
     public boolean operar() {
         if(xop()%2 == 0){
+            this.entradas = new ListaEnlazada();
             return false;
         } else {
+            this.entradas = new ListaEnlazada();
             return true;
         }
     }

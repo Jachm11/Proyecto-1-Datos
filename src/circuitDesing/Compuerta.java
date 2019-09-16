@@ -229,7 +229,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     }
 
     /**
-     * Herramienta de desarrllo, el programa no utiliza este metodo
+     * Herramienta de desarrollo, se utiliza para simular entradas de manera no grafica
      * @param IDpin Id del pin al que se desea asignar el valor
      * @param valor Valor para el pin
      */

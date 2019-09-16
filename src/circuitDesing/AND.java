@@ -1,5 +1,6 @@
 package circuitDesing;
 
+import listas.ListaEnlazada;
 import listas.Node;
 import AbstractFactory.tipoCompuerta;
 
@@ -32,9 +33,11 @@ public class AND extends Compuerta {
                 current = current.getNext();
             }
             else {
+                this.entradas = new ListaEnlazada();
                 return false;
             }
         }
+        this.entradas = new ListaEnlazada();
         return current.getData().equals(true);
     }
 }

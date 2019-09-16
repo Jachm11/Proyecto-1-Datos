@@ -1,6 +1,7 @@
 package circuitDesing;
 
 import AbstractFactory.tipoCompuerta;
+import listas.ListaEnlazada;
 import listas.Node;
 
 public class OR extends Compuerta {
@@ -27,12 +28,15 @@ public class OR extends Compuerta {
             if (!(current.getData().equals(true))) {
                 current = current.getNext();
             }else {
+                this.entradas = new ListaEnlazada();
                 return true;
             }
         }
         if (current.getData().equals(true)){
+            this.entradas = new ListaEnlazada();
             return true;
         }else {
+            this.entradas = new ListaEnlazada();
             return false;
         }
     }

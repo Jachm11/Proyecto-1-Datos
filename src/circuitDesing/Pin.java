@@ -35,6 +35,8 @@ import static circuitDesing.Circuito.selectedPin;
     final double yI;
     DoubleProperty x;
     DoubleProperty y;
+    boolean simulating;
+    boolean simValue;
 
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
@@ -97,10 +99,30 @@ import static circuitDesing.Circuito.selectedPin;
         this.pinId = id;
     }
 
+    public boolean isSimulating() {
+        return simulating;
+    }
+
+    public void setSimulating(boolean simulating) {
+        this.simulating = simulating;
+    }
+
+    public boolean isSimValue() {
+        return simValue;
+    }
+
+    public void setSimValue(boolean simValue) {
+        this.simValue = simValue;
+    }
+
     public boolean askforinput() {
-        boolean valor = Boolean.parseBoolean(JOptionPane.showInputDialog("Pin numero "+this.pinId+"de compuerta "+this.miCompuerta.getTipo().toString()+this.miCompuerta.getID()));
-        //boolean valor = Boolean.parseBoolean(JOptionPane.showInputDialog("True or False"));
-        return valor;
+        if (simulating) {
+            System.out.println("this is simValue"+simValue);
+            return simValue;
+        } else {
+            boolean valor = Boolean.parseBoolean(JOptionPane.showInputDialog("Pin numero " + this.pinId + "de compuerta " + this.miCompuerta.getTipo().toString() + this.miCompuerta.getID()));
+            return valor;
+        }
     }
 
     public void setValor(boolean valor) {

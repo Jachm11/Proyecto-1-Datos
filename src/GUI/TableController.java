@@ -37,6 +37,7 @@ public class TableController {
         int numSalidas = circuito.getNumSalidas();
         ListaEnlazada Inputs = circuito.absIn;
         ListaEnlazada Outputs = circuito.absOut;
+        ListaEnlazada AbsInputPins = new ListaEnlazada();
         int cont = 0;
         int absPin = 0;
         Node current = Inputs.getHead();
@@ -51,11 +52,11 @@ public class TableController {
                 Pin currentPin = currentGate.buscarIDP(contPin);
                 if (!currentPin.IsConectado()) {
                     TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "In" + contPin);
-
-                    int finalAbsPin = absPin;
+                    AbsInputPins.insertarAlFinal(currentPin);
+                    int currentAbsPin = absPin;
                     column.setCellValueFactory(row -> {
                         Iterator<Integer> iterator = row.getValue().iterator();
-                        for(int i = 0; i < finalAbsPin; ++i) {
+                        for(int i = 0; i < currentAbsPin; ++i) {
                             iterator.next();
                         }
                         return new SimpleIntegerProperty(iterator.next()).asObject();
@@ -74,7 +75,18 @@ public class TableController {
         current = Outputs.getHead();
         while (cont < Outputs.getSize()) {
             Compuerta currentGate = (Compuerta) current.getData();
-            TableColumn column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
+            TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
+            int finalAbsPin = absPin;
+            column.setCellValueFactory(row -> {
+                Iterator<Integer> iterator = row.getValue().iterator();
+                for(int i = 0; i < finalAbsPin; ++i) {
+                    iterator.next();
+                }
+                for (int x = 1; x <numSalidas;++x){
+                    iterator.next();
+                }
+                return new SimpleIntegerProperty(iterator.next()).asObject();
+            });
             TruthTable.getColumns().addAll(column);
             current = current.getNext();
             cont++;
@@ -86,65 +98,82 @@ public class TableController {
         //values.add(1);
         //TruthTable.getItems().add(values);
 
-        populate(posiblidades, numEntradas,numSalidas);
+        populate(posiblidades, numEntradas,numSalidas,AbsInputPins,Outputs);
     }
 
-    private void populate(int posibilidades, int entradas, int salidas) {
+    private void populate(int posibilidades, int NumEntradas, int NumSalidas,ListaEnlazada Inputs, ListaEnlazada OutGates) {
         ListaEnlazada valores = new ListaEnlazada();
-        for(int x=0; x < entradas; x++){
+        for(int x=0; x < NumEntradas; x++){
             valores.insertarInicio(1);
         }
         for(int i = 0 ; i < posibilidades; i++){
             ObservableList<Integer> values = FXCollections.observableArrayList();
-            for(int j = 0; j < entradas; j++){
+            for(int j = 0; j < NumEntradas; j++){
 
-                values.add((Integer) valores.serchByIndex(j));
 
-                System.out.println(i+1%(posibilidades/Math.pow(2,i+1)));
+                int IntDato = (Integer) valores.serchByIndex(j);
+                boolean BoolDato = toBool(IntDato);
+                values.add(IntDato);
+                Pin currentPin = (Pin)Inputs.serchByIndex(j);
+                currentPin.setSimulating(true);
+                System.out.println("this is pin data"+BoolDato);
+                currentPin.setSimValue(BoolDato);
+
+
+
+
+                //System.out.println(i+1%(posibilidades/Math.pow(2,i+1)));
                 if ((int)(i%(posibilidades/Math.pow(2,j+1)))==0){
 
-                    valores.setByIndex(j,intBool((int)valores.serchByIndex(j)));
+                    valores.setByIndex(j,reverseIntBool((int)valores.serchByIndex(j)));
                     System.out.println("valor " + j );
                 }
+                System.out.println(j==NumEntradas-1);
+                if (j==NumEntradas-1) {
+                    for (int x = 0; x < NumSalidas; x++) {
+                        Compuerta currentGate = (Compuerta) OutGates.serchByIndex(x);
+                        boolean BoolDato2 = currentGate.output();
+                        System.out.println();
+                        int result = toInt(BoolDato2);
+                        System.out.println("this is result:" + result);
+                        values.add(result);
+
+                    }
+                }
+
             }
+
+            System.out.println(values.size());
             TruthTable.getItems().add(values);
         }
+        for(int j = 0; j < NumEntradas; j++) {
+
+            Pin currentPin = (Pin) Inputs.serchByIndex(j);
+            currentPin.setSimulating(false);
+        }
+
 
     }
+    private int toInt(boolean boolDato){
+        if (boolDato){
+            return 1;
+        }else {
+            return 0;
+        }
+    }
 
-    private int intBool(int bool) {
+    private boolean toBool(int intDato) {
+        return intDato == 1;
+    }
+
+    private int reverseIntBool(int bool) {
         if (bool==1){
             return 0;
         }else {
             return 1;
         }
     }
-
-
-/*
-    private ObservableList<Integer> setValues(int posiblidades, int pin) {
-        int repeticion = 0;
-        ObservableList<Integer> values = FXCollections.observableArrayList();
-        System.out.println("LimRep" + Math.pow(2, pin));
-        while (repeticion < Math.pow(2, pin)) {
-            //if pin != posiblidades
-            for (int x = 0; x < (posiblidades / (Math.pow(2, pin+1))); x++) {
-                System.out.println("Rep1" + posiblidades / (Math.pow(2, pin+1)));
-                System.out.println("added 1");
-                values.add(1);
-            }
-            for (int x = 0; x < posiblidades / Math.pow(2, pin+1);x++){
-                {
-                    System.out.println("added 0");
-                    values.add(0);
-                }
-            }
-            repeticion++;
-        }
-        return values;
-    }
-
- */
+    
 
 }
 

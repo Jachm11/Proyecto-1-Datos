@@ -1,6 +1,7 @@
 package circuitDesing;
 
 import AbstractFactory.tipoCompuerta;
+import listas.ListaEnlazada;
 import listas.Node;
 
 public class NAND extends AND {
@@ -28,12 +29,15 @@ public class NAND extends AND {
                 current = current.getNext();
             }
             else {
+                this.entradas = new ListaEnlazada();
                 return true;
             }
         }
         if( current.getData().equals(true)){
+            this.entradas = new ListaEnlazada();
             return false;
         }else {
+            this.entradas = new ListaEnlazada();
             return true;
         }
     }

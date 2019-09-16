@@ -1,6 +1,7 @@
 package circuitDesing;
 
 import AbstractFactory.tipoCompuerta;
+import listas.ListaEnlazada;
 
 public class NOT extends Compuerta {
     /**
@@ -24,8 +25,10 @@ public class NOT extends Compuerta {
     @Override
     public boolean operar() {
         if (entradas.getHead().getData().equals(true)){
+            this.entradas = new ListaEnlazada();
             return false;}
         else{
+            this.entradas = new ListaEnlazada();
             return true;
         }
     }
