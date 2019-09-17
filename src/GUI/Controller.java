@@ -181,7 +181,9 @@ public class Controller implements Initializable {
         SavedCircuit savedCircuit = (SavedCircuit) (t.getSource());
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas(),savedCircuit.getTablaDeVerdad()));
         newCompuerta.setImage(CustomImg);
+        Tooltip.install(newCompuerta, new Tooltip(savedCircuit.nombre));
         setCompuerta(newCompuerta);
+
     }
 
     private void setCompuerta(Compuerta newCompuerta){
@@ -202,21 +204,22 @@ public class Controller implements Initializable {
             Tooltip.install(pin, new Tooltip((pin.getMiCompuerta().getTipo().toString()) + pin.getMiCompuerta().getID() + "_" + pin.IdString()));
 
         }
-        else {
+        else { //BigPin
             DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX()-10);
-            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(33)));
+            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(40)));
             Color colorRandom = Color.color(Math.random(),Math.random(),Math.random());
-            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX()-10,startY,newCompuerta.getY()+33 ,newCompuerta,true,newCompuerta.getPinesIn());
+            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX()-10,startY,newCompuerta.getY()+40 ,newCompuerta,true,newCompuerta.getPinesIn());
             newCompuerta.setBigPin(bigPin);
             Circuito.getChildren().add(bigPin);
             Tooltip.install(bigPin, new Tooltip((bigPin.getMiCompuerta().getTipo().toString())+"_x"+bigPin.getSize()+"I"));
-        }
+
+        }//BigPin
         if(newCompuerta.getTipo()==tipoCompuerta.Custom){
             DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX()+133);
-            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(33)));
+            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(40)));
             Color colorRandom = Color.color(Math.random(),Math.random(),Math.random());
             CustomGate thisCustomGate = (CustomGate) newCompuerta;
-            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX()+133,startY,newCompuerta.getY()+33 ,newCompuerta,false,thisCustomGate.getPinesOut());
+            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX()+133,startY,newCompuerta.getY()+40 ,newCompuerta,false,thisCustomGate.getPinesOut());
             thisCustomGate.setBigPinOut(bigPin);
             Circuito.getChildren().add(bigPin);
             Tooltip.install(bigPin, new Tooltip((bigPin.getMiCompuerta().getTipo().toString())+"_x"+bigPin.getSize()+"O"));

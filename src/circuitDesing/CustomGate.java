@@ -1,8 +1,6 @@
 package circuitDesing;
 
 import AbstractFactory.tipoCompuerta;
-import GUI.BigPin;
-import GUI.SavedCircuit;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
@@ -82,6 +80,7 @@ public class CustomGate extends Compuerta {
 
     @Override
     public boolean operar() {
+        System.out.println(entradas.getSize() );
         return false;
     }
 

@@ -74,23 +74,24 @@ public class TableController {
         }
         cont = 0;
         current = Outputs.getHead();
+        System.out.println("estos son las compuertas con outputs " +Outputs.getSize());
         while (cont < Outputs.getSize()) {
             Compuerta currentGate = (Compuerta) current.getData();
-            int contPin = 0;
             int salidas;
             if (!(currentGate.getTipo() == tipoCompuerta.Custom)) {
+                //System.out.println();
                 salidas = 1;
             }
             else{
                 CustomGate thisCast = (CustomGate)currentGate;
                 salidas = thisCast.getSalidas();
             }
-            while (contPin < salidas) {
-
-                if (salidas != 1) {
-                    CustomGate thisCast = (CustomGate)currentGate;
+            if (salidas != 1) {
+                CustomGate thisCast = (CustomGate)currentGate;
+                int contPin = 0;
+                while (contPin<thisCast.getSalidas()) {
                     Pin currentPin = thisCast.buscarIDPout(contPin);
-                    if (!currentPin.IsConectado()){
+                    if (!currentPin.IsConectado()) {
                         TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
                         int finalAbsPin = absPin;
                         column.setCellValueFactory(row -> {
@@ -98,13 +99,15 @@ public class TableController {
                             for (int i = 0; i < finalAbsPin; ++i) {
                                 iterator.next();
                             }
-                            for (int x = 1; x < numSalidas; ++x) {
-                                iterator.next();
-                            }
+                            //for (int x = numSalidas; x < numSalidas; ++x) {
+                                //iterator.next();
+                            //}
                             return new SimpleIntegerProperty(iterator.next()).asObject();
                         });
                         TruthTable.getColumns().addAll(column);
                     }
+                    contPin++;
+                }
                 }else {
                     TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
                     int finalAbsPin = absPin;
@@ -120,9 +123,7 @@ public class TableController {
                     });
                     TruthTable.getColumns().addAll(column);
                 }
-                current = current.getNext();
-                contPin++;
-            }
+            current = current.getNext();
             cont++;
         }
 
@@ -144,7 +145,7 @@ public class TableController {
                 values.add(IntDato);
                 Pin currentPin = (Pin)Inputs.serchByIndex(j);
                 currentPin.setSimulating(true);
-                System.out.println("this is pin data"+BoolDato);
+                //System.out.println("this is pin data"+BoolDato);
                 currentPin.setSimValue(BoolDato);
 
 
@@ -159,12 +160,12 @@ public class TableController {
                 System.out.println(j==NumEntradas-1);
                 if (j==NumEntradas-1) {
                     for (int x = 0; x < OutGates.getSize(); x++) {
-                        System.out.println("me caigo xq hay "+NumSalidas+" salidas y yo busco en indeice"+x);
+                        //System.out.println("me caigo xq hay "+NumSalidas+" salidas y yo busco en indeice"+x);
                         Compuerta currentGate = (Compuerta) OutGates.serchByIndex(x);
                         boolean BoolDato2 = currentGate.output();
                         System.out.println();
                         int result = toInt(BoolDato2);
-                        System.out.println("this is result:" + result);
+                        //System.out.println("this is result:" + result);
                         values.add(result);
 
                     }

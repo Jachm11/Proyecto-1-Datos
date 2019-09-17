@@ -2,7 +2,6 @@ package circuitDesing;
 
 import AbstractFactory.CompuertaLogica;
 import AbstractFactory.tipoCompuerta;
-import GUI.BigPin;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.image.ImageView;
@@ -53,7 +52,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         Color colorRamdom = Color.color(Math.random(),Math.random(),Math.random());
         DoubleProperty startX2 = new SimpleDoubleProperty(this.getX()+ 150);
         DoubleProperty startY2 = new SimpleDoubleProperty(this.getY()+40);
-        pinOut = new Pin(colorRamdom,startX2,this.getX()+ 150,startY2,this.getY()+40,-1,this,false);
+        pinOut = new Pin(colorRamdom,startX2,this.getX()+ 150,startY2,this.getY()+40,0,this,false);
 
 
     }

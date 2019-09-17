@@ -188,8 +188,6 @@ import static circuitDesing.Circuito.selectedPin;
                         selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta);
                         CircuitLine newLine = new CircuitLine(x,y,selectedPin.x,selectedPin.y,this.color);
                         Controller.getController().Circuito.getChildren().add(newLine);
-                        //this.miCompuerta.conectarPin(this.getPinId(), selectedPin.getCompuerta());
-
 
                         selected = !selected;
                         selectedPin.setSelected(false);
@@ -203,9 +201,6 @@ import static circuitDesing.Circuito.selectedPin;
                         this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta);
                         CircuitLine newLine = new CircuitLine(selectedPin.x,selectedPin.y,x,y,selectedPin.color);
                         Controller.getController().Circuito.getChildren().add(newLine);
-                        //GUI.Controller.getCircuito();
-                        //selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.getCompuerta());
-
 
                         selected = !selected;
                         selectedPin.setSelected(false);
