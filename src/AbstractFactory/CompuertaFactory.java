@@ -1,5 +1,6 @@
 package AbstractFactory;
 
+import GUI.SavedCircuit;
 import circuitDesing.*;
 
 /**
@@ -29,12 +30,12 @@ public class CompuertaFactory implements AbsCompuertaFactory {
         return instance;
     }
 
-    public Compuerta crearCompuerta (tipoCompuerta tipo, int entradas, int salidas){
-            return crearCompuertaAux(tipo,entradas,salidas);
+    public Compuerta crearCompuerta (tipoCompuerta tipo, int entradas, int salidas,SavedCircuit circuito){
+            return crearCompuertaAux(tipo,entradas,salidas,circuito);
         }
 
     //Facade
-    private Compuerta crearCompuertaAux(tipoCompuerta tipo,int entradas,int salidas){
+    private Compuerta crearCompuertaAux(tipoCompuerta tipo,int entradas,int salidas,SavedCircuit circuito){
         switch (tipo){
             case AND:
                 this.AND++;
@@ -59,7 +60,7 @@ public class CompuertaFactory implements AbsCompuertaFactory {
                 return crearXNOR(entradas,this.XNOR);
             case Custom:
                 this.custom++;
-                return crearCustomGate(entradas,salidas,this.custom);
+                return crearCustomGate(entradas,salidas,this.custom,circuito);
         }
         return null;
     }
@@ -100,7 +101,7 @@ public class CompuertaFactory implements AbsCompuertaFactory {
     }
 
     @Override
-    public Compuerta crearCustomGate(int entradas, int salidas, int ID) {
-        return new CustomGate(entradas,salidas,ID);
+    public Compuerta crearCustomGate(int entradas, int salidas, int ID, SavedCircuit circuito) {
+        return new CustomGate(entradas,salidas,ID,circuito);
     }
 }

@@ -2,6 +2,7 @@ package circuitDesing;
 
 import AbstractFactory.tipoCompuerta;
 import GUI.BigPin;
+import GUI.SavedCircuit;
 import listas.ListaEnlazada;
 
 /**
@@ -17,10 +18,13 @@ public class CustomGate extends Compuerta {
      * @param ID identificador para la compuerta
      * @param entradas
      */
-    public CustomGate( int entradas, int salidas, int ID) {
+    public CustomGate(int entradas, int salidas, int ID, SavedCircuit circuito) {
         super(entradas,salidas);
         this.NumSalidas = salidas;
         this.tipo = tipoCompuerta.Custom;
+        this.pinesIn = circuito.getCircuito().absInPins;
+        this.pinesOut = circuito.getCircuito().absOutPins;
+
     }
 
     public int getSalidas() {

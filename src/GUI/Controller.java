@@ -140,46 +140,46 @@ public class Controller implements Initializable {
 
 
     public void clickedOnAND(MouseEvent t){
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,entradasDefault,1));
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,entradasDefault,1,null));
         System.out.println(newCompuerta);
         newCompuerta.setImage(ImageAND);
         setCompuerta(newCompuerta);
     }
 
     public void clickedOnNAND(MouseEvent t){
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NAND,entradasDefault,1));
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NAND,entradasDefault,1,null));
         newCompuerta.setImage(ImageNAND);
         setCompuerta(newCompuerta);
     }
     public void clickedOnOR(MouseEvent t){
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.OR,entradasDefault,1));
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.OR,entradasDefault,1,null));
         newCompuerta.setImage(ImageOR);
         setCompuerta(newCompuerta);
     }
     public void clickedOnNOR(MouseEvent t){
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOR,entradasDefault,1));
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOR,entradasDefault,1,null));
         newCompuerta.setImage(ImageNOR);
         setCompuerta(newCompuerta);
     }
     public void clickedOnNOT(MouseEvent t){
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,1,1));
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,1,1,null));
         newCompuerta.setImage(ImageNOT);
         setCompuerta(newCompuerta);
     }
     public void clickedOnXOR(MouseEvent t){
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,entradasDefault,1));
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,entradasDefault,1,null));
         newCompuerta.setImage(ImageXOR);
         setCompuerta(newCompuerta);
     }
 
     public void clickedOnXNOR(MouseEvent t){
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XNOR,entradasDefault,1));
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XNOR,entradasDefault,1,null));
         newCompuerta.setImage(ImageXNOR);
         setCompuerta(newCompuerta);
     }
     public void clickedOnCustom(MouseEvent t){
         SavedCircuit savedCircuit = (SavedCircuit) (t.getSource());
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas()));
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas(),savedCircuit));
         newCompuerta.setImage(CustomImg);
         setCompuerta(newCompuerta);
     }
@@ -254,7 +254,7 @@ public class Controller implements Initializable {
         orgSceneY = t.getSceneY();
         orgTranslateX = ((Compuerta)(t.getSource())).getTranslateX();
         orgTranslateY = ((Compuerta)(t.getSource())).getTranslateY();
-        listas.Node current = ((Compuerta)(t.getSource())).getPinesIn().getHead();
+        //listas.Node current = ((Compuerta)(t.getSource())).getPinesIn().getHead();
 
     }
 
@@ -268,7 +268,7 @@ public class Controller implements Initializable {
         compuerta.setTranslateX(newTranslateX);
         compuerta.setTranslateY(newTranslateY);
 
-        if (compuerta.getNumEntradas() > 4){
+        if (compuerta.getNumEntradas() >= 4){
             BigPin bigPin = compuerta.getBigPin();
             bigPin.setCenterX(newTranslateX + bigPin.getxI());
             bigPin.setCenterY(newTranslateY + bigPin.getyI());
@@ -286,19 +286,18 @@ public class Controller implements Initializable {
             Pin pin = (Pin) current.getData();
             pin.setCenterX(newTranslateX + pin.getxI());
             pin.setCenterY(newTranslateY + pin.getyI());
-            //System.out.println(pin.getX());
         }
-            if (compuerta.getTipo() == tipoCompuerta.Custom){
-                CustomGate thisCustomGate = (CustomGate) compuerta;
-                BigPin bigPin =  thisCustomGate.getBigPinOut();
-                bigPin.setCenterX(newTranslateX + bigPin.getxI());
-                bigPin.setCenterY(newTranslateY + bigPin.getyI());
-
-
-            }else {
-                Pin pinOut = (Pin) ((Compuerta) (t.getSource())).getPinOut();
-                pinOut.setCenterX(newTranslateX + pinOut.getxI());
-                pinOut.setCenterY(newTranslateY + pinOut.getyI());
+        if (compuerta.getTipo() == tipoCompuerta.Custom){
+            System.out.println("SII");
+            CustomGate thisCustomGate = (CustomGate) compuerta;
+            BigPin bigPin =  thisCustomGate.getBigPinOut();
+            bigPin.setCenterX(newTranslateX + bigPin.getxI());
+            bigPin.setCenterY(newTranslateY + bigPin.getyI());
+            }
+        else {
+            Pin pinOut = (Pin) ((Compuerta) (t.getSource())).getPinOut();
+            pinOut.setCenterX(newTranslateX + pinOut.getxI());
+            pinOut.setCenterY(newTranslateY + pinOut.getyI());
             }
         }
 

@@ -20,6 +20,8 @@ public class Circuito extends Pane {
     static Pin selectedPin;
     public ListaEnlazada absIn;
     public ListaEnlazada absOut;
+    public ListaEnlazada absInPins;
+    public ListaEnlazada absOutPins;
 
     public int getNumEntradas() {
         return NumEntradas;
@@ -48,6 +50,8 @@ public class Circuito extends Pane {
         NumSalidas = 0;
         absIn = new ListaEnlazada();
         absOut = new ListaEnlazada();
+        absInPins = new ListaEnlazada();
+        absOutPins = new ListaEnlazada();
         ListaEnlazada circuitoActual = compuertas;
         Node current = circuitoActual.getHead();
         while (current.getNext() != null){
@@ -62,27 +66,42 @@ public class Circuito extends Pane {
         boolean OutIn = currentGate.isOutIn();
         NumEntradas += currentGate.getUnpluggeds();
         int unpluggeds = currentGate.getUnpluggeds();
-        if (unpluggeds > 0){
+        if (unpluggeds > 0) {
             absIn.insertarInicio(currentGate);
-            if (unpluggeds == currentGate.getNumEntradas()) {
-                System.out.println("soloito");
-                currentGate.setFirst(true);
+
+            Node currentNode = currentGate.getPinesIn().getHead();
+            while (currentNode.getNext() != null) {
+                Pin currentPin = (Pin) currentNode.getData();
+                if (!currentPin.conectado) {
+                    absInPins.insertarInicio(currentPin);
+                }
+                currentNode = currentNode.getNext();
             }
-            else{
-                currentGate.setMid(true);
-                currentGate.setFirst(false);
+            Pin currentPin = (Pin) currentNode.getData();
+            if (!currentPin.conectado) {
+                absInPins.insertarInicio(currentPin);
             }
-        }
-        if (OutIn){
-            currentGate.setLast(false);
-        }else{
-            currentGate.setLast(true);
-            System.out.println(currentGate.getTipo().toString()+currentGate.getID());
-            absOut.insertarInicio(currentGate);
-            NumSalidas++;
         }
 
+        if (unpluggeds == currentGate.getNumEntradas()) {
+            System.out.println("soloito");
+            currentGate.setFirst(true);
+        } else {
+            currentGate.setMid(true);
+            currentGate.setFirst(false);
+        }
+        if (OutIn) {
+            currentGate.setLast(false);
+        } else {
+            currentGate.setLast(true);
+            System.out.println(currentGate.getTipo().toString() + currentGate.getID());
+            absOut.insertarInicio(currentGate);
+            absOutPins.insertarInicio(currentGate.pinOut);
+            NumSalidas++;
+        }
     }
+
+
 
     public void execute() {
         Node current = compuertas.getHead();
@@ -132,7 +151,7 @@ public class Circuito extends Pane {
     }
 
     public SavedCircuit saveThis(Image customImg) {
-        SavedCircuit circuit = new SavedCircuit(NumEntradas,NumSalidas,compuertas,customImg);
+        SavedCircuit circuit = new SavedCircuit(NumEntradas,NumSalidas,this,customImg);
         return circuit;
     }
 }

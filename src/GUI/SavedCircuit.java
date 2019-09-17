@@ -1,5 +1,6 @@
 package GUI;
 
+import circuitDesing.Circuito;
 import javafx.scene.Cursor;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -11,10 +12,10 @@ import javax.swing.*;
 public class SavedCircuit extends ImageView {
     int entradas;
     int salidas;
-    ListaEnlazada circuito;
+    Circuito circuito;
     String nombre;
 
-    public SavedCircuit(int entradas, int salidas, ListaEnlazada circuito, Image image){
+    public SavedCircuit(int entradas, int salidas, Circuito circuito, Image image) {
         this.entradas = entradas;
         this.salidas = salidas;
         this.circuito = circuito;
@@ -42,11 +43,11 @@ public class SavedCircuit extends ImageView {
         this.salidas = salidas;
     }
 
-    public ListaEnlazada getCircuito() {
+    public Circuito getCircuito() {
         return circuito;
     }
 
-    public void setCircuito(ListaEnlazada circuito) {
+    public void setCircuito(Circuito circuito) {
         this.circuito = circuito;
     }
 
@@ -57,4 +58,5 @@ public class SavedCircuit extends ImageView {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 }

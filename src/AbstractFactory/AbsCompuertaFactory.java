@@ -1,5 +1,7 @@
 package AbstractFactory;
 
+import GUI.SavedCircuit;
+import circuitDesing.Circuito;
 import circuitDesing.Compuerta;
 
 /**
@@ -15,5 +17,5 @@ public interface AbsCompuertaFactory {
     public Compuerta crearNOT(int ID);
     public Compuerta crearXOR(int entradas, int ID);
     public Compuerta crearXNOR( int entradas, int ID);
-    public Compuerta crearCustomGate(int entradas, int salidas,int ID);
+    public Compuerta crearCustomGate(int entradas, int salidas, int ID, SavedCircuit circuito);
 }
