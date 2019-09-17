@@ -295,8 +295,8 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         return pinOut.IsConectado();
     }
 
-    public int getUnpluggeds() {
-        Node current = pinesIn.getHead();
+    public int getUnpluggeds(ListaEnlazada listaDePines) {
+        Node current = listaDePines.getHead();
         int unplugged = 0;
         while (current.getNext() != null){
             Pin currentPin = (Pin)current.getData();

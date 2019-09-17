@@ -1,7 +1,9 @@
 package GUI;
 
+import AbstractFactory.tipoCompuerta;
 import circuitDesing.Circuito;
 import circuitDesing.Compuerta;
+import circuitDesing.CustomGate;
 import circuitDesing.Pin;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableIntegerValue;
@@ -31,7 +33,7 @@ public class TableController {
     }
 
 
-    public void setTable() {
+    public void setTableAux(TableView<ObservableList<Integer>> TruthTable ) {
         Circuito circuito = Controller.getController().Circuito;
         int numEntradas = circuito.getNumEntradas();
         int numSalidas = circuito.getNumSalidas();
@@ -63,7 +65,6 @@ public class TableController {
                     });
 
                     TruthTable.getColumns().add(column);
-                    //System.out.println(absPin);
                     absPin++;
                 }
                 contPin++;
@@ -75,27 +76,60 @@ public class TableController {
         current = Outputs.getHead();
         while (cont < Outputs.getSize()) {
             Compuerta currentGate = (Compuerta) current.getData();
-            TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
-            int finalAbsPin = absPin;
-            column.setCellValueFactory(row -> {
-                Iterator<Integer> iterator = row.getValue().iterator();
-                for(int i = 0; i < finalAbsPin; ++i) {
-                    iterator.next();
+            int contPin = 0;
+            int salidas;
+            if (!(currentGate.getTipo() == tipoCompuerta.Custom)) {
+                salidas = 1;
+            }
+            else{
+                CustomGate thisCast = (CustomGate)currentGate;
+                salidas = thisCast.getSalidas();
+            }
+            while (contPin < salidas) {
+
+                if (salidas != 1) {
+                    CustomGate thisCast = (CustomGate)currentGate;
+                    Pin currentPin = thisCast.buscarIDPout(contPin);
+                    if (!currentPin.IsConectado()){
+                        TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
+                        int finalAbsPin = absPin;
+                        column.setCellValueFactory(row -> {
+                            Iterator<Integer> iterator = row.getValue().iterator();
+                            for (int i = 0; i < finalAbsPin; ++i) {
+                                iterator.next();
+                            }
+                            for (int x = 1; x < numSalidas; ++x) {
+                                iterator.next();
+                            }
+                            return new SimpleIntegerProperty(iterator.next()).asObject();
+                        });
+                        TruthTable.getColumns().addAll(column);
+                    }
+                }else {
+                    TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
+                    int finalAbsPin = absPin;
+                    column.setCellValueFactory(row -> {
+                        Iterator<Integer> iterator = row.getValue().iterator();
+                        for (int i = 0; i < finalAbsPin; ++i) {
+                            iterator.next();
+                        }
+                        for (int x = 1; x < numSalidas; ++x) {
+                            iterator.next();
+                        }
+                        return new SimpleIntegerProperty(iterator.next()).asObject();
+                    });
+                    TruthTable.getColumns().addAll(column);
                 }
-                for (int x = 1; x <numSalidas;++x){
-                    iterator.next();
-                }
-                return new SimpleIntegerProperty(iterator.next()).asObject();
-            });
-            TruthTable.getColumns().addAll(column);
-            current = current.getNext();
+                current = current.getNext();
+                contPin++;
+            }
             cont++;
         }
 
-        populate(posiblidades, numEntradas,numSalidas,AbsInputPins,Outputs);
+        populate(posiblidades, numEntradas,numSalidas,AbsInputPins,Outputs,TruthTable);
     }
 
-    private void populate(int posibilidades, int NumEntradas, int NumSalidas,ListaEnlazada Inputs, ListaEnlazada OutGates) {
+    private void populate(int posibilidades, int NumEntradas, int NumSalidas,ListaEnlazada Inputs, ListaEnlazada OutGates,TableView<ObservableList<Integer>> TruthTable) {
         ListaEnlazada valores = new ListaEnlazada();
         for(int x=0; x < NumEntradas; x++){
             valores.insertarInicio(1);
@@ -124,7 +158,8 @@ public class TableController {
                 }
                 System.out.println(j==NumEntradas-1);
                 if (j==NumEntradas-1) {
-                    for (int x = 0; x < NumSalidas; x++) {
+                    for (int x = 0; x < OutGates.getSize(); x++) {
+                        System.out.println("me caigo xq hay "+NumSalidas+" salidas y yo busco en indeice"+x);
                         Compuerta currentGate = (Compuerta) OutGates.serchByIndex(x);
                         boolean BoolDato2 = currentGate.output();
                         System.out.println();
@@ -169,5 +204,15 @@ public class TableController {
     }
 
 
+    public void setTable() {
+        setTableAux(TruthTable);
+    }
+
+    public TableView<ObservableList<Integer>> createTable(){
+        TableView<ObservableList<Integer>> circuitTable = new TableView<>();
+        setTableAux(circuitTable);
+        return circuitTable;
+
+    }
 }
 

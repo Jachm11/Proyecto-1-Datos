@@ -179,7 +179,7 @@ public class Controller implements Initializable {
     }
     public void clickedOnCustom(MouseEvent t){
         SavedCircuit savedCircuit = (SavedCircuit) (t.getSource());
-        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas(),savedCircuit));
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas(),savedCircuit.getTablaDeVerdad()));
         newCompuerta.setImage(CustomImg);
         setCompuerta(newCompuerta);
     }
@@ -203,20 +203,20 @@ public class Controller implements Initializable {
 
         }
         else {
-            DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX());
-            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(40)));
+            DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX()-10);
+            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(33)));
             Color colorRandom = Color.color(Math.random(),Math.random(),Math.random());
-            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX(),startY,newCompuerta.getY()+40 ,newCompuerta,true,newCompuerta.getPinesIn());
+            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX()-10,startY,newCompuerta.getY()+33 ,newCompuerta,true,newCompuerta.getPinesIn());
             newCompuerta.setBigPin(bigPin);
             Circuito.getChildren().add(bigPin);
             Tooltip.install(bigPin, new Tooltip((bigPin.getMiCompuerta().getTipo().toString())+"_x"+bigPin.getSize()+"I"));
         }
         if(newCompuerta.getTipo()==tipoCompuerta.Custom){
-            DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX());
-            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(40)));
+            DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX()+133);
+            DoubleProperty startY = new SimpleDoubleProperty((newCompuerta.getY()+(33)));
             Color colorRandom = Color.color(Math.random(),Math.random(),Math.random());
             CustomGate thisCustomGate = (CustomGate) newCompuerta;
-            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX(),startY,newCompuerta.getY()+40 ,newCompuerta,false,thisCustomGate.getPinesOut());
+            BigPin bigPin = new BigPin(colorRandom,startX, newCompuerta.getX()+133,startY,newCompuerta.getY()+33 ,newCompuerta,false,thisCustomGate.getPinesOut());
             thisCustomGate.setBigPinOut(bigPin);
             Circuito.getChildren().add(bigPin);
             Tooltip.install(bigPin, new Tooltip((bigPin.getMiCompuerta().getTipo().toString())+"_x"+bigPin.getSize()+"O"));
@@ -254,7 +254,6 @@ public class Controller implements Initializable {
         orgSceneY = t.getSceneY();
         orgTranslateX = ((Compuerta)(t.getSource())).getTranslateX();
         orgTranslateY = ((Compuerta)(t.getSource())).getTranslateY();
-        //listas.Node current = ((Compuerta)(t.getSource())).getPinesIn().getHead();
 
     }
 
@@ -268,7 +267,7 @@ public class Controller implements Initializable {
         compuerta.setTranslateX(newTranslateX);
         compuerta.setTranslateY(newTranslateY);
 
-        if (compuerta.getNumEntradas() >= 4){
+        if (compuerta.getNumEntradas() > 3 | compuerta.getTipo() == tipoCompuerta.Custom){
             BigPin bigPin = compuerta.getBigPin();
             bigPin.setCenterX(newTranslateX + bigPin.getxI());
             bigPin.setCenterY(newTranslateY + bigPin.getyI());
@@ -288,7 +287,6 @@ public class Controller implements Initializable {
             pin.setCenterY(newTranslateY + pin.getyI());
         }
         if (compuerta.getTipo() == tipoCompuerta.Custom){
-            System.out.println("SII");
             CustomGate thisCustomGate = (CustomGate) compuerta;
             BigPin bigPin =  thisCustomGate.getBigPinOut();
             bigPin.setCenterX(newTranslateX + bigPin.getxI());

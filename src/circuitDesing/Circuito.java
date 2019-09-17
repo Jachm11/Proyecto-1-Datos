@@ -1,5 +1,6 @@
 package circuitDesing;
 
+import AbstractFactory.tipoCompuerta;
 import GUI.SavedCircuit;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -64,8 +65,8 @@ public class Circuito extends Pane {
     private void rolAux(Node current) {
         Compuerta currentGate = (Compuerta) current.getData();
         boolean OutIn = currentGate.isOutIn();
-        NumEntradas += currentGate.getUnpluggeds();
-        int unpluggeds = currentGate.getUnpluggeds();
+        int unpluggeds = currentGate.getUnpluggeds(currentGate.pinesIn);
+        NumEntradas += unpluggeds;
         if (unpluggeds > 0) {
             absIn.insertarInicio(currentGate);
 
@@ -84,21 +85,46 @@ public class Circuito extends Pane {
         }
 
         if (unpluggeds == currentGate.getNumEntradas()) {
-            System.out.println("soloito");
             currentGate.setFirst(true);
         } else {
             currentGate.setMid(true);
             currentGate.setFirst(false);
         }
-        if (OutIn) {
-            currentGate.setLast(false);
-        } else {
-            currentGate.setLast(true);
-            System.out.println(currentGate.getTipo().toString() + currentGate.getID());
-            absOut.insertarInicio(currentGate);
-            absOutPins.insertarInicio(currentGate.pinOut);
-            NumSalidas++;
+        if (currentGate.getTipo() == tipoCompuerta.Custom){
+            CustomGate thisCast = (CustomGate) currentGate;
+            int unpluggededOuts = thisCast.getUnpluggeds(thisCast.pinesOut);
+            NumSalidas += unpluggededOuts;
+            if (unpluggededOuts >0 ){
+                absOut.insertarInicio(currentGate);
+
+                Node currentNode = thisCast.pinesOut.getHead();
+                while (currentNode.getNext() != null) {
+                    Pin currentPin = (Pin) currentNode.getData();
+                    if (!currentPin.conectado) {
+                        absOutPins.insertarInicio(currentPin);
+                    }
+                    currentNode = currentNode.getNext();
+                }
+                Pin currentPin = (Pin) currentNode.getData();
+                if (!currentPin.conectado) {
+                    absOutPins.insertarInicio(currentPin);
+                }
+            }
         }
+        else{
+            if (OutIn) {
+                currentGate.setLast(false);
+            } else {
+                currentGate.setLast(true);
+                System.out.println(currentGate.getTipo().toString() + currentGate.getID());
+                absOut.insertarInicio(currentGate);
+                absOutPins.insertarInicio(currentGate.pinOut);
+                NumSalidas++;
+            }
+        }
+        System.out.println("estas son las entradas:"+getNumEntradas());
+        System.out.println("estas son las saldias:"+ getNumSalidas());
+
     }
 
 
@@ -151,7 +177,8 @@ public class Circuito extends Pane {
     }
 
     public SavedCircuit saveThis(Image customImg) {
-        SavedCircuit circuit = new SavedCircuit(NumEntradas,NumSalidas,this,customImg);
-        return circuit;
+
+        return new SavedCircuit(NumEntradas,NumSalidas,GUI.TableController.getController().createTable(),customImg);
+        //TENGO Q VER COMO HAGO PARA DE VOLVER LA TABLA
     }
 }

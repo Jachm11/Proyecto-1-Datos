@@ -1,7 +1,9 @@
 package GUI;
 
 import circuitDesing.Circuito;
+import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
+import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,13 +14,13 @@ import javax.swing.*;
 public class SavedCircuit extends ImageView {
     int entradas;
     int salidas;
-    Circuito circuito;
+    TableView<ObservableList<Integer>> TablaDeVerdad;
     String nombre;
 
-    public SavedCircuit(int entradas, int salidas, Circuito circuito, Image image) {
+    public SavedCircuit(int entradas, int salidas, TableView<ObservableList<Integer>> TablaDeVerdad, Image image) {
         this.entradas = entradas;
         this.salidas = salidas;
-        this.circuito = circuito;
+        this.TablaDeVerdad = TablaDeVerdad;
         String nomine = (JOptionPane.showInputDialog("Nombre su nueva compuerta"));
         this.nombre = nomine;
         this.setCursor(Cursor.HAND);
@@ -43,12 +45,8 @@ public class SavedCircuit extends ImageView {
         this.salidas = salidas;
     }
 
-    public Circuito getCircuito() {
-        return circuito;
-    }
-
-    public void setCircuito(Circuito circuito) {
-        this.circuito = circuito;
+    public TableView<ObservableList<Integer>> getTablaDeVerdad() {
+        return TablaDeVerdad;
     }
 
     public String getNombre() {

@@ -6,18 +6,22 @@
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/AbsCompuertaFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/AbsCompuertaFactory.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/BigPin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/BigPin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/SavedCircuit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/SavedCircuit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/gates/custom.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/gates/custom.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/TableController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/TableController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CustomGate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CustomGate.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/listas/ListaEnlazada.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/listas/ListaEnlazada.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractFactory/AbsCompuertaFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractFactory/AbsCompuertaFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractFactory/CompuertaFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractFactory/CompuertaFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/BigPin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/BigPin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/SavedCircuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SavedCircuit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/gates/custom.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/gates/custom.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/TableController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/CustomGate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/CustomGate.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -267,7 +271,7 @@
       <workItem from="1568428710869" duration="15706000" />
       <workItem from="1568502489018" duration="10263000" />
       <workItem from="1568516008098" duration="55051000" />
-      <workItem from="1568650736395" duration="26262000" />
+      <workItem from="1568650736395" duration="39414000" />
     </task>
     <servers />
   </component>

@@ -1,7 +1,9 @@
 package AbstractFactory;
 
-import GUI.SavedCircuit;
 import circuitDesing.*;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
+
 
 /**
  * Clase de fabrica concreta, se encarga de la creacion de todos los tipos de compuerta
@@ -30,12 +32,12 @@ public class CompuertaFactory implements AbsCompuertaFactory {
         return instance;
     }
 
-    public Compuerta crearCompuerta (tipoCompuerta tipo, int entradas, int salidas,SavedCircuit circuito){
+    public Compuerta crearCompuerta (tipoCompuerta tipo, int entradas, int salidas, javafx.scene.control.TableView<ObservableList<Integer>> circuito){
             return crearCompuertaAux(tipo,entradas,salidas,circuito);
         }
 
     //Facade
-    private Compuerta crearCompuertaAux(tipoCompuerta tipo,int entradas,int salidas,SavedCircuit circuito){
+    private Compuerta crearCompuertaAux(tipoCompuerta tipo, int entradas, int salidas, TableView<ObservableList<Integer>> circuito){
         switch (tipo){
             case AND:
                 this.AND++;
@@ -101,7 +103,7 @@ public class CompuertaFactory implements AbsCompuertaFactory {
     }
 
     @Override
-    public Compuerta crearCustomGate(int entradas, int salidas, int ID, SavedCircuit circuito) {
+    public Compuerta crearCustomGate(int entradas, int salidas, int ID, TableView<ObservableList<Integer>> circuito) {
         return new CustomGate(entradas,salidas,ID,circuito);
     }
 }

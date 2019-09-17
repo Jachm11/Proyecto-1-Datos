@@ -2,6 +2,7 @@ package GUI;
 
 
 import circuitDesing.Compuerta;
+import circuitDesing.CustomGate;
 import circuitDesing.Pin;
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.Cursor;
@@ -34,7 +35,12 @@ public class BigPin extends Pin {
         this.x = x;
         this.y = y;
         this.pines = pines;
-        this.size = pines.getSize();
+        if (In) {
+            this.size = miCompuerta.getNumEntradas();
+        }else {
+            CustomGate thisCast = (CustomGate) miCompuerta;
+            this.size = thisCast.getSalidas();
+        }
         this.setRadius(15);
         setFill(color.deriveColor(1, 1, 1, 0.5));
         setStroke(color);
