@@ -87,7 +87,7 @@ public class Circuito extends Pane {
         if (unpluggeds == currentGate.getNumEntradas()) {
             currentGate.setFirst(true);
         } else {
-            currentGate.setMid(true);
+            //currentGate.setMid(true);
             currentGate.setFirst(false);
         }
         if (currentGate.getTipo() == tipoCompuerta.Custom){
@@ -111,16 +111,14 @@ public class Circuito extends Pane {
                 }
             }
         }
-        else{
-            if (OutIn) {
-                currentGate.setLast(false);
-            } else {
-                currentGate.setLast(true);
-                System.out.println(currentGate.getTipo().toString() + currentGate.getID());
-                absOut.insertarInicio(currentGate);
-                absOutPins.insertarInicio(currentGate.pinOut);
-                NumSalidas++;
-            }
+        if (OutIn) {
+            currentGate.setLast(false);
+        } else {
+            currentGate.setLast(true);
+            System.out.println(currentGate.getTipo().toString() + currentGate.getID());
+            absOut.insertarInicio(currentGate);
+            absOutPins.insertarInicio(currentGate.pinOut);
+            NumSalidas++;
         }
         System.out.println("estas son las entradas:"+getNumEntradas());
         System.out.println("estas son las saldias:"+ getNumSalidas());
@@ -131,8 +129,10 @@ public class Circuito extends Pane {
 
     public void execute() {
         Node current = compuertas.getHead();
+        System.out.println(current.getNext() != null);
         while (current.getNext() != null){
             Compuerta currentGate = (Compuerta) current.getData();
+            System.out.println(currentGate.isLast());
             if (currentGate.isLast()){
                 System.out.println(currentGate.output());
 
@@ -142,6 +142,7 @@ public class Circuito extends Pane {
         System.out.println(NumEntradas);
         System.out.println(NumSalidas);
         Compuerta currentGate = (Compuerta) current.getData();
+        System.out.println(currentGate.isLast());
         if (currentGate.isLast()) {
             System.out.println(currentGate.output());
         }
@@ -179,6 +180,5 @@ public class Circuito extends Pane {
     public SavedCircuit saveThis(Image customImg) {
 
         return new SavedCircuit(NumEntradas,NumSalidas,GUI.TableController.getController().createTable(),customImg);
-        //TENGO Q VER COMO HAGO PARA DE VOLVER LA TABLA
     }
 }

@@ -83,6 +83,20 @@ public class CustomGate extends Compuerta {
         System.out.println(entradas.getSize() );
         return false;
     }
+    @Override
+    public boolean isOutIn(){
+        Node current = pinesOut.getHead();
+        while (current.getNext() != null){
+            Pin currentPin = (Pin)current.getData();
+            if (currentPin.IsConectado()){
+                current = current.getNext();
+            }else{
+                return false;
+            }
+        }
+        Pin currentPin = (Pin)current.getData();
+        return currentPin.IsConectado();
+    }
 
 
 }
