@@ -8,6 +8,7 @@ public class Node {
 
     private Object data;
     Node next;
+    private Object data2;
 
     /**
      * Constructor de la clase
@@ -32,5 +33,13 @@ public class Node {
 
     public void setNext(Node next) {
         this.next = next;
+    }
+
+    public Object getData2() {
+        return data2;
+    }
+
+    public void setData2(Object data2) {
+        this.data2 = data2;
     }
 }

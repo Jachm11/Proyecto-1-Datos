@@ -9,6 +9,8 @@ import javafx.scene.paint.Color;
 import listas.ListaEnlazada;
 import listas.Node;
 
+import java.util.Iterator;
+
 
 /**
  * Clase donde se almacena un circuito guardado y para ser tratado como compuerta
@@ -32,7 +34,6 @@ public class CustomGate extends Compuerta {
         this.truthTable = truthTable;
         this.pinesOut = new ListaEnlazada();
         this.ID = ID;
-        pinOut.setId(1);
         pinesOut.insertarInicio(pinOut);
 
         for (int i = 1; i < NumSalidas; i++ ) {
@@ -80,9 +81,52 @@ public class CustomGate extends Compuerta {
 
     @Override
     public boolean operar() {
-        System.out.println(entradas.getSize() );
+        int numEntradas = entradas.getSize();
+        ListaEnlazada entradasOrdenadas = new ListaEnlazada();
+        Node current = entradas.getHead();
+        for(int x = 0 ; x <numEntradas; x++ ){
+            while ((int)current.getData2() != x){
+                current = current.getNext();
+            }
+            entradasOrdenadas.insertarAlFinal(current.getData());
+        }
+
+        System.out.println(truthTable.getItems().get(0));
+        System.out.println(truthTable.getItems().get(1));
+        //System.out.println(truthTable.getItems().get(6));
+        System.out.println("size"+truthTable.getItems().size());
+        System.out.println("esto es:" + (truthTable.getItems().get(0) == truthTable.getItems().get(0)) );
+
+        ObservableList<Integer> fila = getMyRow(numEntradas,entradasOrdenadas);
+
+        //EN UN CICLO INSERTAR EL VALOR entradas+ID+1 PARA EL PIN DE SALIDA CORRESPONDIENTE
+        //NECESITA REPLANTEAR LA LOGICA DE LAS SALIDAS CON REFERENCIA POR PIN< O ALGUNA MAGIA CHINA
+
+
+
         return false;
     }
+
+    private ObservableList<Integer> getMyRow(int numEntradas, ListaEnlazada entradasOrdenadas) {
+        for(int i = 0; i < truthTable.getItems().size();i++){
+            ObservableList<Integer> fila = (ObservableList<Integer>) truthTable.getItems().get(i);
+            Iterator<Integer> iterator = fila.iterator();
+            for(int j = 0; j < numEntradas; j++){
+                for(int x=0; x<j+1 ; x++){
+                    iterator.next();
+                }
+                if (!(iterator == entradasOrdenadas.serchByIndex(j))){
+                    break;
+                }else{
+                    if (j == numEntradas-1){
+                        return fila;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     @Override
     public boolean isOutIn(){
         Node current = pinesOut.getHead();
@@ -98,5 +142,16 @@ public class CustomGate extends Compuerta {
         return currentPin.IsConectado();
     }
 
+    @Override
+    public void askPins() {
+            Node current = this.pinesIn.getHead();
+            Pin pin = (Pin) current.getData();
+            while (current.getNext() != null){
+                this.input(pin.isValor(),pin.getPinId());
+                current = current.getNext();
+                pin = (Pin) current.getData();
+            }
+            this.input(pin.isValor(),pin.getPinId());
+        }
 
 }

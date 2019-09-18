@@ -200,6 +200,12 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     public void input(boolean entrada){
         this.entradas.insertarInicio(entrada);
     }
+
+    public void input(boolean valor, int pinId) {
+        this.entradas.insertarInicio(valor);
+        this.entradas.getHead().setData2(pinId);
+    }
+
     /**
      * Checkea si todas las entradas estan asignadas
      * @return true or false
@@ -317,4 +323,5 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     public boolean isFirst(){
         return first;
     }
+
 }
