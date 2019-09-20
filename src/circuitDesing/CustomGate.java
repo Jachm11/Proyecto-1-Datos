@@ -72,6 +72,7 @@ public class CustomGate extends Compuerta {
     public void endProcess(){
         this.operatedOnce = false;
         this.entradas = new ListaEnlazada();
+        this.miFila = new ListaEnlazada();
     }
 
     public Pin buscarIDPout(int IDpin){
@@ -154,9 +155,15 @@ public class CustomGate extends Compuerta {
 
     public boolean CustomOutput(Integer numPin) {
 
+        if (miFila.getHead() == null) {
+            setOperar();
+            int num = (int) miFila.serchByIndex(numPin);
+            return num == 1;
+        } else {
             int num = (int) miFila.serchByIndex(numPin);
             return num == 1;
         }
+    }
 
     public void returnCicle() {
         Node current = pinesOut.getHead();
