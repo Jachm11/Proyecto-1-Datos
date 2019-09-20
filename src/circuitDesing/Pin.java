@@ -1,5 +1,6 @@
 package circuitDesing;
 
+import AbstractFactory.tipoCompuerta;
 import GUI.Controller;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
@@ -28,6 +29,7 @@ import static circuitDesing.Circuito.selectedPin;
     boolean valor;
     boolean conectado;
     Compuerta compuerta;
+    Pin dador;
     Compuerta miCompuerta;
     boolean Input;
     boolean selected;
@@ -87,6 +89,14 @@ import static circuitDesing.Circuito.selectedPin;
 
     public double getxI() {
         return xI;
+    }
+
+    public Pin getDador() {
+        return dador;
+    }
+
+    public void setDador(Pin miPinOut) {
+        this.dador = miPinOut;
     }
 
     public boolean IsConectado() {
@@ -153,7 +163,12 @@ import static circuitDesing.Circuito.selectedPin;
 
     public boolean isValor() {
         if (conectado){
-            return compuerta.output();
+            if (compuerta.getTipo() == tipoCompuerta.Custom){
+                return ((CustomGate)compuerta).CustomOutput(this.dador.pinId);
+            }
+            else {
+                return compuerta.output();
+            }
         }
         else{
             return askforinput();
@@ -185,7 +200,7 @@ import static circuitDesing.Circuito.selectedPin;
                         selectedPin.setFill(this.color);
                         selectedPin.setStroke(this.color);
 
-                        selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta);
+                        selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta,this);
                         CircuitLine newLine = new CircuitLine(x,y,selectedPin.x,selectedPin.y,this.color);
                         Controller.getController().Circuito.getChildren().add(newLine);
 
@@ -198,7 +213,8 @@ import static circuitDesing.Circuito.selectedPin;
                         setStroke(selectedPin.color);
 
 
-                        this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta);
+                        this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta,null);
+                        this.setDador(selectedPin);
                         CircuitLine newLine = new CircuitLine(selectedPin.x,selectedPin.y,x,y,selectedPin.color);
                         Controller.getController().Circuito.getChildren().add(newLine);
 

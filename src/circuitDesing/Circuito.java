@@ -110,15 +110,16 @@ public class Circuito extends Pane {
                     absOutPins.insertarInicio(currentPin);
                 }
             }
-        }
-        if (OutIn) {
-            currentGate.setLast(false);
-        } else {
-            currentGate.setLast(true);
-            System.out.println(currentGate.getTipo().toString() + currentGate.getID());
-            absOut.insertarInicio(currentGate);
-            absOutPins.insertarInicio(currentGate.pinOut);
-            NumSalidas++;
+        }else {
+            if (OutIn) {
+                currentGate.setLast(false);
+            } else {
+                currentGate.setLast(true);
+                System.out.println(currentGate.getTipo().toString() + currentGate.getID());
+                absOut.insertarInicio(currentGate);
+                absOutPins.insertarInicio(currentGate.pinOut);
+                NumSalidas++;
+            }
         }
         System.out.println("estas son las entradas:"+getNumEntradas());
         System.out.println("estas son las saldias:"+ getNumSalidas());
@@ -134,7 +135,12 @@ public class Circuito extends Pane {
             Compuerta currentGate = (Compuerta) current.getData();
             System.out.println(currentGate.isLast());
             if (currentGate.isLast()){
-                System.out.println(currentGate.output());
+                if (currentGate.getTipo() != tipoCompuerta.Custom) {
+                    System.out.println(currentGate.output());
+                }else {
+                    CustomGate thisCustom = (CustomGate) currentGate;
+                    System.out.println(thisCustom.CustomOutput(null));
+                }
 
             }
             current = current.getNext();

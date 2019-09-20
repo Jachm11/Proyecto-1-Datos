@@ -192,6 +192,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
      * @return true or false dependiendo deloperardor y las entradas
      */
     public abstract boolean operar();
+    //public abstract boolean output(int pinId);
 
     /**
      * Inserta el valor a la lista enlazada de entradas
@@ -219,7 +220,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         }
     }
 
-    public void conectarPin(int IDpin, Compuerta compuerta){
+    public void conectarPin(int IDpin, Compuerta compuerta, Pin dador){
         buscarIDP(IDpin).setCompuerta(compuerta);
         buscarIDP(IDpin).setConectado(true);
         compuerta.getPinOut().setConectado(true);

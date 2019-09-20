@@ -20,6 +20,8 @@ public class CustomGate extends Compuerta {
     ListaEnlazada pinesOut;
     BigPin bigPinOut;
     TableView truthTable;
+    ListaEnlazada miFila;
+    Boolean operatedOnce;
 
     /**
      * Constructor de la clase
@@ -35,6 +37,8 @@ public class CustomGate extends Compuerta {
         this.pinesOut = new ListaEnlazada();
         this.ID = ID;
         pinesOut.insertarInicio(pinOut);
+        this.miFila = new ListaEnlazada();
+        this.operatedOnce = false;
 
         for (int i = 1; i < NumSalidas; i++ ) {
             Color colorRamdom = Color.color(Math.random(),Math.random(),Math.random());
@@ -65,6 +69,11 @@ public class CustomGate extends Compuerta {
         this.bigPinOut = bigPinOut;
     }
 
+    public void endProcess(){
+        this.operatedOnce = false;
+        this.entradas = new ListaEnlazada();
+    }
+
     public Pin buscarIDPout(int IDpin){
         Node current = this.pinesOut.getHead();
         Pin PinNode = (Pin) current.getData();
@@ -79,8 +88,9 @@ public class CustomGate extends Compuerta {
         return (Pin) current.getData();
     }
 
-    @Override
-    public boolean operar() {
+
+    public void setOperar() {
+        askPins();
         int numEntradas = entradas.getSize();
         ListaEnlazada entradasOrdenadas = new ListaEnlazada();
         Node current = entradas.getHead();
@@ -91,40 +101,39 @@ public class CustomGate extends Compuerta {
             entradasOrdenadas.insertarAlFinal(current.getData());
         }
 
-        System.out.println(truthTable.getItems().get(0));
-        System.out.println(truthTable.getItems().get(1));
-        //System.out.println(truthTable.getItems().get(6));
-        System.out.println("size"+truthTable.getItems().size());
-        System.out.println("esto es:" + (truthTable.getItems().get(0) == truthTable.getItems().get(0)) );
-
-        ObservableList<Integer> fila = getMyRow(numEntradas,entradasOrdenadas);
+        getMyRow(numEntradas,entradasOrdenadas);
+        this.operatedOnce = true;
 
         //EN UN CICLO INSERTAR EL VALOR entradas+ID+1 PARA EL PIN DE SALIDA CORRESPONDIENTE
         //NECESITA REPLANTEAR LA LOGICA DE LAS SALIDAS CON REFERENCIA POR PIN< O ALGUNA MAGIA CHINA
 
-
-
-        return false;
     }
 
-    private ObservableList<Integer> getMyRow(int numEntradas, ListaEnlazada entradasOrdenadas) {
+    private void getMyRow(int numEntradas, ListaEnlazada entradasOrdenadas) {
         for(int i = 0; i < truthTable.getItems().size();i++){
             ObservableList<Integer> fila = (ObservableList<Integer>) truthTable.getItems().get(i);
             Iterator<Integer> iterator = fila.iterator();
             for(int j = 0; j < numEntradas; j++){
-                for(int x=0; x<j+1 ; x++){
+                for(int x=0; x<j ; x++){
                     iterator.next();
                 }
-                if (!(iterator == entradasOrdenadas.serchByIndex(j))){
+                if (!((iterator.next()).equals(ToInt((Boolean) entradasOrdenadas.serchByIndex(j))))){
                     break;
                 }else{
                     if (j == numEntradas-1){
-                        return fila;
+                        fila.forEach((n) -> miFila.insertarAlFinal(n));
                     }
                 }
             }
         }
-        return null;
+    }
+
+    private Integer ToInt(Boolean b) {
+        if (b){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     @Override
@@ -142,6 +151,35 @@ public class CustomGate extends Compuerta {
         return currentPin.IsConectado();
     }
 
+
+    public boolean CustomOutput(Integer numPin) {
+
+            int num = (int) miFila.serchByIndex(numPin);
+            return num == 1;
+        }
+
+    public void returnCicle() {
+        Node current = pinesOut.getHead();
+        while (current.getNext() != null) {
+            Pin currentPin = (Pin) current.getData();
+            if (!(currentPin.conectado)) {
+                System.out.println(CustomOutput(currentPin.pinId));
+            }
+            current = current.getNext();
+        }
+        Pin currentPin = (Pin) current.getData();
+        if (!(currentPin.conectado)) {
+            System.out.println(CustomOutput(currentPin.pinId));
+        }
+        operatedOnce = true;
+    }
+
+
+    @Override
+    public boolean operar() {
+        return false;
+    }
+
     @Override
     public void askPins() {
             Node current = this.pinesIn.getHead();
@@ -154,4 +192,7 @@ public class CustomGate extends Compuerta {
             this.input(pin.isValor(),pin.getPinId());
         }
 
+    public void setOperatedOnce(boolean b) {
+        this.operatedOnce = b;
+    }
 }

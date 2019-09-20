@@ -149,8 +149,6 @@ public class TableController {
                 currentPin.setSimValue(BoolDato);
 
 
-
-
                 //System.out.println(i+1%(posibilidades/Math.pow(2,i+1)));
                 if ((int)(i%(posibilidades/Math.pow(2,j+1)))==0){
 
@@ -160,20 +158,40 @@ public class TableController {
                 System.out.println(j==NumEntradas-1);
                 if (j==NumEntradas-1) {
                     for (int x = 0; x < OutGates.getSize(); x++) {
-                        //System.out.println("me caigo xq hay "+NumSalidas+" salidas y yo busco en indeice"+x);
                         Compuerta currentGate = (Compuerta) OutGates.serchByIndex(x);
-                        boolean BoolDato2 = currentGate.output();
-                        System.out.println();
-                        int result = toInt(BoolDato2);
-                        //System.out.println("this is result:" + result);
-                        values.add(result);
+
+
+                        if (currentGate.getTipo() == tipoCompuerta.Custom){
+                            CustomGate customGate = (CustomGate) currentGate;
+                            Node current = customGate.getPinesOut().getHead();
+                            customGate.setOperar();
+                            while (current.getNext() != null) {
+                                Pin thisCurrentPin = (Pin) current.getData();
+                                boolean BoolDato2 = customGate.CustomOutput(thisCurrentPin.getPinId());
+                                int result = toInt(BoolDato2);
+                                values.add(result);
+
+                                current = current.getNext();
+                            }
+                            Pin thisCurrentPin = (Pin) current.getData();
+                            boolean BoolDato2 = customGate.CustomOutput(thisCurrentPin.getPinId());
+                            int result = toInt(BoolDato2);
+                            values.add(result);
+                            customGate.endProcess();
+
+                        }else {
+
+                            boolean BoolDato2 = currentGate.output();
+                            int result = toInt(BoolDato2);
+                            values.add(result);
+                        }
 
                     }
                 }
 
             }
 
-            System.out.println(values.size());
+            //System.out.println(values.size());
             TruthTable.getItems().add(values);
         }
         for(int j = 0; j < NumEntradas; j++) {

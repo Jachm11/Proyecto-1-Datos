@@ -91,7 +91,7 @@ public class BigPin extends Pin {
                             selectedPin.setFill(this.color);
                             selectedPin.setStroke(this.color);
 
-                            selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta);
+                            selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta,aConectar);
                             CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
                             Controller.getController().Circuito.getChildren().add(newLine);
 
@@ -103,7 +103,8 @@ public class BigPin extends Pin {
                             setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
                             setStroke(selectedPin.color);
 
-                            this.miCompuerta.conectarPin(aConectar.getPinId(), selectedPin.miCompuerta);
+                            this.miCompuerta.conectarPin(aConectar.getPinId(), selectedPin.miCompuerta,null);
+                            aConectar.setDador(selectedPin);
                             CircuitLine newLine = new CircuitLine(selectedPin.x, selectedPin.y, x, y, selectedPin.color);
                             Controller.getController().Circuito.getChildren().add(newLine);
 
