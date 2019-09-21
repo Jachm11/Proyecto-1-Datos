@@ -254,7 +254,7 @@
       <workItem from="1568502489018" duration="10263000" />
       <workItem from="1568516008098" duration="55051000" />
       <workItem from="1568650736395" duration="67419000" />
-      <workItem from="1568924664704" duration="22231000" />
+      <workItem from="1568924664704" duration="28152000" />
     </task>
     <servers />
   </component>
@@ -303,8 +303,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/circuitDesing/CustomGate.java</url>
-          <line>162</line>
+          <line>163</line>
           <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/CustomGate.java</url>
+          <line>99</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/CustomGate.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/CustomGate.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/CustomGate.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

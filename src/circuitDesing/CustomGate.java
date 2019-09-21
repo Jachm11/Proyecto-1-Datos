@@ -22,6 +22,7 @@ public class CustomGate extends Compuerta {
     TableView truthTable;
     ListaEnlazada miFila;
     Boolean operatedOnce;
+    int numEntradas;
 
     /**
      * Constructor de la clase
@@ -39,6 +40,7 @@ public class CustomGate extends Compuerta {
         pinesOut.insertarInicio(pinOut);
         this.miFila = new ListaEnlazada();
         this.operatedOnce = false;
+        this.numEntradas = entradas;
 
         for (int i = 1; i < NumSalidas; i++ ) {
             Color colorRamdom = Color.color(Math.random(),Math.random(),Math.random());
@@ -92,7 +94,6 @@ public class CustomGate extends Compuerta {
 
     public void setOperar() {
         askPins();
-        int numEntradas = entradas.getSize();
         ListaEnlazada entradasOrdenadas = new ListaEnlazada();
         Node current = entradas.getHead();
         for(int x = 0 ; x <numEntradas; x++ ){
@@ -102,15 +103,15 @@ public class CustomGate extends Compuerta {
             entradasOrdenadas.insertarAlFinal(current.getData());
         }
 
-        getMyRow(numEntradas,entradasOrdenadas);
-        this.operatedOnce = true;
+        getMyRow(entradasOrdenadas);
+        //this.operatedOnce = true;
 
         //EN UN CICLO INSERTAR EL VALOR entradas+ID+1 PARA EL PIN DE SALIDA CORRESPONDIENTE
         //NECESITA REPLANTEAR LA LOGICA DE LAS SALIDAS CON REFERENCIA POR PIN< O ALGUNA MAGIA CHINA
 
     }
 
-    private void getMyRow(int numEntradas, ListaEnlazada entradasOrdenadas) {
+    private void getMyRow(ListaEnlazada entradasOrdenadas) {
         for(int i = 0; i < truthTable.getItems().size();i++){
             ObservableList<Integer> fila = (ObservableList<Integer>) truthTable.getItems().get(i);
             Iterator<Integer> iterator = fila.iterator();
