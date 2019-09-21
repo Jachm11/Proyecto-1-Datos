@@ -178,7 +178,6 @@ public class CustomGate extends Compuerta {
         if (!(currentPin.conectado)) {
             System.out.println(CustomOutput(currentPin.pinId));
         }
-        operatedOnce = true;
     }
 
 

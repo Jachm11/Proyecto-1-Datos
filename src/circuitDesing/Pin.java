@@ -102,12 +102,15 @@ import static java.lang.System.out;
         if (!(conectado)){
             this.valor = valor;
             this.asignado = (true);
-            if (valor){
-                this.setFill(Color.WHITE);
-            }else
-            {
-                this.setFill(Color.BLACK);
-            }
+            setColorValue(valor);
+        }
+    }
+
+    public void setColorValue(Boolean valor){
+        if (valor){
+            this.setFill(Color.WHITE);
+        }else{
+            this.setFill(Color.BLACK);
         }
     }
 

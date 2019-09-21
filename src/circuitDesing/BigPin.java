@@ -2,10 +2,7 @@ package circuitDesing;
 
 
 import GUI.Controller;
-import circuitDesing.CircuitLine;
-import circuitDesing.Compuerta;
-import circuitDesing.CustomGate;
-import circuitDesing.Pin;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.Cursor;
 import javafx.scene.control.ContextMenu;
@@ -14,7 +11,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import listas.ListaEnlazada;
 

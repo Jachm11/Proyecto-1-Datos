@@ -2,6 +2,8 @@ package circuitDesing;
 
 import AbstractFactory.tipoCompuerta;
 import GUI.SavedCircuit;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import listas.ListaEnlazada;
@@ -123,14 +125,14 @@ public class Circuito extends Pane {
             NumSalidas++;
             }
         }
-        System.out.println("estas son las entradas:"+getNumEntradas());
-        System.out.println("estas son las saldias:"+ getNumSalidas());
+        //System.out.println("estas son las entradas:"+getNumEntradas());
+        //System.out.println("estas son las saldias:"+ getNumSalidas());
 
     }
 
 
 
-    public void execute() throws IOException {
+    public void execute() {
         Node current = compuertas.getHead();
         System.out.println(current.getNext() != null);
         while (current.getNext() != null){
@@ -138,27 +140,43 @@ public class Circuito extends Pane {
             System.out.println(currentGate.isLast());
             if (currentGate.isLast()){
                 if (currentGate.getTipo() != tipoCompuerta.Custom) {
-                    System.out.println(currentGate.output());
+                    boolean result = currentGate.output();
+                    System.out.println(result);
+                    currentGate.pinOut.setColorValue(result);
                 }else {
                     CustomGate thisCustom = (CustomGate) currentGate;
-                    System.out.println(thisCustom.CustomOutput(null));
+                    thisCustom.returnCicle();
                 }
 
             }
             current = current.getNext();
         }
-        System.out.println(NumEntradas);
-        System.out.println(NumSalidas);
+        //System.out.println(NumEntradas);
+        //System.out.println(NumSalidas);
         Compuerta currentGate = (Compuerta) current.getData();
         System.out.println(currentGate.isLast());
         if (currentGate.isLast()) {
-            System.out.println(currentGate.output());
+            if (currentGate.getTipo() != tipoCompuerta.Custom) {
+                boolean result = currentGate.output();
+                System.out.println(result);
+                currentGate.pinOut.setColorValue(result);
+            }else {
+                CustomGate thisCustom = (CustomGate) currentGate;
+                thisCustom.returnCicle();
+            }
         }
     }
 
     public boolean checkCircuit() {
         if (compuertas == null){
             System.out.println("Circuito vacío:No hay compuertas");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR: NO GATES FOUND");
+            alert.setHeaderText("Circuit is empty!");
+            alert.setContentText("Please insert new logic gates before running the circuit");
+            ButtonType uno = new ButtonType("OK");
+            alert.getButtonTypes().setAll(uno);
+            alert.showAndWait();
             return false;
         }else {
             setRol();
@@ -177,6 +195,13 @@ public class Circuito extends Pane {
             }
             if (cont > 1){
                 System.out.println("Circuito invalido: Hay compuertas sin conectar");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("ERROR: INVALID CIRCUIT");
+                alert.setHeaderText("There are unplugged gates in the circuit!");
+                alert.setContentText("Please connect all the gates to at least another gate");
+                ButtonType uno = new ButtonType("OK");
+                alert.getButtonTypes().setAll(uno);
+                alert.showAndWait();
                 return false;
             }else{
                 return true;
