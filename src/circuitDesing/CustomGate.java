@@ -94,6 +94,7 @@ public class CustomGate extends Compuerta {
 
 
     public void setOperar() {
+        entradas = new ListaEnlazada();
         askPins();
         ListaEnlazada entradasOrdenadas = new ListaEnlazada();
         Node current = entradas.getHead();
@@ -113,10 +114,12 @@ public class CustomGate extends Compuerta {
     }
 
     private void getMyRow(ListaEnlazada entradasOrdenadas) {
+        miFila = new ListaEnlazada();
         for(int i = 0; i < truthTable.getItems().size();i++){
             ObservableList<Integer> fila = truthTable.getItems().get(i);
-            Iterator<Integer> iterator = fila.iterator();
+            //Iterator<Integer> iterator = fila.iterator();
             for(int j = 0; j < numEntradas; j++){
+                Iterator<Integer> iterator = fila.iterator();
                 for(int x=0; x<j ; x++){
                     iterator.next();
                 }
@@ -125,6 +128,7 @@ public class CustomGate extends Compuerta {
                 }else{
                     if (j == numEntradas-1){
                         fila.forEach((n) -> miFila.insertarAlFinal(n));
+                        break;
                     }
                 }
             }
@@ -156,8 +160,8 @@ public class CustomGate extends Compuerta {
 
 
     public boolean CustomOutput(Integer numPin) {
-
-            int num = (int) miFila.serchByIndex(numPin);
+            setOperar();
+            int num = (int) miFila.serchByIndex(numEntradas + numPin);
             return num == 1;
         }
 

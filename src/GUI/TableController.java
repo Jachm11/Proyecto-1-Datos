@@ -162,7 +162,6 @@ public class TableController {
                         if (currentGate.getTipo() == tipoCompuerta.Custom){
                             CustomGate customGate = (CustomGate) currentGate;
                             Node current = customGate.getPinesOut().getHead();
-                            customGate.setOperar();
                             while (current.getNext() != null) {
                                 Pin thisCurrentPin = (Pin) current.getData();
                                 boolean BoolDato2 = customGate.CustomOutput(thisCurrentPin.getPinId());
@@ -176,7 +175,6 @@ public class TableController {
                             int result = toInt(BoolDato2);
                             values.add(result);
 
-                            customGate.endProcess();
 
                         }else {
                             boolean BoolDato2 = currentGate.output();
