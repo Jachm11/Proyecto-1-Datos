@@ -17,6 +17,7 @@ import javafx.util.Callback;
 import listas.ListaEnlazada;
 import listas.Node;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 public class TableController {
@@ -127,7 +128,7 @@ public class TableController {
         populate(posiblidades, numEntradas,numSalidas,AbsInputPins,Outputs,TruthTable);
     }
 
-    private void populate(int posibilidades, int NumEntradas, int NumSalidas,ListaEnlazada Inputs, ListaEnlazada OutGates,TableView<ObservableList<Integer>> TruthTable) {
+    private void populate(int posibilidades, int NumEntradas, int NumSalidas,ListaEnlazada Inputs, ListaEnlazada OutGates,TableView<ObservableList<Integer>> TruthTable){
         ListaEnlazada valores = new ListaEnlazada();
         for(int x=0; x < NumEntradas; x++){
             valores.insertarInicio(1);

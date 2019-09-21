@@ -45,6 +45,7 @@ import static java.lang.System.out;
     DoubleProperty y;
     boolean simulating;
     boolean simValue;
+    boolean asignado;
 
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
@@ -83,11 +84,11 @@ import static java.lang.System.out;
 
     private void entryMethod() {
         if (Input) {
-            ContextMenu compuertaMenu = new ContextMenu();
+            ContextMenu pinMenu = new ContextMenu();
             MenuItem item1 = new MenuItem("1");
             MenuItem item2 = new MenuItem("2");
-            compuertaMenu.getItems().addAll(item1, item2);
-            this.setOnContextMenuRequested(event -> compuertaMenu.show(this, event.getScreenX(), event.getScreenY()));
+            pinMenu.getItems().addAll(item1, item2);
+            this.setOnContextMenuRequested(event -> pinMenu.show(this, event.getScreenX(), event.getScreenY()));
             item1.setOnAction(e -> setUIValue(true));
             item2.setOnAction(e -> setUIValue(false));
         }
@@ -96,6 +97,7 @@ import static java.lang.System.out;
     private void setUIValue(boolean valor) {
         if (!(conectado)){
             this.valor = valor;
+            this.asignado = (true);
             if (valor){
                 this.setFill(Color.WHITE);
             }else
@@ -115,6 +117,14 @@ import static java.lang.System.out;
 
     public int getPinId() {
         return pinId;
+    }
+
+    public boolean isAsignado() {
+        return asignado;
+    }
+
+    public void setAsignado(boolean asignado) {
+        this.asignado = asignado;
     }
 
     public double getxI() {
@@ -174,8 +184,11 @@ import static java.lang.System.out;
             out.println("this is simValue"+simValue);
             return simValue;
         } else {
-            //boolean valor = Boolean.parseBoolean(JOptionPane.showInputDialog("Pin numero " + this.pinId + "de compuerta " + this.miCompuerta.getTipo().toString() + this.miCompuerta.getID()));
-            return valor;
+            if (asignado) {
+                return valor;
+            } else {
+                return valor;
+            }
         }
     }
 

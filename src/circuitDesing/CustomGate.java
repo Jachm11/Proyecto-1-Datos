@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import listas.ListaEnlazada;
 import listas.Node;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 
@@ -92,7 +93,7 @@ public class CustomGate extends Compuerta {
     }
 
 
-    public void setOperar() {
+    public void setOperar(){
         askPins();
         ListaEnlazada entradasOrdenadas = new ListaEnlazada();
         Node current = entradas.getHead();
@@ -183,7 +184,7 @@ public class CustomGate extends Compuerta {
     }
 
     @Override
-    public void askPins() {
+    public void askPins(){
             Node current = this.pinesIn.getHead();
             Pin pin = (Pin) current.getData();
             while (current.getNext() != null){
