@@ -7,6 +7,8 @@ import javafx.scene.layout.Pane;
 import listas.ListaEnlazada;
 import listas.Node;
 
+import java.io.IOException;
+
 /**
  * Clase que se encarga del almacenamiento de las compuertas en pantalla, esta es la clase que se almacena
  * la informacion del circuito para mas tarde ser trasformado a una Custom gate.
@@ -128,7 +130,7 @@ public class Circuito extends Pane {
 
 
 
-    public void execute() {
+    public void execute() throws IOException {
         Node current = compuertas.getHead();
         System.out.println(current.getNext() != null);
         while (current.getNext() != null){
@@ -183,7 +185,7 @@ public class Circuito extends Pane {
 
     }
 
-    public SavedCircuit saveThis(Image customImg) {
+    public SavedCircuit saveThis(Image customImg) throws IOException {
 
         return new SavedCircuit(NumEntradas,NumSalidas,GUI.TableController.getController().createTable(),customImg);
     }

@@ -9,6 +9,8 @@ import javafx.scene.paint.Color;
 import listas.ListaEnlazada;
 import listas.Node;
 
+import java.io.IOException;
+
 /**
  * Clase abstracta que define las propiedades y metodos de una compuerta lógica
  * @author Jose Alejandro
@@ -275,7 +277,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         }
         return factorX;
     }
-    public void askPins(){
+    public void askPins() throws IOException {
         Node current = this.pinesIn.getHead();
         Pin pin = (Pin) current.getData();
         while (current.getNext() != null){
@@ -287,7 +289,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     }
 
         //Facade
-    public boolean output() {
+    public boolean output() throws IOException {
         if (checkEntries()){
             return this.operar();
         }

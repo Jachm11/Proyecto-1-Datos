@@ -241,7 +241,13 @@ public class Controller implements Initializable {
         MenuItem item2 = new MenuItem("Delete");
         compuertaMenu.getItems().addAll(item1, item2);
         newCompuerta.setOnContextMenuRequested(event -> compuertaMenu.show(newCompuerta,event.getScreenX(), event.getScreenY()));
-        item1.setOnAction(e -> saveCurrentCircuit());
+        item1.setOnAction(e -> {
+            try {
+                saveCurrentCircuit();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         item2.setOnAction(e -> delete(newCompuerta));
     }
 
@@ -318,7 +324,7 @@ public class Controller implements Initializable {
     this.entradasDefault = numEntrdas;
     }
 
-    public void runCircuit(){
+    public void runCircuit() throws IOException {
 
         if (Circuito.checkCircuit()){
             Circuito.execute();
@@ -338,7 +344,7 @@ public class Controller implements Initializable {
     }
 
 
-    public void saveCurrentCircuit() {
+    public void saveCurrentCircuit() throws IOException {
 
         if(Circuito.checkCircuit()){
             SavedCircuit newCustomC = Circuito.saveThis(CustomImg);

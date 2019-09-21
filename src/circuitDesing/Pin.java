@@ -4,10 +4,10 @@ import AbstractFactory.tipoCompuerta;
 import GUI.Controller;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tooltip;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -16,10 +16,14 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import listas.ListaEnlazada;
 import listas.Node;
 
 import javax.swing.*;
+import java.io.IOException;
+import java.util.Optional;
 import java.util.Scanner;
 
 import static circuitDesing.Circuito.selectedPin;
@@ -179,7 +183,7 @@ import static java.lang.System.out;
         this.simValue = simValue;
     }
 
-    public boolean askforinput() {
+    public boolean askforinput() throws IOException {
         if (simulating) {
             out.println("this is simValue"+simValue);
             return simValue;
@@ -187,7 +191,23 @@ import static java.lang.System.out;
             if (asignado) {
                 return valor;
             } else {
-                return valor;
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Input Entry Confiramtion");
+                alert.setHeaderText("Initial gates without inputs found");
+                alert.setContentText("Please choose an input for "+);
+                ButtonType uno = new ButtonType("1");
+                ButtonType cero = new ButtonType("0");
+                alert.getButtonTypes().setAll(uno,cero);
+
+                Optional<ButtonType>result = alert.showAndWait();
+                if (result.get() == uno){
+                    setUIValue(true);
+                    return askforinput();
+                }else{
+                    setUIValue(false);
+                    return askforinput();
+                }
+
             }
         }
     }
@@ -204,7 +224,7 @@ import static java.lang.System.out;
         this.compuerta = compuerta;
     }
 
-    public boolean isValor() {
+    public boolean isValor() throws IOException {
         if (conectado){
             if (compuerta.getTipo() == tipoCompuerta.Custom){
                 return ((CustomGate)compuerta).CustomOutput(this.dador.pinId);
