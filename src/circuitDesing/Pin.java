@@ -183,7 +183,7 @@ import static java.lang.System.out;
         this.simValue = simValue;
     }
 
-    public boolean askforinput() throws IOException {
+    public boolean askforinput(){
         if (simulating) {
             out.println("this is simValue"+simValue);
             return simValue;
@@ -194,7 +194,7 @@ import static java.lang.System.out;
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Input Entry Confiramtion");
                 alert.setHeaderText("Initial gates without inputs found");
-                alert.setContentText("Please choose an input for "+);
+                alert.setContentText("Please choose an input for "+"pin number " + this.pinId + " of gate " + this.miCompuerta.getTipo().toString() +" " + this.miCompuerta.getID());
                 ButtonType uno = new ButtonType("1");
                 ButtonType cero = new ButtonType("0");
                 alert.getButtonTypes().setAll(uno,cero);
@@ -224,7 +224,7 @@ import static java.lang.System.out;
         this.compuerta = compuerta;
     }
 
-    public boolean isValor() throws IOException {
+    public boolean isValor(){
         if (conectado){
             if (compuerta.getTipo() == tipoCompuerta.Custom){
                 return ((CustomGate)compuerta).CustomOutput(this.dador.pinId);

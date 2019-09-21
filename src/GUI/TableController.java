@@ -34,7 +34,7 @@ public class TableController {
     }
 
 
-    public void setTableAux(TableView<ObservableList<Integer>> TruthTable ) throws IOException {
+    public void setTableAux(TableView<ObservableList<Integer>> TruthTable ) {
         Circuito circuito = Controller.getController().Circuito;
         int numEntradas = circuito.getNumEntradas();
         int numSalidas = circuito.getNumSalidas();
@@ -128,7 +128,7 @@ public class TableController {
         populate(posiblidades, numEntradas,numSalidas,AbsInputPins,Outputs,TruthTable);
     }
 
-    private void populate(int posibilidades, int NumEntradas, int NumSalidas,ListaEnlazada Inputs, ListaEnlazada OutGates,TableView<ObservableList<Integer>> TruthTable) throws IOException {
+    private void populate(int posibilidades, int NumEntradas, int NumSalidas,ListaEnlazada Inputs, ListaEnlazada OutGates,TableView<ObservableList<Integer>> TruthTable)  {
         ListaEnlazada valores = new ListaEnlazada();
         for(int x=0; x < NumEntradas; x++){
             valores.insertarInicio(1);
@@ -221,11 +221,11 @@ public class TableController {
     }
 
 
-    public void setTable() throws IOException {
+    public void setTable() {
         setTableAux(TruthTable);
     }
 
-    public TableView<ObservableList<Integer>> createTable() throws IOException {
+    public TableView<ObservableList<Integer>> createTable() {
         TableView<ObservableList<Integer>> circuitTable = new TableView<>();
         setTableAux(circuitTable);
         return circuitTable;

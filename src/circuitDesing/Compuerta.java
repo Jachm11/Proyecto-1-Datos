@@ -277,7 +277,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         }
         return factorX;
     }
-    public void askPins() throws IOException {
+    public void askPins() {
         Node current = this.pinesIn.getHead();
         Pin pin = (Pin) current.getData();
         while (current.getNext() != null){
@@ -289,7 +289,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     }
 
         //Facade
-    public boolean output() throws IOException {
+    public boolean output(){
         if (checkEntries()){
             return this.operar();
         }

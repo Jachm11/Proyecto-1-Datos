@@ -185,7 +185,7 @@ public class Circuito extends Pane {
 
     }
 
-    public SavedCircuit saveThis(Image customImg) throws IOException {
+    public SavedCircuit saveThis(Image customImg) {
 
         return new SavedCircuit(NumEntradas,NumSalidas,GUI.TableController.getController().createTable(),customImg);
     }
