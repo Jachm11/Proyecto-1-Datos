@@ -19,7 +19,7 @@ public class CustomGate extends Compuerta {
     int NumSalidas;
     ListaEnlazada pinesOut;
     BigPin bigPinOut;
-    TableView truthTable;
+    TableView<ObservableList<Integer>> truthTable;
     ListaEnlazada miFila;
     Boolean operatedOnce;
     int numEntradas;
@@ -113,7 +113,7 @@ public class CustomGate extends Compuerta {
 
     private void getMyRow(ListaEnlazada entradasOrdenadas) {
         for(int i = 0; i < truthTable.getItems().size();i++){
-            ObservableList<Integer> fila = (ObservableList<Integer>) truthTable.getItems().get(i);
+            ObservableList<Integer> fila = truthTable.getItems().get(i);
             Iterator<Integer> iterator = fila.iterator();
             for(int j = 0; j < numEntradas; j++){
                 for(int x=0; x<j ; x++){
@@ -156,15 +156,9 @@ public class CustomGate extends Compuerta {
 
     public boolean CustomOutput(Integer numPin) {
 
-        if (miFila.getHead() == null) {
-            setOperar();
-            int num = (int) miFila.serchByIndex(numPin);
-            return num == 1;
-        } else {
             int num = (int) miFila.serchByIndex(numPin);
             return num == 1;
         }
-    }
 
     public void returnCicle() {
         Node current = pinesOut.getHead();

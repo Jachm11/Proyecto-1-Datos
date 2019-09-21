@@ -99,9 +99,6 @@ public class TableController {
                             for (int i = 0; i < finalAbsPin; ++i) {
                                 iterator.next();
                             }
-                            //for (int x = numSalidas; x < numSalidas; ++x) {
-                                //iterator.next();
-                            //}
                             return new SimpleIntegerProperty(iterator.next()).asObject();
                         });
                         TruthTable.getColumns().addAll(column);
@@ -177,10 +174,10 @@ public class TableController {
                             boolean BoolDato2 = customGate.CustomOutput(thisCurrentPin.getPinId());
                             int result = toInt(BoolDato2);
                             values.add(result);
+
                             customGate.endProcess();
 
                         }else {
-
                             boolean BoolDato2 = currentGate.output();
                             int result = toInt(BoolDato2);
                             values.add(result);

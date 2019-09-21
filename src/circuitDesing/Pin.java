@@ -5,7 +5,11 @@ import GUI.Controller;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -19,6 +23,7 @@ import javax.swing.*;
 import java.util.Scanner;
 
 import static circuitDesing.Circuito.selectedPin;
+import static java.lang.System.out;
 
 /**
  * Clase dependiente de compuerta se encarga de almancenar las conexiones y valores de las entradas de una compuerta
@@ -70,9 +75,34 @@ import static circuitDesing.Circuito.selectedPin;
 
 
         setOnMouseClicked(this::select);
+        entryMethod();
 
         x.bind(centerXProperty());
         y.bind(centerYProperty());
+    }
+
+    private void entryMethod() {
+        if (Input) {
+            ContextMenu compuertaMenu = new ContextMenu();
+            MenuItem item1 = new MenuItem("1");
+            MenuItem item2 = new MenuItem("2");
+            compuertaMenu.getItems().addAll(item1, item2);
+            this.setOnContextMenuRequested(event -> compuertaMenu.show(this, event.getScreenX(), event.getScreenY()));
+            item1.setOnAction(e -> setUIValue(true));
+            item2.setOnAction(e -> setUIValue(false));
+        }
+    }
+
+    private void setUIValue(boolean valor) {
+        if (!(conectado)){
+            this.valor = valor;
+            if (valor){
+                this.setFill(Color.WHITE);
+            }else
+            {
+                this.setFill(Color.BLACK);
+            }
+        }
     }
 
     public String IdString() {
@@ -141,10 +171,10 @@ import static circuitDesing.Circuito.selectedPin;
 
     public boolean askforinput() {
         if (simulating) {
-            System.out.println("this is simValue"+simValue);
+            out.println("this is simValue"+simValue);
             return simValue;
         } else {
-            boolean valor = Boolean.parseBoolean(JOptionPane.showInputDialog("Pin numero " + this.pinId + "de compuerta " + this.miCompuerta.getTipo().toString() + this.miCompuerta.getID()));
+            //boolean valor = Boolean.parseBoolean(JOptionPane.showInputDialog("Pin numero " + this.pinId + "de compuerta " + this.miCompuerta.getTipo().toString() + this.miCompuerta.getID()));
             return valor;
         }
     }
@@ -183,56 +213,58 @@ import static circuitDesing.Circuito.selectedPin;
     }
 
     public void select(MouseEvent e) {
-        if (selected) {
-            setFill(color.deriveColor(1, 1, 1, 0.5));
-            //System.out.println(this.getCenterX());
-            selectedPin = null;
-        } else {
-            setFill(color.deriveColor(1, 1, 100, 10));
-            if (selectedPin == null) {
-                selectedPin = (Pin) e.getSource();
-                System.out.println(selectedPin);
+        if (e.getButton() == MouseButton.PRIMARY) {
+            if (selected) {
+                setFill(color.deriveColor(1, 1, 1, 0.5));
+                //System.out.println(this.getCenterX());
+                selectedPin = null;
             } else {
-                boolean selectedType = selectedPin.isIn();
-                System.out.println(compatibles(this,selectedPin));
-                if (compatibles(this,selectedPin)) {
-                    if (selectedType)  {  //si la anterior es In
-                        selectedPin.setFill(this.color);
-                        selectedPin.setStroke(this.color);
+                setFill(color.deriveColor(1, 1, 100, 10));
+                if (selectedPin == null) {
+                    selectedPin = (Pin) e.getSource();
+                    out.println(selectedPin);
+                } else {
+                    boolean selectedType = selectedPin.isIn();
+                    out.println(compatibles(this, selectedPin));
+                    if (compatibles(this, selectedPin)) {
+                        if (selectedType) {  //si la anterior es In
+                            selectedPin.setFill(this.color);
+                            selectedPin.setStroke(this.color);
 
-                        selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta,this);
-                        CircuitLine newLine = new CircuitLine(x,y,selectedPin.x,selectedPin.y,this.color);
-                        Controller.getController().Circuito.getChildren().add(newLine);
+                            selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta, this);
+                            CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
+                            Controller.getController().Circuito.getChildren().add(newLine);
 
-                        selected = !selected;
+                            selected = !selected;
+                            selectedPin.setSelected(false);
+                            selectedPin = null;
+
+                        } else {  // la anterior es out
+                            setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
+                            setStroke(selectedPin.color);
+
+
+                            this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta, null);
+                            this.setDador(selectedPin);
+                            CircuitLine newLine = new CircuitLine(selectedPin.x, selectedPin.y, x, y, selectedPin.color);
+                            Controller.getController().Circuito.getChildren().add(newLine);
+
+                            selected = !selected;
+                            selectedPin.setSelected(false);
+                            selectedPin = null;
+                        }
+
+                    } else {
+                        setFill(color.deriveColor(1, 1, 1, 0.5));
+                        selectedPin.setFill(selectedPin.color.deriveColor(1, 1, 1, 0.5));
                         selectedPin.setSelected(false);
-                        selectedPin = null;
-
-                    }else{  // la anterior es out
-                        setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
-                        setStroke(selectedPin.color);
-
-
-                        this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta,null);
-                        this.setDador(selectedPin);
-                        CircuitLine newLine = new CircuitLine(selectedPin.x,selectedPin.y,x,y,selectedPin.color);
-                        Controller.getController().Circuito.getChildren().add(newLine);
-
                         selected = !selected;
-                        selectedPin.setSelected(false);
                         selectedPin = null;
                     }
-
-                    }else{
-                    setFill(color.deriveColor(1, 1, 1, 0.5));
-                    selectedPin.setFill(selectedPin.color.deriveColor(1, 1, 1, 0.5));
-                    selectedPin.setSelected(false);
-                    selected = !selected;
-                    selectedPin = null;
                 }
             }
+            selected = !selected;
         }
-        selected = !selected;
     }
 
 
