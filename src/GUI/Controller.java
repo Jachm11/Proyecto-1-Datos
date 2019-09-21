@@ -54,8 +54,21 @@ public class Controller implements Initializable {
             return instance;
         }
 
+<<<<<<< HEAD
         @FXML
         private Label Title;
+=======
+    private double orgSceneX, orgSceneY;
+    private double orgTranslateX, orgTranslateY;
+    private int entradasDefault;
+    private Image ImageAND = new Image("GUI/gates/AND.png");
+    private Image ImageNAND = new Image("GUI/gates/NAND.png");
+    private Image ImageOR = new Image("GUI/gates/OR.png");
+    private Image ImageNOR = new Image("GUI/gates/NOR.png");
+    private Image ImageNOT = new Image("GUI/gates/NOT.png");
+    private Image ImageXOR = new Image("GUI/gates/XOR.png");
+    private Image ImageXNOR = new Image("GUI/gates/XNOR.png");
+>>>>>>> gui
 
 
         @FXML // fx:id="x1"
@@ -140,40 +153,68 @@ public class Controller implements Initializable {
 
 
     public void clickedOnAND(MouseEvent t){
+<<<<<<< HEAD
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,entradasDefault,1,null));
         System.out.println(newCompuerta);
+=======
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,entradasDefault,1));
+>>>>>>> gui
         newCompuerta.setImage(ImageAND);
         setCompuerta(newCompuerta);
     }
 
     public void clickedOnNAND(MouseEvent t){
+<<<<<<< HEAD
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NAND,entradasDefault,1,null));
+=======
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NAND,entradasDefault,1));
+>>>>>>> gui
         newCompuerta.setImage(ImageNAND);
         setCompuerta(newCompuerta);
     }
     public void clickedOnOR(MouseEvent t){
+<<<<<<< HEAD
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.OR,entradasDefault,1,null));
+=======
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.OR,entradasDefault,1));
+>>>>>>> gui
         newCompuerta.setImage(ImageOR);
         setCompuerta(newCompuerta);
     }
     public void clickedOnNOR(MouseEvent t){
+<<<<<<< HEAD
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOR,entradasDefault,1,null));
+=======
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOR,entradasDefault,1));
+>>>>>>> gui
         newCompuerta.setImage(ImageNOR);
         setCompuerta(newCompuerta);
     }
     public void clickedOnNOT(MouseEvent t){
+<<<<<<< HEAD
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,1,1,null));
+=======
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,1,1));
+>>>>>>> gui
         newCompuerta.setImage(ImageNOT);
         setCompuerta(newCompuerta);
     }
     public void clickedOnXOR(MouseEvent t){
+<<<<<<< HEAD
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,entradasDefault,1,null));
+=======
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,entradasDefault,1));
+>>>>>>> gui
         newCompuerta.setImage(ImageXOR);
         setCompuerta(newCompuerta);
     }
 
     public void clickedOnXNOR(MouseEvent t){
+<<<<<<< HEAD
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XNOR,entradasDefault,1,null));
+=======
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XNOR,entradasDefault,1));
+>>>>>>> gui
         newCompuerta.setImage(ImageXNOR);
         setCompuerta(newCompuerta);
     }
@@ -234,6 +275,7 @@ public class Controller implements Initializable {
         newCompuerta.setCursor(Cursor.HAND);
         newCompuerta.setOnMousePressed(this::handle);
         newCompuerta.setOnMouseDragged(this::handle2);
+<<<<<<< HEAD
 
 
         ContextMenu compuertaMenu = new ContextMenu();
@@ -258,6 +300,11 @@ public class Controller implements Initializable {
 
 
         //FRAGMENTO NO ORIGINAL
+=======
+    }
+
+
+>>>>>>> gui
     public void handle(MouseEvent t) {
         orgSceneX = t.getSceneX();
         orgSceneY = t.getSceneY();

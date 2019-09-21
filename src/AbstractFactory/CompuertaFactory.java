@@ -32,12 +32,21 @@ public class CompuertaFactory implements AbsCompuertaFactory {
         return instance;
     }
 
+<<<<<<< HEAD
     public Compuerta crearCompuerta (tipoCompuerta tipo, int entradas, int salidas, javafx.scene.control.TableView<ObservableList<Integer>> circuito){
             return crearCompuertaAux(tipo,entradas,salidas,circuito);
         }
 
     //Facade
     private Compuerta crearCompuertaAux(tipoCompuerta tipo, int entradas, int salidas, TableView<ObservableList<Integer>> circuito){
+=======
+    public Compuerta crearCompuerta (tipoCompuerta tipo, int entradas, int salidas){
+            return crearCompuertaAux(tipo,entradas,salidas);
+        }
+
+    //Facade
+    private Compuerta crearCompuertaAux(tipoCompuerta tipo,int entradas,int salidas){
+>>>>>>> gui
         switch (tipo){
             case AND:
                 this.AND++;
@@ -61,8 +70,12 @@ public class CompuertaFactory implements AbsCompuertaFactory {
                 this.XNOR++;
                 return crearXNOR(entradas,this.XNOR);
             case Custom:
+<<<<<<< HEAD
                 this.custom++;
                 return crearCustomGate(entradas,salidas,this.custom,circuito);
+=======
+                return crearCustomGate(entradas,salidas);
+>>>>>>> gui
         }
         return null;
     }
@@ -103,7 +116,12 @@ public class CompuertaFactory implements AbsCompuertaFactory {
     }
 
     @Override
+<<<<<<< HEAD
     public Compuerta crearCustomGate(int entradas, int salidas, int ID, TableView<ObservableList<Integer>> circuito) {
         return new CustomGate(entradas,salidas,ID,circuito);
+=======
+    public Compuerta crearCustomGate(int entradas, int salidas) {
+        return null;
+>>>>>>> gui
     }
 }

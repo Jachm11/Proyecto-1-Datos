@@ -27,10 +27,15 @@ public class CustomGate extends Compuerta {
 
     /**
      * Constructor de la clase
+<<<<<<< HEAD
+=======
+     * @param ID identificador numérico para la compuerta
+>>>>>>> gui
      * @param entradas
      * @param ID identificador para la compuerta
      * @param truthTable
      */
+<<<<<<< HEAD
     public CustomGate(int entradas, int salidas, int ID, javafx.scene.control.TableView<ObservableList<Integer>> truthTable) {
         super(entradas,salidas);
         this.NumSalidas = salidas;
@@ -50,6 +55,11 @@ public class CustomGate extends Compuerta {
             Pin pin = new Pin(colorRamdom,startX2,this.getX()+ 150,startY2,this.getY()+40,i,this,false);
             pinesOut.insertarInicio(pin);
         }
+=======
+    public CustomGate( int entradas, int salidas, int ID) {
+        super(entradas,ID);
+        this.salidas = salidas;
+>>>>>>> gui
     }
 
     public int getSalidas() {

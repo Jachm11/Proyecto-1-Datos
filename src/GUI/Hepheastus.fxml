@@ -302,7 +302,73 @@
                                        <content>
                                           <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                              <content>
+<<<<<<< HEAD:src/GUI/Hepheastus.fxml
                                                 <VBox fx:id="customVbox" prefHeight="200.0" prefWidth="100.0" />
+=======
+                                                <VBox prefHeight="409.0" prefWidth="110.0" spacing="15.0">
+                                                   <children>
+                                                      <ImageView fx:id="AND" fitHeight="150.0" fitWidth="121.0" onMouseClicked="#clickedOnAND" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@gates/AND.png" />
+                                                         </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </ImageView>
+                                                      <ImageView fx:id="NAND" fitHeight="150.0" fitWidth="121.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#clickedOnNAND" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@gates/NAND.png" />
+                                                         </image>
+                                                          <cursor>
+                                                              <Cursor fx:constant="HAND" />
+                                                          </cursor>
+                                                      </ImageView>
+                                                      <ImageView fx:id="OR" fitHeight="150.0" fitWidth="121.0" layoutX="10.0" layoutY="90.0" onMouseClicked="#clickedOnOR" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@gates/OR.png" />
+                                                         </image>
+                                                          <cursor>
+                                                              <Cursor fx:constant="HAND" />
+                                                          </cursor>
+                                                      </ImageView>
+                                                      <ImageView fx:id="NOR" fitHeight="150.0" fitWidth="121.0" layoutX="10.0" layoutY="170.0" onMouseClicked="#clickedOnNOR" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@gates/NOR.png" />
+                                                         </image>
+                                                          <cursor>
+                                                              <Cursor fx:constant="HAND" />
+                                                          </cursor>
+                                                      </ImageView>
+                                                      <ImageView fx:id="NOT" fitHeight="150.0" fitWidth="121.0" layoutX="10.0" layoutY="250.0" onMouseClicked="#clickedOnNOT" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@gates/NOT.png" />
+                                                         </image>
+                                                          <cursor>
+                                                              <Cursor fx:constant="HAND" />
+                                                          </cursor>
+                                                      </ImageView>
+                                                      <ImageView fx:id="XOR" fitHeight="150.0" fitWidth="121.0" layoutX="10.0" layoutY="330.0" onMouseClicked="#clickedOnXOR" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@gates/XOR.png" />
+                                                         </image>
+                                                          <cursor>
+                                                              <Cursor fx:constant="HAND" />
+                                                          </cursor>
+                                                      </ImageView>
+                                                      <ImageView fx:id="XNOR" fitHeight="150.0" fitWidth="121.0" layoutX="10.0" layoutY="410.0" onMouseClicked="#clickedOnXNOR" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@gates/XNOR.png" />
+                                                         </image>
+                                                          <cursor>
+                                                              <Cursor fx:constant="HAND" />
+                                                          </cursor>
+                                                      </ImageView>
+                                                   </children>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </VBox>
+>>>>>>> gui:src/GUI/UI2.fxml
                                              </content>
                                           </ScrollPane>
                                        </content>

@@ -50,11 +50,28 @@ public class Main extends Application {
          */
         //System.out.println(listaEnlazada.getHead().getNext());
 
+<<<<<<< HEAD
         //Compuerta and1 = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,2,1));
         //Compuerta and2 = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,1));
         //Compuerta and3 = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,1));
 
         //System.out.println(hola.getCompuertasOut());
+=======
+        Compuerta hola = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,2,0));
+        //AND hola = new AND(10,20,2,1);
+
+        System.out.println(hola.getNumEntradas());
+        AND holi = new AND(2,1);
+        System.out.println(holi.getNumEntradas());
+        System.out.println(holi.getPinesIn().getSize());
+        System.out.println(hola.getNumEntradas());
+        System.out.println(hola.getPinesIn().getSize());
+        hola.conectarIn(1,holi);
+        Pin temp = (Pin) hola.getPinesIn().getHead().getData();
+        System.out.println(temp.getId());
+        System.out.println(temp.getCompuerta());
+        System.out.println(hola.output());
+>>>>>>> gui
 
         //hola.input(false);
         //hola.input(true);
@@ -69,6 +86,7 @@ public class Main extends Application {
         //and2.setValorPinX(1,true);
         //and2.setValorPinX(2,true);
 
+<<<<<<< HEAD
         //System.out.println(and3.output());
         //System.out.println(and1.output());
         //System.out.println(and2.output());
@@ -99,6 +117,8 @@ public class Main extends Application {
 
 
 
+=======
+>>>>>>> gui
         //System.out.println(hola.checkEntries());
         //hola.input(true);
 

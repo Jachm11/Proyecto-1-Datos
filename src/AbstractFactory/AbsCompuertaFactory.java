@@ -20,5 +20,9 @@ public interface AbsCompuertaFactory {
     public Compuerta crearNOT(int ID);
     public Compuerta crearXOR(int entradas, int ID);
     public Compuerta crearXNOR( int entradas, int ID);
+<<<<<<< HEAD
     public Compuerta crearCustomGate(int entradas, int salidas, int ID, TableView<ObservableList<Integer>> circuito);
+=======
+    public Compuerta crearCustomGate(int entradas, int salidas);
+>>>>>>> gui
 }

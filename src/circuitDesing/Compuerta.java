@@ -22,8 +22,13 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     private int numConexiones;
     private int factorX; // Solo para compuertas X
     ListaEnlazada entradas;
+<<<<<<< HEAD
     ListaEnlazada pinesIn;
     ListaEnlazada compuertasOut;
+=======
+    private ListaEnlazada pinesIn;
+    ListaEnlazada pinesOut;
+>>>>>>> gui
     tipoCompuerta tipo;
     int ID;
     Pin pinOut;
@@ -35,7 +40,11 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     /**
      * Constructor de la clase
      */
+<<<<<<< HEAD
     public Compuerta(int entradas, int ID) {
+=======
+    public Compuerta(int entradas,int ID){
+>>>>>>> gui
         this.entradas = new ListaEnlazada();
         this.pinesIn = new ListaEnlazada();
         int cont = 0;
