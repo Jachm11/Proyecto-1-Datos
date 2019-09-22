@@ -139,33 +139,34 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     public void deleteCompuerta(Compuerta this) {
         Circuito.compuertas.eliminarX(this);
 
-        Node currentNode = pinesIn.getHead();
+        Node currentInNode = pinesIn.getHead();
         System.out.println(pinesIn.getHead());
-        System.out.println(currentNode);
-        while (currentNode.getNext() != null) {
-            Pin currentPin = (Pin) currentNode.getData();
+        //System.out.println(currentInNode);
+        while (currentInNode.getNext() != null) {
+            Pin currentPin = (Pin) currentInNode.getData();
             currentPin.desconectar();
             Controller.getController().Circuito.getChildren().remove(currentPin);
-            currentNode = currentNode.getNext();
+            currentInNode = currentInNode.getNext();
             }
-        Pin currentPin = (Pin) currentNode.getData();
+        Pin currentPin = (Pin) currentInNode.getData();
         currentPin.desconectar();
         Controller.getController().Circuito.getChildren().remove(currentPin);
-        currentNode = currentNode.getNext();
         if (bigPin != null){
             Controller.getController().Circuito.getChildren().remove(bigPin);
         }
 
         Controller.getController().Circuito.getChildren().remove(pinOut);
 
-        Node currentNode2 = compuertasOut.getHead();
-        if (currentNode2 != null){
-                while (currentNode2.getNext() != null) {
-                    Compuerta currentCompuerta = (Compuerta) currentNode.getData();
-                    currentCompuerta.desconectarPinesCon(this);
-                    currentNode2 = currentNode.getNext();
+        Node currentOutNode2 = compuertasOut.getHead();
+        if (currentOutNode2 != null){
+            while (currentOutNode2.getNext() != null) {
+                Compuerta currentCompuerta = (Compuerta) currentOutNode2.getData();
+                currentCompuerta.desconectarPinesCon(this);
+                if (currentOutNode2.getNext() != null) {
+                    currentOutNode2 = currentOutNode2.getNext();
                 }
-                Compuerta currentCompuerta = (Compuerta) currentNode.getData();
+            }
+                Compuerta currentCompuerta = (Compuerta) currentOutNode2.getData();
                 currentCompuerta.desconectarPinesCon(this);
             }
         if (this.tipo == tipoCompuerta.Custom){
@@ -177,7 +178,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
 
 
     private void desconectarPinesCon(Compuerta compuerta){
-        Node current = compuerta.pinesIn.getHead();
+        Node current = pinesIn.getHead();
         while (current.getNext() != null){
             Pin currentPin = (Pin)current.getData();
             if (currentPin.getCompuerta() == compuerta){
@@ -226,10 +227,13 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     }
 
     public void conectarPin(int IDpin, Compuerta compuerta, Pin dador){
-        buscarIDP(IDpin).setCompuerta(compuerta);
-        buscarIDP(IDpin).setConectado(true);
+        Pin conectando = buscarIDP(IDpin);
+        conectando.setCompuerta(compuerta);
+        conectando.setConectado(true);
+        conectando.setDador(dador);
         compuerta.getPinOut().setConectado(true);
         compuerta.getCompuertasOut().insertarInicio(this);
+
     }
     public void desconectarPin(int IDpin){
         buscarIDP(IDpin).setCompuerta(null);

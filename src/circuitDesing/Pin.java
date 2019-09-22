@@ -283,8 +283,9 @@ import static java.lang.System.out;
                     out.println(compatibles(this, selectedPin));
                     if (compatibles(this, selectedPin)) {
                         if (selectedType) {  //si la anterior es In
-                            selectedPin.setFill(this.color);
+                            selectedPin.setFill(this.color.deriveColor(1, 1, 100, 10));
                             selectedPin.setStroke(this.color);
+                            setFill(color.deriveColor(1, 1, 100, 10));
 
                             selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta, this);
                             CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);

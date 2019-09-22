@@ -71,7 +71,7 @@ public class BigPin extends Pin {
             while (cont < pines.getSize()) {
                 Menu inputMenu = new Menu("Input "+cont);
                 MenuItem childMenuItem1 = new MenuItem("1");
-                MenuItem childMenuItem2 = new MenuItem("2");
+                MenuItem childMenuItem2 = new MenuItem("0");
                 inputMenu.getItems().addAll(childMenuItem1,childMenuItem2);
                 int finalCont = cont;
                 childMenuItem1.setOnAction(e -> setUIValue(true,finalCont));
