@@ -57,7 +57,6 @@ public class Controller implements Initializable {
         @FXML
         private Label Title;
 
-
         @FXML // fx:id="x1"
         private Font x1; // Value injected by FXMLLoader
 
@@ -98,7 +97,7 @@ public class Controller implements Initializable {
         private GridPane Grid;
 
         @FXML // fx:id="Circuito"
-        public Pane Circuito; // Value injected by FXMLLoader
+        public Circuito Circuito; // Value injected by FXMLLoader
 
         @FXML
         private AnchorPane Content;
@@ -124,6 +123,7 @@ public class Controller implements Initializable {
         @FXML
         private VBox customVbox;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -135,6 +135,7 @@ public class Controller implements Initializable {
         Tooltip.install(NOT, new Tooltip("NOT"));
         Tooltip.install(XOR, new Tooltip("XOR"));
         Tooltip.install(XNOR, new Tooltip("XNOR"));
+
     }
 
 

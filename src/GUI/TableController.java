@@ -11,6 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
@@ -18,10 +19,14 @@ import listas.ListaEnlazada;
 import listas.Node;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Iterator;
+import java.util.ResourceBundle;
 
-public class TableController {
+public class TableController implements Initializable {
     private static TableController instance = new TableController();
+
+
 
     @FXML
     private TableView<ObservableList<Integer>> TruthTable;
@@ -228,6 +233,11 @@ public class TableController {
         setTableAux(circuitTable);
         return circuitTable;
 
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TruthTable.getStylesheets().add("GUI/DarkTheme.css");
     }
 }
 
