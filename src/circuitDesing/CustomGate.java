@@ -170,13 +170,13 @@ public class CustomGate extends Compuerta {
         while (current.getNext() != null) {
             Pin currentPin = (Pin) current.getData();
             if (!(currentPin.conectado)) {
-                System.out.println(CustomOutput(currentPin.pinId));
+                System.out.println("Este es mi valor" + CustomOutput(currentPin.pinId));
             }
             current = current.getNext();
         }
         Pin currentPin = (Pin) current.getData();
         if (!(currentPin.conectado)) {
-            System.out.println(CustomOutput(currentPin.pinId));
+            System.out.println("Este es mi valor" + CustomOutput(currentPin.pinId));
         }
     }
 

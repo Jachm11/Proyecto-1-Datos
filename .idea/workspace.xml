@@ -3,17 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/BigPin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/BigPin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CustomGate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CustomGate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/circuitDesing/BigPin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/BigPin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/CustomGate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/CustomGate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Pin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Pin.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -269,7 +266,7 @@
       <workItem from="1568516008098" duration="55051000" />
       <workItem from="1568650736395" duration="67419000" />
       <workItem from="1568924664704" duration="28152000" />
-      <workItem from="1569096971486" duration="4964000" />
+      <workItem from="1569096971486" duration="12258000" />
     </task>
     <servers />
   </component>
@@ -292,5 +289,41 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/Circuito.java</url>
+          <line>161</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/CustomGate.java</url>
+          <line>162</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/Pin.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/Circuito.java</url>
+          <line>154</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/Circuito.java</url>
+          <line>134</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/Circuito.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

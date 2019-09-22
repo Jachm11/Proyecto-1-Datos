@@ -114,7 +114,7 @@ public class Circuito extends Pane {
                     absOutPins.insertarInicio(currentPin);
                 }
             }
-        }else{
+        }
         if (OutIn) {
             currentGate.setLast(false);
         } else {
@@ -124,7 +124,6 @@ public class Circuito extends Pane {
             absOutPins.insertarInicio(currentGate.pinOut);
             NumSalidas++;
             }
-        }
         //System.out.println("estas son las entradas:"+getNumEntradas());
         //System.out.println("estas son las saldias:"+ getNumSalidas());
 
@@ -137,7 +136,7 @@ public class Circuito extends Pane {
         System.out.println(current.getNext() != null);
         while (current.getNext() != null){
             Compuerta currentGate = (Compuerta) current.getData();
-            System.out.println(currentGate.isLast());
+            //System.out.println(currentGate.isLast());
             if (currentGate.isLast()){
                 if (currentGate.getTipo() != tipoCompuerta.Custom) {
                     boolean result = currentGate.output();
@@ -151,10 +150,8 @@ public class Circuito extends Pane {
             }
             current = current.getNext();
         }
-        //System.out.println(NumEntradas);
-        //System.out.println(NumSalidas);
         Compuerta currentGate = (Compuerta) current.getData();
-        System.out.println(currentGate.isLast());
+        //System.out.println(currentGate.isLast());
         if (currentGate.isLast()) {
             if (currentGate.getTipo() != tipoCompuerta.Custom) {
                 boolean result = currentGate.output();
@@ -168,14 +165,14 @@ public class Circuito extends Pane {
     }
 
     public boolean checkCircuit() {
-        if (compuertas == null){
+        if (compuertas == null || compuertas.getHead() == null){
             System.out.println("Circuito vacío:No hay compuertas");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR: NO GATES FOUND");
             alert.setHeaderText("Circuit is empty!");
             alert.setContentText("Please insert new logic gates before running the circuit");
-            ButtonType uno = new ButtonType("OK");
-            alert.getButtonTypes().setAll(uno);
+            ButtonType ok = new ButtonType("OK");
+            alert.getButtonTypes().setAll(ok);
             alert.showAndWait();
             return false;
         }else {
@@ -199,8 +196,8 @@ public class Circuito extends Pane {
                 alert.setTitle("ERROR: INVALID CIRCUIT");
                 alert.setHeaderText("There are unplugged gates in the circuit!");
                 alert.setContentText("Please connect all the gates to at least another gate");
-                ButtonType uno = new ButtonType("OK");
-                alert.getButtonTypes().setAll(uno);
+                ButtonType ok = new ButtonType("OK");
+                alert.getButtonTypes().setAll(ok);
                 alert.showAndWait();
                 return false;
             }else{

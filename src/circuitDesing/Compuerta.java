@@ -2,6 +2,7 @@ package circuitDesing;
 
 import AbstractFactory.CompuertaLogica;
 import AbstractFactory.tipoCompuerta;
+import GUI.Controller;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.image.ImageView;
@@ -141,32 +142,37 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         Node currentNode = pinesIn.getHead();
         System.out.println(pinesIn.getHead());
         System.out.println(currentNode);
-        if (currentNode.getNext() == null) {
+        while (currentNode.getNext() != null) {
             Pin currentPin = (Pin) currentNode.getData();
             currentPin.desconectar();
-        } else {
-            while (currentNode.getNext() != null) {
-                Pin currentPin = (Pin) currentNode.getData();
-                currentPin.desconectar();
-                currentNode = currentNode.getNext();
+            Controller.getController().Circuito.getChildren().remove(currentPin);
+            currentNode = currentNode.getNext();
             }
+        Pin currentPin = (Pin) currentNode.getData();
+        currentPin.desconectar();
+        Controller.getController().Circuito.getChildren().remove(currentPin);
+        currentNode = currentNode.getNext();
+        if (bigPin != null){
+            Controller.getController().Circuito.getChildren().remove(bigPin);
         }
+
+        Controller.getController().Circuito.getChildren().remove(pinOut);
 
         Node currentNode2 = compuertasOut.getHead();
         if (currentNode2 != null){
-            if (currentNode2.getNext() == null) {
-                Compuerta currentCompuerta = (Compuerta) currentNode.getData();
-                currentCompuerta.desconectarPinesCon(this);
-            } else {
                 while (currentNode2.getNext() != null) {
                     Compuerta currentCompuerta = (Compuerta) currentNode.getData();
                     currentCompuerta.desconectarPinesCon(this);
                     currentNode2 = currentNode.getNext();
                 }
+                Compuerta currentCompuerta = (Compuerta) currentNode.getData();
+                currentCompuerta.desconectarPinesCon(this);
             }
+        if (this.tipo == tipoCompuerta.Custom){
+            CustomGate thisCast = (CustomGate) this;
+            Controller.getController().Circuito.getChildren().remove(thisCast.bigPinOut);
         }
-
-        this.setImage(null);
+        Controller.getController().Circuito.getChildren().remove(this);
     }
 
 
@@ -185,12 +191,16 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
             }
             current = current.getNext();
         }
-
+        Pin currentPin = (Pin)current.getData();
+        if (currentPin.getCompuerta() == compuerta) {
+            currentPin.setCompuerta(null);
+            currentPin.setConectado(false);
+        }
     }
 
 
     /**
-     * Metedo abstracto que se sobreescribe segun el tipo de compuerta
+     * Metodo abstracto que se sobreescribe segun el tipo de compuerta
      * @return true or false dependiendo deloperardor y las entradas
      */
     public abstract boolean operar();
