@@ -15,11 +15,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
@@ -98,7 +98,7 @@ public class Controller implements Initializable {
         private GridPane Grid;
 
         @FXML // fx:id="Circuito"
-        public Circuito Circuito; // Value injected by FXMLLoader
+        public Pane Circuito; // Value injected by FXMLLoader
 
         @FXML
         private AnchorPane Content;
