@@ -50,6 +50,7 @@ import static java.lang.System.out;
     boolean simulating;
     boolean simValue;
     boolean asignado;
+    CircuitLine myLine;
 
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
@@ -186,6 +187,14 @@ import static java.lang.System.out;
         this.simValue = simValue;
     }
 
+    public CircuitLine getMyLine() {
+        return myLine;
+    }
+
+    public void setMyLine(CircuitLine myLine) {
+        this.myLine = myLine;
+    }
+
     public boolean askforinput(){
         if (simulating) {
             out.println("this is simValue"+simValue);
@@ -243,8 +252,18 @@ import static java.lang.System.out;
 
 
     public void desconectar() {
-        if (miCompuerta.getCompuertasOut().getHead() != null) {
-            compuerta.getCompuertasOut().eliminarX(miCompuerta);
+        if (conectado) {
+            dador.miCompuerta.compuertasOut.eliminarX(miCompuerta);
+            if(dador.miCompuerta.compuertasOut.getSize() == 0){
+                dador.setAsignado(false);
+                dador.setConectado(false);
+            }
+
+            conectado = false;
+            Controller.getController().Circuito.getChildren().remove(myLine);
+            myLine = null;
+            dador = null;
+            compuerta = null;
         }
     }
 
@@ -269,6 +288,7 @@ import static java.lang.System.out;
 
                             selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta, this);
                             CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
+                            selectedPin.setMyLine(newLine);
                             Controller.getController().Circuito.getChildren().add(newLine);
 
                             selected = !selected;
@@ -283,6 +303,7 @@ import static java.lang.System.out;
                             this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta, null);
                             this.setDador(selectedPin);
                             CircuitLine newLine = new CircuitLine(selectedPin.x, selectedPin.y, x, y, selectedPin.color);
+                            this.myLine = newLine;
                             Controller.getController().Circuito.getChildren().add(newLine);
 
                             selected = !selected;

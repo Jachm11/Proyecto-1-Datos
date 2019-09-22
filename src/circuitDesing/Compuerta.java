@@ -178,23 +178,16 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
 
     private void desconectarPinesCon(Compuerta compuerta){
         Node current = compuerta.pinesIn.getHead();
-        Pin firstPin = (Pin)current.getData();
-        if (firstPin.getCompuerta() == compuerta){
-            firstPin.setCompuerta(null);
-            firstPin.setConectado(false);
-        }
         while (current.getNext() != null){
             Pin currentPin = (Pin)current.getData();
             if (currentPin.getCompuerta() == compuerta){
-                currentPin.setCompuerta(null);
-                currentPin.setConectado(false);
+                currentPin.desconectar();
             }
             current = current.getNext();
         }
         Pin currentPin = (Pin)current.getData();
         if (currentPin.getCompuerta() == compuerta) {
-            currentPin.setCompuerta(null);
-            currentPin.setConectado(false);
+            currentPin.desconectar();
         }
     }
 

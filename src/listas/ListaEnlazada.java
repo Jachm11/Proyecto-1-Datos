@@ -60,21 +60,28 @@ public class ListaEnlazada{
     }
 
     public void eliminarX(Object data) {
-        Node current= this.getHead();
-        if (current.getNext() == null){
-            if (current.getData() == data){
-                eliminarInicio();
-            }
-        }
-        else {
+        if (size>1) {
+            Node current = this.getHead();
             while (current.getNext().getNext() != null) {
-                if (current.getNext().getData()==data){
+                if (current.getNext().getData() == data) {
                     current.setNext(current.getNext().getNext());
+                    size--;
+                    break;
                 }
                 current = current.getNext();
             }
             if (current.getNext().getData() == data) {
                 current.setNext(null);
+                size--;
+            }else {
+                if (current.getData() == data) {
+                    eliminarInicio();
+                }
+            }
+        }else{
+            if (head.getData() == data){
+                head = null;
+                size = 0;
             }
         }
     }
