@@ -264,6 +264,8 @@ import static java.lang.System.out;
             myLine = null;
             dador = null;
             compuerta = null;
+            setFill(color.deriveColor(1, 1, 1, 0.5));
+            setStroke(color);
         }
     }
 
