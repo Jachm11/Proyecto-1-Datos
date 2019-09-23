@@ -23,6 +23,7 @@ public class Circuito extends Pane {
     int NumSalidas;
     static ListaEnlazada compuertas;
     static Pin selectedPin;
+    //static Pin selectedBigPin;
     public ListaEnlazada absIn;
     public ListaEnlazada absOut;
     public ListaEnlazada absInPins;

@@ -322,7 +322,7 @@
                                                         <MenuItem fx:id="CustomEntradas" mnemonicParsing="false" onAction="#itsXEntries" text="Custom" />
                                                     </items>
                                                 </MenuButton>
-                                                <CheckBox fx:id="ShowGrid" mnemonicParsing="false" onMouseClicked="#showGrid" text="Show Grid Lines" textFill="#e7dcba" />
+                                                <CheckBox fx:id="ShowGrid" mnemonicParsing="false" onMouseClicked="#showGrid" text="Hide Grid Lines" textFill="#e7dcba" />
                                             </items>
                                         </ToolBar>
                                     </children>

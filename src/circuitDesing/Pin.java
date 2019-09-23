@@ -51,6 +51,7 @@ import static java.lang.System.out;
     boolean simValue;
     boolean asignado;
     CircuitLine myLine;
+    Boolean inBigPin;
 
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
@@ -60,7 +61,7 @@ import static java.lang.System.out;
      * Constructor de la clase
      * @param pinId identificador para el numero de pin
      */
-    public Pin(Color color, DoubleProperty x,double xI, DoubleProperty y,double yI,int pinId,Compuerta miCompuerta, boolean In){
+    public Pin(Color color, DoubleProperty x,double xI, DoubleProperty y,double yI,int pinId,Compuerta miCompuerta, boolean In, boolean inBigPin){
         super(x.get(), y.get(), 5);
         this.pinId = pinId;
         this.compuerta = null;
@@ -73,6 +74,7 @@ import static java.lang.System.out;
         this.yI = yI;
         this.x = x;
         this.y = y;
+        this.inBigPin = inBigPin;
         setFill(color.deriveColor(1, 1, 1, 0.5));
         setStroke(color);
         setStrokeWidth(2);
@@ -290,9 +292,17 @@ import static java.lang.System.out;
                             setFill(color.deriveColor(1, 1, 100, 10));
 
                             selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta, this);
-                            CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
-                            selectedPin.setMyLine(newLine);
-                            Controller.getController().Circuito.getChildren().add(newLine);
+
+                            if (selectedPin.inBigPin) {
+                                BigPin hisBigPin = selectedPin.getCompuerta().getBigPin();
+                                CircuitLine newLine = new CircuitLine(x, y, hisBigPin.x, hisBigPin.y, this.color);
+                                selectedPin.setMyLine(newLine);
+                                Controller.getController().Circuito.getChildren().add(newLine);
+                            }else {
+                                CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
+                                selectedPin.setMyLine(newLine);
+                                Controller.getController().Circuito.getChildren().add(newLine);
+                            }
 
                             selected = !selected;
                             selectedPin.setSelected(false);
@@ -301,13 +311,20 @@ import static java.lang.System.out;
                         } else {  // la anterior es out
                             setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
                             setStroke(selectedPin.color);
-
-
                             this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta, null);
-                            this.setDador(selectedPin);
-                            CircuitLine newLine = new CircuitLine(selectedPin.x, selectedPin.y, x, y, selectedPin.color);
-                            this.myLine = newLine;
-                            Controller.getController().Circuito.getChildren().add(newLine);
+
+
+                            if (selectedPin.inBigPin) {
+                                BigPin hisBigPin = selectedPin.getCompuerta().getBigPin();
+                                CircuitLine newLine = new CircuitLine(hisBigPin.x, hisBigPin.y, x, y, this.color);
+                                this.setMyLine(newLine);
+                                Controller.getController().Circuito.getChildren().add(newLine);
+
+                            }else {
+                                CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
+                                this.setMyLine(newLine);
+                                Controller.getController().Circuito.getChildren().add(newLine);
+                            }
 
                             selected = !selected;
                             selectedPin.setSelected(false);

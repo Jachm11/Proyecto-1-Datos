@@ -32,7 +32,7 @@ public class BigPin extends Pin {
 
     public BigPin (Color color, DoubleProperty x, double xI, DoubleProperty y, double yI, Compuerta miCompuerta, boolean In,ListaEnlazada pines){
 
-        super(color,x,xI,y,yI,0,miCompuerta,In);
+        super(color,x,xI,y,yI,0,miCompuerta,In,false);
         this.miCompuerta = miCompuerta;
         this.Input = In;
         this.selected = false;
@@ -110,7 +110,7 @@ public class BigPin extends Pin {
                     Pin aConectar = (Pin) this.pines.serchByIndex(P);
 
                     if (selectedPin == null) {
-                        selectedPin = this;
+                        selectedPin = aConectar;
                         System.out.println(selectedPin);
 
                     } else {
@@ -120,10 +120,18 @@ public class BigPin extends Pin {
                             if (selectedType) {  //si la anterior es In
                                 selectedPin.setFill(this.color);
                                 selectedPin.setStroke(this.color);
-
                                 selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta, aConectar);
-                                CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
-                                Controller.getController().Circuito.getChildren().add(newLine);
+
+                                if (selectedPin.inBigPin) {
+                                    BigPin hisBigPin = selectedPin.getCompuerta().getBigPin();
+                                    CircuitLine newLine = new CircuitLine(x, y, hisBigPin.x, hisBigPin.y, this.color);
+                                    selectedPin.setMyLine(newLine);
+                                    Controller.getController().Circuito.getChildren().add(newLine);
+                                }else {
+                                    CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
+                                    selectedPin.setMyLine(newLine);
+                                    Controller.getController().Circuito.getChildren().add(newLine);
+                                }
 
                                 selected = !selected;
                                 selectedPin.setSelected(false);
@@ -132,11 +140,20 @@ public class BigPin extends Pin {
                             } else {  // la anterior es out
                                 setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
                                 setStroke(selectedPin.color);
-
                                 this.miCompuerta.conectarPin(aConectar.getPinId(), selectedPin.miCompuerta, null);
                                 aConectar.setDador(selectedPin);
-                                CircuitLine newLine = new CircuitLine(selectedPin.x, selectedPin.y, x, y, selectedPin.color);
-                                Controller.getController().Circuito.getChildren().add(newLine);
+
+                                if (selectedPin.inBigPin) {
+                                    BigPin hisBigPin = selectedPin.getCompuerta().getBigPin();
+                                    CircuitLine newLine = new CircuitLine(hisBigPin.x, hisBigPin.y, x, y, this.color);
+                                    aConectar.setMyLine(newLine);
+                                    Controller.getController().Circuito.getChildren().add(newLine);
+
+                                }else {
+                                    CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
+                                    aConectar.setMyLine(newLine);
+                                    Controller.getController().Circuito.getChildren().add(newLine);
+                                }
 
                                 selected = !selected;
                                 selectedPin.setSelected(false);

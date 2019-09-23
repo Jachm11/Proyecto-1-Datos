@@ -47,7 +47,7 @@ public class CustomGate extends Compuerta {
             Color colorRamdom = Color.color(Math.random(),Math.random(),Math.random());
             DoubleProperty startX2 = new SimpleDoubleProperty(this.getX()+ 150);
             DoubleProperty startY2 = new SimpleDoubleProperty(this.getY()+40);
-            Pin pin = new Pin(colorRamdom,startX2,this.getX()+ 150,startY2,this.getY()+40,i,this,false);
+            Pin pin = new Pin(colorRamdom,startX2,this.getX()+ 150,startY2,this.getY()+40,i,this,false,true);
             pinesOut.insertarInicio(pin);
         }
     }
