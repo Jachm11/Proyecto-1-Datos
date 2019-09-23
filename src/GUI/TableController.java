@@ -51,6 +51,7 @@ public class TableController implements Initializable {
         Node current = Inputs.getHead();
         int posiblidades = (int) Math.pow(2, numEntradas);
 
+        //ENTRADAS
         System.out.println(numEntradas);
         System.out.println(cont);
         while (cont < Inputs.getSize()) {
@@ -78,6 +79,8 @@ public class TableController implements Initializable {
             current = current.getNext();
             cont++;
         }
+
+        //SALIDAS
         cont = 0;
         current = Outputs.getHead();
         System.out.println("estos son las compuertas con outputs " +Outputs.getSize());
@@ -98,13 +101,14 @@ public class TableController implements Initializable {
                 while (contPin<thisCast.getSalidas()) {
                     Pin currentPin = thisCast.buscarIDPout(contPin);
                     if (!currentPin.IsConectado()) {
-                        TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
+                        TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + contPin);
                         int finalAbsPin = absPin;
                         column.setCellValueFactory(row -> {
                             Iterator<Integer> iterator = row.getValue().iterator();
                             for (int i = 0; i < finalAbsPin; ++i) {
                                 iterator.next();
                             }
+
                             return new SimpleIntegerProperty(iterator.next()).asObject();
                         });
                         TruthTable.getColumns().addAll(column);
@@ -112,7 +116,7 @@ public class TableController implements Initializable {
                     contPin++;
                 }
                 }else {
-                    TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out" + cont);
+                    TableColumn<ObservableList<Integer>, Integer> column = new TableColumn<>(currentGate.getTipo().toString() + currentGate.getID() + "Out");
                     int finalAbsPin = absPin;
                     column.setCellValueFactory(row -> {
                         Iterator<Integer> iterator = row.getValue().iterator();

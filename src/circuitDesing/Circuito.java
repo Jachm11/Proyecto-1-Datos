@@ -101,6 +101,7 @@ public class Circuito extends Pane {
             NumSalidas += unpluggededOuts;
             if (unpluggededOuts >0 ){
                 absOut.insertarInicio(currentGate);
+                currentGate.setLast(true);
 
                 Node currentNode = thisCast.pinesOut.getHead();
                 while (currentNode.getNext() != null) {
@@ -115,16 +116,18 @@ public class Circuito extends Pane {
                     absOutPins.insertarInicio(currentPin);
                 }
             }
-        }
-        if (OutIn) {
             currentGate.setLast(false);
-        } else {
-            currentGate.setLast(true);
-            System.out.println(currentGate.getTipo().toString() + currentGate.getID());
-            absOut.insertarInicio(currentGate);
-            absOutPins.insertarInicio(currentGate.pinOut);
-            NumSalidas++;
+        }else {
+            if (OutIn) {
+                currentGate.setLast(false);
+            } else {
+                currentGate.setLast(true);
+                System.out.println(currentGate.getTipo().toString() + currentGate.getID());
+                absOut.insertarInicio(currentGate);
+                absOutPins.insertarInicio(currentGate.pinOut);
+                NumSalidas++;
             }
+        }
         //System.out.println("estas son las entradas:"+getNumEntradas());
         //System.out.println("estas son las saldias:"+ getNumSalidas());
 
