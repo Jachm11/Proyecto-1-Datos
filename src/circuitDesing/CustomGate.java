@@ -31,8 +31,8 @@ public class CustomGate extends Compuerta {
      * @param ID identificador para la compuerta
      * @param truthTable
      */
-    public CustomGate(int entradas, int salidas, int ID, javafx.scene.control.TableView<ObservableList<Integer>> truthTable) {
-        super(entradas,salidas);
+    public CustomGate(int entradas, int salidas, int ID, javafx.scene.control.TableView<ObservableList<Integer>> truthTable,tipoCompuerta tipo) {
+        super(entradas,salidas,tipo);
         this.NumSalidas = salidas;
         this.tipo = tipoCompuerta.Custom;
         this.truthTable = truthTable;

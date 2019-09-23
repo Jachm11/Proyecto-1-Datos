@@ -11,9 +11,9 @@ public class XOR extends Compuerta {
      * @param ID identificador numérico para la compuerta
      * @param entradas cantidad de entradas
      */
-    public XOR(int entradas, int ID) {
-        super(entradas,ID);
-        this.tipo = tipoCompuerta.XOR;
+    public XOR(int entradas, int ID, tipoCompuerta tipo) {
+
+        super(entradas,ID,tipo);
     }
 
     /**

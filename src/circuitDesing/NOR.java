@@ -13,9 +13,9 @@ public class NOR extends OR {
      * @param ID identificador numérico para la compuerta
      * @param entradas cantidad de entradas
      */
-    public NOR(int entradas, int ID) {
-        super(entradas,ID);
-        this.tipo = tipoCompuerta.NOR;
+    public NOR(int entradas, int ID, tipoCompuerta tipo) {
+
+        super(entradas,ID,tipo);
     }
 
     /**

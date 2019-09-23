@@ -290,19 +290,21 @@ import static java.lang.System.out;
                             selectedPin.setFill(this.color.deriveColor(1, 1, 100, 10));
                             selectedPin.setStroke(this.color);
                             setFill(color.deriveColor(1, 1, 100, 10));
-
                             selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta, this);
-
-                            if (selectedPin.inBigPin) {
-                                BigPin hisBigPin = selectedPin.getCompuerta().getBigPin();
+                            if (selectedPin.inBigPin){
+                                BigPin hisBigPin = (selectedPin.getMiCompuerta()).getBigPin();
+                                hisBigPin.setFill(this.color.deriveColor(1, 1, 100, 10));
+                                hisBigPin.setStroke(this.color);
                                 CircuitLine newLine = new CircuitLine(x, y, hisBigPin.x, hisBigPin.y, this.color);
                                 selectedPin.setMyLine(newLine);
                                 Controller.getController().Circuito.getChildren().add(newLine);
-                            }else {
+                            }
+                            else{
                                 CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
                                 selectedPin.setMyLine(newLine);
                                 Controller.getController().Circuito.getChildren().add(newLine);
                             }
+
 
                             selected = !selected;
                             selectedPin.setSelected(false);
@@ -311,20 +313,22 @@ import static java.lang.System.out;
                         } else {  // la anterior es out
                             setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
                             setStroke(selectedPin.color);
+
                             this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta, null);
+                            this.setDador(selectedPin);
 
-
-                            if (selectedPin.inBigPin) {
-                                BigPin hisBigPin = selectedPin.getCompuerta().getBigPin();
-                                CircuitLine newLine = new CircuitLine(hisBigPin.x, hisBigPin.y, x, y, this.color);
-                                this.setMyLine(newLine);
+                            if (selectedPin.inBigPin){
+                                BigPin hisBigPin = ((CustomGate)(selectedPin.getMiCompuerta())).getBigPinOut();
+                                CircuitLine newLine = new CircuitLine(hisBigPin.x, hisBigPin.y, x, y, hisBigPin.color);
+                                this.myLine = newLine;
                                 Controller.getController().Circuito.getChildren().add(newLine);
 
-                            }else {
-                                CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
-                                this.setMyLine(newLine);
+                            }else{
+                                CircuitLine newLine = new CircuitLine(selectedPin.x, selectedPin.y, x, y, selectedPin.color);
+                                this.myLine = newLine;
                                 Controller.getController().Circuito.getChildren().add(newLine);
                             }
+
 
                             selected = !selected;
                             selectedPin.setSelected(false);

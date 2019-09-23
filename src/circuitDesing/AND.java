@@ -14,10 +14,9 @@ public class AND extends Compuerta {
      * @param entradas cantidad de entradas
      * @param ID identificador numérico para la compuerta
      */
-    public AND(int entradas, int ID) {
+    public AND(int entradas, int ID,tipoCompuerta tipo) {
 
-        super(entradas,ID);
-        this.tipo = tipoCompuerta.AND;
+        super(entradas,ID,tipo);
 
     }
 

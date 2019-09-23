@@ -36,9 +36,10 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
     /**
      * Constructor de la clase
      */
-    public Compuerta(int entradas, int ID) {
+    public Compuerta(int entradas, int ID,tipoCompuerta tipo) {
         this.entradas = new ListaEnlazada();
         this.pinesIn = new ListaEnlazada();
+        this.tipo = tipo;
         int cont = 0;
         this.ID = ID;
         this.numEntradas = entradas;
@@ -47,7 +48,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         while (cont < entradas) {
             DoubleProperty startY = new SimpleDoubleProperty((this.getY()+(cont*40))+20);
             Color colorRandom = Color.color(Math.random(),Math.random(),Math.random());
-            if (numEntradas < 4) {
+            if (numEntradas < 4 & this.tipo != tipoCompuerta.Custom) {
                 Pin pin = new Pin(colorRandom, startX, this.getX(), startY, this.getY() + (cont * 40) + 20, cont, this, true,false);
                 this.pinesIn.insertarInicio(pin);
             }

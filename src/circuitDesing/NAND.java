@@ -12,9 +12,9 @@ public class NAND extends AND {
      * @param ID identificador numérico para la compuerta
      * @param entradas cantidad de entradas
      */
-    public NAND(int entradas,int ID) {
-        super(entradas,ID);
-        this.tipo = tipoCompuerta.NAND;
+    public NAND(int entradas,int ID, tipoCompuerta tipo) {
+
+        super(entradas,ID,tipo);
     }
 
     /**

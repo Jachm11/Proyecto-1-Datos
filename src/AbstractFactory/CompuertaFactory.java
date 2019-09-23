@@ -69,41 +69,41 @@ public class CompuertaFactory implements AbsCompuertaFactory {
 
     @Override
     public Compuerta crearAND(int entradas, int ID) {
-        return new AND(entradas,ID);
+        return new AND(entradas,ID,tipoCompuerta.AND);
     }
 
     @Override
     public Compuerta crearNAND(int entradas, int ID) {
-        return new NAND(entradas,ID);
+        return new NAND(entradas,ID,tipoCompuerta.NAND);
     }
 
     @Override
     public Compuerta crearOR(int entradas, int ID) {
-        return new OR(entradas,ID);
+        return new OR(entradas,ID,tipoCompuerta.OR);
     }
 
     @Override
     public Compuerta crearNOR(int entradas, int ID) {
-        return new NOR(entradas,ID);
+        return new NOR(entradas,ID,tipoCompuerta.NOR);
     }
 
     @Override
     public Compuerta crearNOT(int ID) {
-        return new NOT(ID);
+        return new NOT(ID,tipoCompuerta.NOT);
     }
 
     @Override
     public Compuerta crearXOR(int entradas, int ID) {
-        return new XOR(entradas,ID);
+        return new XOR(entradas,ID,tipoCompuerta.XOR);
     }
 
     @Override
     public Compuerta crearXNOR(int entradas, int ID) {
-        return new XNOR(entradas,ID);
+        return new XNOR(entradas,ID,tipoCompuerta.XNOR);
     }
 
     @Override
     public Compuerta crearCustomGate(int entradas, int salidas, int ID, TableView<ObservableList<Integer>> circuito) {
-        return new CustomGate(entradas,salidas,ID,circuito);
+        return new CustomGate(entradas,salidas,ID,circuito,tipoCompuerta.Custom);
     }
 }
