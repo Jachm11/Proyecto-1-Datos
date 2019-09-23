@@ -112,6 +112,7 @@ public class TableController implements Initializable {
                             return new SimpleIntegerProperty(iterator.next()).asObject();
                         });
                         TruthTable.getColumns().addAll(column);
+                        absPin++;
                     }
                     contPin++;
                 }
@@ -123,12 +124,10 @@ public class TableController implements Initializable {
                         for (int i = 0; i < finalAbsPin; ++i) {
                             iterator.next();
                         }
-                        for (int x = 1; x < numSalidas; ++x) {
-                            iterator.next();
-                        }
                         return new SimpleIntegerProperty(iterator.next()).asObject();
                     });
                     TruthTable.getColumns().addAll(column);
+                    absPin++;
                 }
             current = current.getNext();
             cont++;

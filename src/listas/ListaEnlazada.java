@@ -59,7 +59,7 @@ public class ListaEnlazada{
         }
     }
 
-    public void eliminarX(Object data) {
+    /*public void eliminarX(Object data) {
         if (size>1) {
             Node current = this.getHead();
             while (current.getNext().getNext() != null) {
@@ -82,6 +82,46 @@ public class ListaEnlazada{
             if (head.getData() == data){
                 head = null;
                 size = 0;
+            }
+        }
+    }
+
+     */
+
+    public void eliminarX(Object data){
+        if (head != null){
+            if (size>1) {
+                if (head.getData() == data) {
+                    eliminarInicio();
+                } else {
+                    if (head.getNext().getNext() != null){
+                        Node current = this.getHead();
+                        while (current.getNext().getNext() != null) {
+                            if (current.getNext().getData() == data) {
+                                current.setNext(current.getNext().getNext());
+                                size--;
+                                break;
+                            }
+                            current = current.getNext();
+                        }
+                        if (current.getNext().getData() == data) {
+                            current.setNext(current.getNext().getNext());
+                            size--;
+                        }
+
+                    }else{
+                        if (head.getNext().getData() == data){
+                            head.setNext(null);
+                            size = 1;
+                        }
+                    }
+
+                }
+            }else{
+                if (head.getData() == data){
+                    head = null;
+                    size = 0;
+                }
             }
         }
     }

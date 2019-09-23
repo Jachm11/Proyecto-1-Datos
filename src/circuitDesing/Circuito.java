@@ -115,8 +115,10 @@ public class Circuito extends Pane {
                 if (!currentPin.conectado) {
                     absOutPins.insertarInicio(currentPin);
                 }
+            }else{
+                currentGate.setLast(false);
             }
-            currentGate.setLast(false);
+
         }else {
             if (OutIn) {
                 currentGate.setLast(false);
