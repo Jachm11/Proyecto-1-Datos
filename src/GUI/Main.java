@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 
 /**
- * Clase main par el diseñador de circuitos, desde aqui se inicialiaza la interfaz principal
+ * Clase main par el diseñador de circuitos, desde aqui se inicialiaza la interfaz principal desde un archivo 
  * @author Jose Alejandro
  * @since 31-08-19
  */
