@@ -25,7 +25,5 @@ public class Main extends Application {
         System.out.println("hola");
     }
 
-
-
     public static void main(String[] args) { launch(args); }
 }
