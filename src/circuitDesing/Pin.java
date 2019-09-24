@@ -93,11 +93,13 @@ import static java.lang.System.out;
         if (Input) {
             ContextMenu pinMenu = new ContextMenu();
             MenuItem item1 = new MenuItem("1");
-            MenuItem item2 = new MenuItem("2");
-            pinMenu.getItems().addAll(item1, item2);
+            MenuItem item2 = new MenuItem("0");
+            MenuItem item3 = new MenuItem("Disconnect");
+            pinMenu.getItems().addAll(item1, item2,item3);
             this.setOnContextMenuRequested(event -> pinMenu.show(this, event.getScreenX(), event.getScreenY()));
             item1.setOnAction(e -> setUIValue(true));
             item2.setOnAction(e -> setUIValue(false));
+            item3.setOnAction(e -> desconectar());
         }
     }
 

@@ -183,7 +183,7 @@ public class CustomGate extends Compuerta {
             if (!(currentPin.conectado)) {
                 boolean result = CustomOutput(currentPin.pinId);
                 System.out.println("Este es mi valor" + result);
-                Controller.getController().Console.appendText("        "+"Output #"+currentPin.pinId+ " result:" + result + "\n");
+                Controller.getController().Console.appendText("        "+"Output #"+currentPin.pinId+ " result: " + result + "\n");
             }
             current = current.getNext();
         }

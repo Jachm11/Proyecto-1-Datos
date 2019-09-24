@@ -72,10 +72,12 @@ public class BigPin extends Pin {
                 Menu inputMenu = new Menu("Input "+cont);
                 MenuItem childMenuItem1 = new MenuItem("1");
                 MenuItem childMenuItem2 = new MenuItem("0");
-                inputMenu.getItems().addAll(childMenuItem1,childMenuItem2);
+                MenuItem childMenuItem3 = new MenuItem("Disconnect");
+                inputMenu.getItems().addAll(childMenuItem1,childMenuItem2,childMenuItem3);
                 int finalCont = cont;
                 childMenuItem1.setOnAction(e -> setUIValue(true,finalCont));
                 childMenuItem2.setOnAction(e -> setUIValue(false,finalCont));
+                childMenuItem3.setOnAction(e -> ((Pin)(pines.serchByIndex(finalCont))).desconectar());
                 bigPinMenu.getItems().add(inputMenu);
                 cont++;
             }
