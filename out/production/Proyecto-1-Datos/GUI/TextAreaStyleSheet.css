@@ -1,0 +1,22 @@
+.text-area {
+    -fx-font-family: System;
+    -fx-font-size: 14;
+    -fx-text-fill: #f2993d;
+    -fx-display-caret:true;
+}
+
+.text-area .content {
+    -fx-background-color:  #252526;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color:  #f2993d;
+    -fx-background-radius: 5em;
+
+
+}

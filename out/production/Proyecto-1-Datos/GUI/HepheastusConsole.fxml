@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTabPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Accordion?>
@@ -16,6 +15,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToolBar?>
@@ -73,10 +73,10 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <SplitPane dividerPositions="0.8363028953229399" focusTraversable="true" pickOnBounds="false" prefWidth="902.0" style="-fx-border-color: BLACK;" VBox.vgrow="ALWAYS">
+        <SplitPane dividerPositions="0.8184855233853007" focusTraversable="true" pickOnBounds="false" prefWidth="902.0" style="-fx-border-color: BLACK;" VBox.vgrow="ALWAYS">
             <items>
-            <JFXTabPane>
-               <tabs>
+            <TabPane prefHeight="200.0" prefWidth="200.0" stylesheets="@TabPaneStylesheet.css" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
                   <Tab text="Circuit Board">
                      <content>
                             <ScrollPane fx:id="scrollPane" pickOnBounds="false" style="-fx-border-color: BLACK;" stylesheets="@ScrollPaneStylesheet.css">
@@ -228,13 +228,13 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: BLACK;">
                            <children>
-                              <TextArea prefHeight="507.0" prefWidth="747.0" style="-fx-background-color: BLack;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TextArea prefHeight="507.0" prefWidth="747.0" style="-fx-background-color: BLack;" stylesheets="@TextAreaStyleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </content>
                   </Tab>
-               </tabs>
-            </JFXTabPane>
+              </tabs>
+            </TabPane>
                 <AnchorPane prefWidth="294.0" style="-fx-background-color: BLACK;" SplitPane.resizableWithParent="false">
                     <children>
                         <SplitPane dividerPositions="0.7042513863216266" layoutX="-15.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="542.0" prefWidth="113.0" style="-fx-background-color: #383734;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

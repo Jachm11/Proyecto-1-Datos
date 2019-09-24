@@ -17,7 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("HepheastusDark.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("HepheastusConsole.fxml"));
         root.getStylesheets().add("GUI/DarkTheme.css");
         primaryStage.setTitle("Hephaestus Circuit Designer");
         primaryStage.setScene(new Scene(root, 800, 500));
