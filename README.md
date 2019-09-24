@@ -1,2 +1,2 @@
-Proyecto-1-Datos
+Proyecto-1-Datos:
 Se desea un programa de escritorio que permita diseñar y probar circuitos lógicos mediante las compueratas lógicas basicas. Se desea poder unirlas, asiganar valores de entrada y probar los resultados de salida, además de poder visualizar la tabla de verdad del circuito diseñado y poder almacenarlo como una nueva compuerta lógica. Además deberan implementarse distintos patrones de diseño y estructuras de datos que sean necesarias.
