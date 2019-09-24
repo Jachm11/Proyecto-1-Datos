@@ -1,6 +1,7 @@
 package circuitDesing;
 
 import AbstractFactory.tipoCompuerta;
+import GUI.Controller;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
@@ -24,6 +25,7 @@ public class CustomGate extends Compuerta {
     ListaEnlazada miFila;
     Boolean operatedOnce;
     int numEntradas;
+    String nombre;
 
     /**
      * Constructor de la clase
@@ -70,6 +72,14 @@ public class CustomGate extends Compuerta {
 
     public void setBigPinOut(BigPin bigPinOut) {
         this.bigPinOut = bigPinOut;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public void endProcess(){
@@ -167,16 +177,21 @@ public class CustomGate extends Compuerta {
 
     public void returnCicle() {
         Node current = pinesOut.getHead();
+        Controller.getController().Console.appendText("Custom Gate named " + "'"+this.nombre+"'" + " generated the following outputs:"+ "\n");
         while (current.getNext() != null) {
             Pin currentPin = (Pin) current.getData();
             if (!(currentPin.conectado)) {
-                System.out.println("Este es mi valor" + CustomOutput(currentPin.pinId));
+                boolean result = CustomOutput(currentPin.pinId);
+                System.out.println("Este es mi valor" + result);
+                Controller.getController().Console.appendText("        "+"Output #"+currentPin.pinId+ " result:" + result + "\n");
             }
             current = current.getNext();
         }
         Pin currentPin = (Pin) current.getData();
         if (!(currentPin.conectado)) {
-            System.out.println("Este es mi valor" + CustomOutput(currentPin.pinId));
+            boolean result = CustomOutput(currentPin.pinId);
+            System.out.println("Este es mi valor" + result);
+            Controller.getController().Console.appendText("        "+"Output #"+currentPin.pinId+ " result: " + result + "\n"+"\n");
         }
     }
 

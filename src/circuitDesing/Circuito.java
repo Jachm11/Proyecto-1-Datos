@@ -1,6 +1,7 @@
 package circuitDesing;
 
 import AbstractFactory.tipoCompuerta;
+import GUI.Controller;
 import GUI.SavedCircuit;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -147,6 +148,7 @@ public class Circuito extends Pane {
                 if (currentGate.getTipo() != tipoCompuerta.Custom) {
                     boolean result = currentGate.output();
                     System.out.println(result);
+                    Controller.getController().Console.appendText(currentGate.getTipo()+" #"+currentGate.ID+" "+"result: "+result+ "\n");
                     currentGate.pinOut.setColorValue(result);
                 }else {
                     CustomGate thisCustom = (CustomGate) currentGate;
@@ -162,12 +164,14 @@ public class Circuito extends Pane {
             if (currentGate.getTipo() != tipoCompuerta.Custom) {
                 boolean result = currentGate.output();
                 System.out.println(result);
+                Controller.getController().Console.appendText(currentGate.getTipo()+" #"+currentGate.ID+" "+"result: "+result + "\n");
                 currentGate.pinOut.setColorValue(result);
             }else {
                 CustomGate thisCustom = (CustomGate) currentGate;
                 thisCustom.returnCicle();
             }
         }
+        Controller.getController().Console.appendText("\n"+"Simulation Ended"+"\n"+"______________________________________________________________________________________________"+ "\n");
     }
 
     public boolean checkCircuit() {

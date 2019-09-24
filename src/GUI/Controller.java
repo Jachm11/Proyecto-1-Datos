@@ -121,6 +121,9 @@ public class Controller implements Initializable {
         private Button Run; // Value injected by FXMLLoader
 
         @FXML
+        public TextArea Console;
+
+        @FXML
         private VBox customVbox;
 
 
@@ -183,6 +186,7 @@ public class Controller implements Initializable {
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas(),savedCircuit.getTablaDeVerdad()));
         newCompuerta.setImage(CustomImg);
         Tooltip.install(newCompuerta, new Tooltip(savedCircuit.nombre));
+        ((CustomGate)newCompuerta).setNombre(savedCircuit.nombre);
         setCompuerta(newCompuerta);
 
     }

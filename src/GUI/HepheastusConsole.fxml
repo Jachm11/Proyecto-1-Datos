@@ -228,7 +228,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: BLACK;">
                            <children>
-                              <TextArea prefHeight="507.0" prefWidth="747.0" style="-fx-background-color: BLack;" stylesheets="@TextAreaStyleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TextArea fx:id="Console" prefHeight="507.0" prefWidth="747.0" promptText="Hephaestus Circuit Designer V1.0" style="-fx-background-color: BLack;" stylesheets="@TextAreaStyleSheet.css" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </content>
