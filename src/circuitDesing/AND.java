@@ -4,15 +4,19 @@ import listas.ListaEnlazada;
 import listas.Node;
 import AbstractFactory.tipoCompuerta;
 
-
+/**
+ * Clase concreta que define las propiedades y metodos de una compuerta lógica tipo AND.
+ *
+ * @author Jose Alejandro
+ * @since 31-08-19
+ */
 public class AND extends Compuerta {
 
-
     /**
-     * Constructor de la clase
+     * Constructor de la clase.
      *
-     * @param entradas cantidad de entradas
-     * @param ID identificador numérico para la compuerta
+     * @param entradas cantidad de entradas.
+     * @param ID identificador numérico para la compuerta.
      */
     public AND(int entradas, int ID,tipoCompuerta tipo) {
 
@@ -21,8 +25,9 @@ public class AND extends Compuerta {
     }
 
     /**
-     * Operacion logica de AND
-     * @return true or false segun la operacion
+     * Operacion logica de AND.
+     *
+     * @return true or false segun la operacion.
      */
     @Override
     public boolean operar(){

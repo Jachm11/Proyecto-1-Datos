@@ -4,10 +4,11 @@ import circuitDesing.*;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
-
 /**
- * Clase de fabrica concreta, se encarga de la creacion de todos los tipos de compuerta
+ * Clase de fabrica concreta, se encarga de la creacion de todos los tipos de compuerta.
+ *
  * @author Jose Alejandro
+ * @since 1-09-19
  */
 public class CompuertaFactory implements AbsCompuertaFactory {
 
@@ -22,22 +23,30 @@ public class CompuertaFactory implements AbsCompuertaFactory {
     private static CompuertaFactory instance = null;
 
     /**
-     * constructor privado para clse singleton
+     * Constructor privado para clase singleton
      */
     private CompuertaFactory(){
     }
-    public static  CompuertaFactory getInstance(){
+
+    /**
+     * Metodo de singleton para obtener la instacia de esta clase. Si no existe una istancia la crea.
+     * @return retorna la unica intancia existente de esta clase.
+     */
+    public static CompuertaFactory getInstance(){
         if (instance==null)
             instance = new CompuertaFactory();
         return instance;
     }
 
-    public Compuerta crearCompuerta (tipoCompuerta tipo, int entradas, int salidas, javafx.scene.control.TableView<ObservableList<Integer>> circuito){
-            return crearCompuertaAux(tipo,entradas,salidas,circuito);
-        }
-
-    //Facade
-    private Compuerta crearCompuertaAux(tipoCompuerta tipo, int entradas, int salidas, TableView<ObservableList<Integer>> circuito){
+    /**
+     * Metodo que se encarga de recibir la informacion generica de una compuerta y ejecuta el comando para crear la compuerta especifica.
+     * @param tipo recibe un objeto del enum tipoCompuerta.
+     * @param entradas cantidad de entradas que tendra la compuerta.
+     * @param salidas cantidad de salidas que tendra la compuerta.
+     * @param circuito aplica para custom gates, es la tabla bajo la que se calculan las salidas.
+     * @return retorna la instancia de la compuerta especifica solicitada.
+     */
+    public Compuerta crearCompuerta(tipoCompuerta tipo, int entradas, int salidas, TableView<ObservableList<Integer>> circuito){
         switch (tipo){
             case AND:
                 this.AND++;
@@ -67,41 +76,90 @@ public class CompuertaFactory implements AbsCompuertaFactory {
         return null;
     }
 
+    /**
+     * Proviene de la intefaz AbsCompuetaFactory, crea una compuerta tipo AND.
+     * @param entradas cantidad de entradas que tendra la compuerta.
+     * @param ID Identificador para la compuerta.
+     * @return retorna una instacia de AND.
+     */
     @Override
     public Compuerta crearAND(int entradas, int ID) {
         return new AND(entradas,ID,tipoCompuerta.AND);
     }
 
+    /**
+     * Proviene de la intefaz AbsCompuetaFactory, crea una compuerta tipo NAND.
+     * @param entradas cantidad de entradas que tendra la compuerta.
+     * @param ID Identificador para la compuerta.
+     * @return retorna una instacia de NAND
+     */
     @Override
     public Compuerta crearNAND(int entradas, int ID) {
         return new NAND(entradas,ID,tipoCompuerta.NAND);
     }
 
+    /**
+     * Proviene de la intefaz AbsCompuetaFactory, crea una compuerta tipo OR.
+     * @param entradas cantidad de entradas que tendra la compuerta.
+     * @param ID Identificador para la compuerta.
+     * @return retorna una instacia de OR.
+     */
     @Override
     public Compuerta crearOR(int entradas, int ID) {
         return new OR(entradas,ID,tipoCompuerta.OR);
     }
 
+    /**
+     * Proviene de la intefaz AbsCompuetaFactory, crea una compuerta tipo NOR.
+     * @param entradas cantidad de entradas que tendra la compuerta.
+     * @param ID Identificador para la compuerta.
+     * @return retorna una instacia de NOR.
+     */
     @Override
     public Compuerta crearNOR(int entradas, int ID) {
         return new NOR(entradas,ID,tipoCompuerta.NOR);
     }
 
+    /**
+     * Proviene de la intefaz AbsCompuetaFactory, crea una compuerta tipo NOT.
+     * @param ID Identificador para la compuerta.
+     * @return retorna una instacia de NOT.
+     */
     @Override
     public Compuerta crearNOT(int ID) {
         return new NOT(ID,tipoCompuerta.NOT);
     }
 
+    /**
+     * Proviene de la intefaz AbsCompuetaFactory, crea una compuerta tipo XOR.
+     * @param entradas cantidad de entradas que tendra la compuerta.
+     * @param ID Identificador para la compuerta.
+     * @return retorna una instacia de XOR.
+     */
     @Override
     public Compuerta crearXOR(int entradas, int ID) {
         return new XOR(entradas,ID,tipoCompuerta.XOR);
     }
 
+    /**
+     * Proviene de la intefaz AbsCompuetaFactory, crea una compuerta tipo XNOR.
+     * @param entradas cantidad de entradas que tendra la compuerta.
+     * @param ID Identificador para la compuerta.
+     * @return retorna una instacia de XNOR.
+     */
     @Override
     public Compuerta crearXNOR(int entradas, int ID) {
         return new XNOR(entradas,ID,tipoCompuerta.XNOR);
     }
 
+    /**
+     * Proviene de la intefaz AbsCompuetaFactory, crea una compuerta tipo Custom.
+     * @param entradas cantidad de entradas que tendra la compuerta.
+     * @param salidas cantidad de salidas que tendra la compuerta.
+     * @param ID Identificador para la compuerta.
+     * @param circuito Es la tabla bajo la que se calculan las salidas.
+     * @return retorna una instacia de CustomGate.
+     */
     @Override
     public Compuerta crearCustomGate(int entradas, int salidas, int ID, TableView<ObservableList<Integer>> circuito) {
         return new CustomGate(entradas,salidas,ID,circuito,tipoCompuerta.Custom);

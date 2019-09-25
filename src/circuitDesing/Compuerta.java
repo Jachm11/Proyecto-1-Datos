@@ -10,31 +10,31 @@ import javafx.scene.paint.Color;
 import listas.ListaEnlazada;
 import listas.Node;
 
-import java.io.IOException;
-
 /**
- * Clase abstracta que define las propiedades y metodos de una compuerta lógica
+ * Clase abstracta que define las propiedades y metodos de una compuerta lógica.
+ *
  * @author Jose Alejandro
  * @since 31-08-19
  */
 public abstract class Compuerta extends ImageView implements CompuertaLogica {
 
-    private int numEntradas;
-    private int numConexiones;
-    private int factorX; // Solo para compuertas X
     ListaEnlazada entradas;
     ListaEnlazada pinesIn;
     ListaEnlazada compuertasOut;
     tipoCompuerta tipo;
     int ID;
     Pin pinOut;
-    boolean last;
-    boolean mid;
-    boolean first;
-    BigPin bigPin = null;
+    private int numEntradas;
+    private boolean last;
+    private boolean first;
+    private BigPin bigPin = null;
 
     /**
-     * Constructor de la clase
+     * Constructor de la clase.
+     *
+     * @param entradas cantidad de entradas de la compuerta.
+     * @param ID numero entero que indentifica a la compuerta.
+     * @param tipo tipo de compuerta segun el enum tipoCompuerta.
      */
     public Compuerta(int entradas, int ID,tipoCompuerta tipo) {
         this.entradas = new ListaEnlazada();
@@ -45,32 +45,37 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         this.numEntradas = entradas;
         this.compuertasOut = new ListaEnlazada();
         DoubleProperty startX = new SimpleDoubleProperty(this.getX());
+        DoubleProperty startX2 = new SimpleDoubleProperty(this.getX()+ 150);
+        DoubleProperty startY2 = new SimpleDoubleProperty(this.getY()+40);
+
+        //         ________________________________________
+        //________/Ciclo para creacion de pines por entrada
         while (cont < entradas) {
             DoubleProperty startY = new SimpleDoubleProperty((this.getY()+(cont*40))+20);
-            Color colorRandom = Color.color(Math.random(),Math.random(),Math.random());
+            Color colorRandomIn = Color.color(Math.random(),Math.random(),Math.random());
             if (numEntradas < 4 & this.tipo != tipoCompuerta.Custom) {
-                Pin pin = new Pin(colorRandom, startX, this.getX(), startY, this.getY() + (cont * 40) + 20, cont, this, true,false);
+                Pin pin = new Pin(colorRandomIn, startX, this.getX(), startY, this.getY() + (cont * 40) + 20, cont, this, true,false);
                 this.pinesIn.insertarInicio(pin);
             }
             else {
-                Pin pin = new Pin(colorRandom, startX, this.getX(), startY, this.getY() + (cont * 40) + 20, cont, this, true,true);
+                Pin pin = new Pin(colorRandomIn, startX, this.getX(), startY, this.getY() + (cont * 40) + 20, cont, this, true,true);
                 this.pinesIn.insertarInicio(pin);
             }
-
-            System.out.println("Pin creado");
             cont++;
         }
-        Color colorRamdom = Color.color(Math.random(),Math.random(),Math.random());
-        DoubleProperty startX2 = new SimpleDoubleProperty(this.getX()+ 150);
-        DoubleProperty startY2 = new SimpleDoubleProperty(this.getY()+40);
-        if (this.tipo == tipoCompuerta.Custom){
-            pinOut = new Pin(colorRamdom, startX2, this.getX() + 150, startY2, this.getY() + 40, 0, this, false,true);
-        }else {
-            pinOut = new Pin(colorRamdom, startX2, this.getX() + 150, startY2, this.getY() + 40, 0, this, false,false);
-        }
 
+        Color colorRandomOut = Color.color(Math.random(),Math.random(),Math.random());
+        //         ____________________________________
+        //________/Diferenciacion para tipo custom Gate
+        if (this.tipo == tipoCompuerta.Custom){
+            pinOut = new Pin(colorRandomOut, startX2, this.getX() + 150, startY2, this.getY() + 40, 0, this, false,true);
+        }else {
+            pinOut = new Pin(colorRandomOut, startX2, this.getX() + 150, startY2, this.getY() + 40, 0, this, false,false);
+        }
     }
 
+    //         ____________________
+    //________/Getters and Setters
     public Pin getPinOut() {
         return pinOut;
     }
@@ -95,28 +100,8 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         return numEntradas;
     }
 
-    public void setNumEntradas(int numEntradas) {
-        this.numEntradas = numEntradas;
-    }
-
-    public int getNumConexiones() {
-        return numConexiones;
-    }
-
-    public void setNumConexiones(int numConexiones) {
-        this.numConexiones = numConexiones;
-    }
-
     public ListaEnlazada getPinesIn() {
         return pinesIn;
-    }
-
-    public void setPinesIn(ListaEnlazada pinesIn) {
-        this.pinesIn = pinesIn;
-    }
-
-    public void setCompuertasOut(Compuerta compuerta) {
-        this.compuertasOut.insertarInicio(compuerta);
     }
 
     public ListaEnlazada getCompuertasOut() {
@@ -131,14 +116,6 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         this.last = last;
     }
 
-    public boolean isMid() {
-        return mid;
-    }
-
-    public void setMid(boolean mid) {
-        this.mid = mid;
-    }
-
     public BigPin getBigPin() {
         return bigPin;
     }
@@ -147,12 +124,33 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         this.bigPin = bigPin;
     }
 
-    public void deleteCompuerta(Compuerta this) {
+    void setFirst(boolean b) { this.first = b; }
+
+    boolean isFirst(){ return first; }
+
+    //         ____________________
+    //________/METODOS ABSTRACTOS
+    /**
+     * Metodo abstracto que se sobreescribe segun el tipo de compuerta.
+     *
+     * @return true or false dependiendo deloperardor y las entradas
+     */
+    public abstract boolean operar();
+
+
+    //         ____________________
+    //________/BORRADO DE COMPUERTAS
+
+    /**
+     * Este es el metodo que se encarga de eliminar una compuerta con todos sus componentes tanto de la interfaz como de las estructuras de datos.
+     * Asi como de desconectarse todas las compuertas con las que se comunica.
+     */
+    public void deleteCompuerta() {
         Circuito.compuertas.eliminarX(this);
 
+        //         _________________________________________________
+        //________/Ciclo para desconeccion y borrado de los pines In
         Node currentInNode = pinesIn.getHead();
-        System.out.println(pinesIn.getHead());
-        //System.out.println(currentInNode);
         while (currentInNode.getNext() != null) {
             Pin currentPin = (Pin) currentInNode.getData();
             currentPin.desconectar();
@@ -168,6 +166,8 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
 
         Controller.getController().Circuito.getChildren().remove(pinOut);
 
+        //         _____________________________________________________
+        //________/Ciclo para desconeccion y borrado del pin (pines) Out
         Node currentOutNode2 = compuertasOut.getHead();
         if (currentOutNode2 != null){
             while (currentOutNode2.getNext() != null) {
@@ -187,7 +187,11 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         Controller.getController().Circuito.getChildren().remove(this);
     }
 
-
+    /**
+     * Toma una compuerta y elimina la conexion en sus pines de Input con un otra compuerta.
+     *
+     * @param compuerta Compuerta de la que se recibe Output que se desea desconectar.
+     */
     private void desconectarPinesCon(Compuerta compuerta){
         Node current = pinesIn.getHead();
         while (current.getNext() != null){
@@ -203,42 +207,18 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         }
     }
 
+    //         ____________________
+    //________/CONEXION DE COMPUERTAS
 
     /**
-     * Metodo abstracto que se sobreescribe segun el tipo de compuerta
-     * @return true or false dependiendo deloperardor y las entradas
+     * Metodo para conectar pines unos con otros.
+     *
+     * @param InpPinID ID del pin Input que quiero conectar.
+     * @param compuerta Compuerta a la que me voy a conectar.
+     * @param dador Output al que me voy a conectar.
      */
-    public abstract boolean operar();
-    //public abstract boolean output(int pinId);
-
-    /**
-     * Inserta el valor a la lista enlazada de entradas
-     * @param entrada corresponde la valor booleano de la entrada electronica
-     */
-    public void input(boolean entrada){
-        this.entradas.insertarInicio(entrada);
-    }
-
-    public void input(boolean valor, int pinId) {
-        this.entradas.insertarInicio(valor);
-        this.entradas.getHead().setData2(pinId);
-    }
-
-    /**
-     * Checkea si todas las entradas estan asignadas
-     * @return true or false
-     */
-    public boolean checkEntries(){
-        if (this.entradas.getHead() == null){
-            return false;
-        }
-        else {
-            return this.entradas.getSize() == numEntradas;
-        }
-    }
-
-    public void conectarPin(int IDpin, Compuerta compuerta, Pin dador){
-        Pin conectando = buscarIDP(IDpin);
+    void conectarPin(int InpPinID, Compuerta compuerta, Pin dador){
+        Pin conectando = buscarIDP(InpPinID);
         conectando.setCompuerta(compuerta);
         conectando.setConectado(true);
         conectando.setDador(dador);
@@ -246,12 +226,13 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         compuerta.getCompuertasOut().insertarInicio(this);
 
     }
-    public void desconectarPin(int IDpin){
-        buscarIDP(IDpin).setCompuerta(null);
-        buscarIDP(IDpin).setConectado(false);
-    }
 
-
+    /**
+     * Busca un pin por su ID en la lista de pines de Input
+     *
+     * @param IDpin Id del pin a buscar.
+     * @return la instacia del pin con dicho ID.
+     */
     public Pin buscarIDP(int IDpin){
         Node current = this.pinesIn.getHead();
         Pin PinNode = (Pin) current.getData();
@@ -275,26 +256,57 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         buscarIDP(IDpin).setValor(valor);
         buscarIDP(IDpin).setConectado(false);
     }
+
+    //         _______________________
+    //________/EJECUCION DE COMPUERTAS
+
     /**
-     * Metedo para compuetas NXOR y XOR
-     * @return retorna la cantidad de entradas verdaderas a la compuerta
+     * Inserta el valor a la lista enlazada de entradas.
+     *
+     * @param entrada corresponde la valor booleano de la entrada electronica.
      */
-    public int xop(){
-        factorX = 0;
-        Node current = this.entradas.getHead();
-        while( current.getNext() != null) {
-            if (current.getData().equals(true)) {
-                current = current.getNext();
-                factorX++;
-            }else {
-                current = current.getNext();
-            }
-        }
-        if (current.getData().equals(true)){
-            factorX++;
-        }
-        return factorX;
+    public void input(boolean entrada){
+        this.entradas.insertarInicio(entrada);
     }
+
+    public void input(boolean valor, int pinId) {
+        this.entradas.insertarInicio(valor);
+        this.entradas.getHead().setData2(pinId); //Valor adicional para conocer de que pin proviene la salida (Para customs)
+    }
+
+    /**
+     * Metodo que se encarga de iniciar el ciclo de operaciones para el calculo de una salida en una compuerta.
+     *
+     * @return retorna el valor de salida de la operacion de la compuerta
+     */
+    //Facade
+    public boolean output(){
+        if (checkEntries()){
+            return this.operar();
+        }
+        else{
+            this.askPins();
+        }
+        return this.operar();
+    }
+
+    /**
+     * Checkea si todas las entradas estan asignadas.
+     *
+     * @return true or false
+     */
+    public boolean checkEntries(){
+        if (this.entradas.getHead() == null){
+            return false;
+        }
+        else {
+            return this.entradas.getSize() == numEntradas;
+        }
+    }
+
+    /**
+     * Pregunta a cada pin por su valor asignado.
+     */
     public void askPins() {
         Node current = this.pinesIn.getHead();
         Pin pin = (Pin) current.getData();
@@ -306,21 +318,11 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         this.input(pin.isValor());
     }
 
-        //Facade
-    public boolean output(){
-        if (checkEntries()){
-            return this.operar();
-        }
-        else{
-            this.askPins();
-        }
-        return this.operar();
-    }
-
-    public boolean isOutIn() {
-        return pinOut.IsConectado();
-    }
-
+    /**
+     * Para una lista de pines contabiliza la cantidad de pines sin conectar que hay.
+     * @param listaDePines La lista de pines a analizar.
+     * @return un numero entero con la cantidad de pines desconectados.
+     */
     public int getUnpluggeds(ListaEnlazada listaDePines) {
         Node current = listaDePines.getHead();
         int unplugged = 0;
@@ -338,11 +340,38 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         return unplugged;
     }
 
-    public void setFirst(boolean b) {
-        this.first = b;
+    //         ______________
+    //________/OTROS METODOS
+
+    /**
+     * Metedo para compuetas NXOR y XOR
+     * @return retorna la cantidad de entradas verdaderas a la compuerta
+     */
+    public int xop(){
+        // Solo para compuertas X
+        int factorX = 0;
+        Node current = this.entradas.getHead();
+        while( current.getNext() != null) {
+            if (current.getData().equals(true)) {
+                current = current.getNext();
+                factorX++;
+            }else {
+                current = current.getNext();
+            }
+        }
+        if (current.getData().equals(true)){
+            factorX++;
+        }
+        return factorX;
     }
-    public boolean isFirst(){
-        return first;
+
+    /**
+     * Metodo que verifica si el pin de output esta conectado o no.
+     *
+     * @return true o false dependiendo del estado del pin de salida.
+     */
+    public boolean isOutIn() {
+        return pinOut.IsConectado();
     }
 
 }

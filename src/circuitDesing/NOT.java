@@ -3,10 +3,17 @@ package circuitDesing;
 import AbstractFactory.tipoCompuerta;
 import listas.ListaEnlazada;
 
+/**
+ * Clase concreta que define las propiedades y metodos de una compuerta lógica tipo NOT.
+ *
+ * @author Jose Alejandro
+ * @since 31-08-19
+ */
 public class NOT extends Compuerta {
     /**
-     * Constructor de la clase
-     * @param ID identificador numérico para la compuerta
+     * Constructor de la clase.
+     *
+     * @param ID identificador numérico para la compuerta.
      */
     public NOT(int ID, tipoCompuerta tipo) {
         super(1,ID,tipo);
@@ -18,8 +25,9 @@ public class NOT extends Compuerta {
 
 
     /**
-     * Operacion logica de NOT
-     * @return true or false segun la operacion
+     * Operacion logica de NOT.
+     *
+     * @return true or false segun la operacion.
      */
     @Override
     public boolean operar() {

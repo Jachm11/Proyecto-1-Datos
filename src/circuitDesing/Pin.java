@@ -3,71 +3,67 @@ package circuitDesing;
 import AbstractFactory.tipoCompuerta;
 import GUI.Controller;
 import javafx.beans.property.DoubleProperty;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import listas.ListaEnlazada;
 import listas.Node;
-
-import javax.swing.*;
-import java.io.IOException;
 import java.util.Optional;
-import java.util.Scanner;
 
 import static circuitDesing.Circuito.selectedPin;
 import static java.lang.System.out;
 
 /**
- * Clase dependiente de compuerta se encarga de almancenar las conexiones y valores de las entradas de una compuerta
+ * Clase dependiente de compuerta, se encarga de almancenar las conexiones y valores de las entradas de una compuerta.
+ *
+ * @author Jose Alejandro
+ * @since 2-09-19
  */
  public class Pin extends Circle {
 
     int pinId;
-    boolean valor;
+    private boolean valor;
     boolean conectado;
-    Compuerta compuerta;
-    Pin dador;
+    private Compuerta compuerta;
+    private Pin dador;
     Compuerta miCompuerta;
-    boolean Input;
-    boolean selected;
+    private boolean Input;
+    private boolean selected;
     Color color;
-    final double xI;
-    final double yI;
+    private final double xI;
+    private final double yI;
     DoubleProperty x;
     DoubleProperty y;
-    boolean simulating;
-    boolean simValue;
-    boolean asignado;
-    CircuitLine myLine;
+    private boolean simulating;
+    private boolean simValue;
+    private boolean asignado;
+    private CircuitLine myLine;
     Boolean inBigPin;
 
-    public void setConectado(boolean conectado) {
-        this.conectado = conectado;
-    }
-
     /**
-     * Constructor de la clase
-     * @param pinId identificador para el numero de pin
+     *Constructor de la clase.
+     *
+     * @param color color que tendra el pin.
+     * @param x Propiedad doble para la posicion en X.
+     * @param xI Valor doble para la posicion en X.
+     * @param y Propiedad doble para la posicion en Y.
+     * @param yI Valor doble para la posicion en Y.
+     * @param pinId Identificador entero para el pin.
+     * @param miCompuerta Compuerta a la que pertenece el pin.
+     * @param Input Boleano para saber si es un pin de tipo Input.
+     * @param inBigPin Boleano para saber si esta encapsulado dentro de un BigPin.
      */
-    public Pin(Color color, DoubleProperty x,double xI, DoubleProperty y,double yI,int pinId,Compuerta miCompuerta, boolean In, boolean inBigPin){
+    Pin(Color color, DoubleProperty x, double xI, DoubleProperty y, double yI, int pinId, Compuerta miCompuerta, boolean Input, boolean inBigPin){
         super(x.get(), y.get(), 5);
         this.pinId = pinId;
         this.compuerta = null;
         this.conectado = false;
         this.miCompuerta = miCompuerta;
-        this.Input = In;
+        this.Input = Input;
         this.selected = false;
         this.color = color;
         this.xI = xI;
@@ -81,7 +77,6 @@ import static java.lang.System.out;
         setStrokeType(StrokeType.OUTSIDE);
         setCursor(Cursor.HAND);
 
-
         setOnMouseClicked(this::select);
         entryMethod();
 
@@ -89,126 +84,61 @@ import static java.lang.System.out;
         y.bind(centerYProperty());
     }
 
-    private void entryMethod() {
-        if (Input) {
-            ContextMenu pinMenu = new ContextMenu();
-            MenuItem item1 = new MenuItem("1");
-            MenuItem item2 = new MenuItem("0");
-            MenuItem item3 = new MenuItem("Disconnect");
-            pinMenu.getItems().addAll(item1, item2,item3);
-            this.setOnContextMenuRequested(event -> pinMenu.show(this, event.getScreenX(), event.getScreenY()));
-            item1.setOnAction(e -> setUIValue(true));
-            item2.setOnAction(e -> setUIValue(false));
-            item3.setOnAction(e -> desconectar());
-        }
-    }
+    //         ___________________
+    //________/Getters and Setters
+    public void setConectado(boolean conectado) { this.conectado = conectado; }
 
-    private void setUIValue(boolean valor) {
-        if (!(conectado)){
-            this.valor = valor;
-            this.asignado = (true);
-            setColorValue(valor);
-        }
-    }
+    public int getPinId() { return pinId; }
 
-    public void setColorValue(Boolean valor){
-        if (valor){
-            this.setFill(Color.WHITE);
-        }else{
-            this.setFill(Color.BLACK);
-        }
-    }
+    public void setAsignado(boolean asignado) { this.asignado = asignado; }
 
-    public String IdString() {
-        if (Input){
-            return "I"+pinId;
-        }else {
-            return "O"+(pinId+1);
-        }
-    }
+    public double getxI() { return xI; }
 
-    public int getPinId() {
-        return pinId;
-    }
+    public void setDador(Pin miPinOut) { this.dador = miPinOut; }
 
-    public boolean isAsignado() {
-        return asignado;
-    }
+    public boolean IsConectado() { return conectado; }
 
-    public void setAsignado(boolean asignado) {
-        this.asignado = asignado;
-    }
+    public boolean isIn() { return Input; }
 
-    public double getxI() {
-        return xI;
-    }
+    public Compuerta getMiCompuerta() { return miCompuerta; }
 
-    public Pin getDador() {
-        return dador;
-    }
+    public  double getyI() { return yI; }
 
-    public void setDador(Pin miPinOut) {
-        this.dador = miPinOut;
-    }
+    public void setSelected(boolean selected) { this.selected = selected; }
 
-    public boolean IsConectado() {
-        return conectado;
-    }
+    public void setId(int id) { this.pinId = id; }
 
-    public boolean isIn() {
-        return Input;
-    }
+    public void setSimulating(boolean simulating) { this.simulating = simulating; }
 
-    public Compuerta getMiCompuerta() {
-        return miCompuerta;
-    }
+    public void setSimValue(boolean simValue) { this.simValue = simValue; }
 
-    public  double getyI() {
-        return yI;
-    }
+    public void setMyLine(CircuitLine myLine) { this.myLine = myLine; }
 
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
+    public void setValor(boolean valor) { this.valor = valor; }
 
-    public void setId(int id) {
-        this.pinId = id;
-    }
+    public Compuerta getCompuerta() { return compuerta; }
 
-    public boolean isSimulating() {
-        return simulating;
-    }
+    public void setCompuerta(Compuerta compuerta) { this.compuerta = compuerta; }
 
-    public void setSimulating(boolean simulating) {
-        this.simulating = simulating;
-    }
+    //         _____________________
+    //________/SIMULACION DE SALIDAS
 
-    public boolean isSimValue() {
-        return simValue;
-    }
-
-    public void setSimValue(boolean simValue) {
-        this.simValue = simValue;
-    }
-
-    public CircuitLine getMyLine() {
-        return myLine;
-    }
-
-    public void setMyLine(CircuitLine myLine) {
-        this.myLine = myLine;
-    }
-
-    public boolean askforinput(){
+    /**
+     * Metodo que se encarga de retornar el valor especifico para una compueta input no conectada.
+     *
+     * @return retorna el valor ororgado por el usuario o el programa segun la condicion que se cumpla.
+     */
+    private boolean askforinput(){
         if (simulating) {
-            out.println("this is simValue"+simValue);
             return simValue;
         } else {
             if (asignado) {
                 return valor;
             } else {
+                //         _____________________
+                //________/Validacion de entradas
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Input Entry Confiramtion");
+                alert.setTitle("Input Entry Confirmation");
                 alert.setHeaderText("Initial gates without inputs found");
                 alert.setContentText("Please choose an input for "+"pin number " + this.pinId + " of gate " + this.miCompuerta.getTipo().toString() +" " + this.miCompuerta.getID());
                 ButtonType uno = new ButtonType("1");
@@ -223,24 +153,16 @@ import static java.lang.System.out;
                     setUIValue(false);
                     return askforinput();
                 }
-
             }
         }
     }
 
-    public void setValor(boolean valor) {
-        this.valor = valor;
-    }
-
-    public Compuerta getCompuerta() {
-        return compuerta;
-    }
-
-    public void setCompuerta(Compuerta compuerta) {
-        this.compuerta = compuerta;
-    }
-
-    public boolean isValor(){
+    /**
+     * Se encarga de llamar conseguir el valor para el pin, si esta conectado inicia de nuevo el ciclo. Y si no pide un input ya asigando.
+     *
+     * @return el valor de verdad del pin.
+     */
+    boolean isValor(){
         if (conectado){
             if (compuerta.getTipo() == tipoCompuerta.Custom){
                 return ((CustomGate)compuerta).CustomOutput(this.dador.pinId);
@@ -255,30 +177,65 @@ import static java.lang.System.out;
     }
 
 
-    public void desconectar() {
-        if (conectado) {
-            dador.miCompuerta.compuertasOut.eliminarX(miCompuerta);
-            if(dador.miCompuerta.compuertasOut.getSize() == 0){
-                dador.setAsignado(false);
-                dador.setConectado(false);
-            }
-
-            conectado = false;
-            Controller.getController().Circuito.getChildren().remove(myLine);
-            myLine = null;
-            dador = null;
-            compuerta = null;
-            setFill(color.deriveColor(1, 1, 1, 0.5));
-            setStroke(color);
+    //         _____________________
+    //________/IMPLEMETACION GRAFICA
+    /**
+     * Metodo que crea el menu y asigana las funciones para controlar las funciones de un pin input en la intefaz grafica.
+     */
+    private void entryMethod() {
+        if (Input) {
+            ContextMenu pinMenu = new ContextMenu();
+            MenuItem item1 = new MenuItem("1");
+            MenuItem item2 = new MenuItem("0");
+            MenuItem item3 = new MenuItem("Disconnect");
+            pinMenu.getItems().addAll(item1, item2,item3);
+            this.setOnContextMenuRequested(event -> pinMenu.show(this, event.getScreenX(), event.getScreenY()));
+            item1.setOnAction(e -> setUIValue(true));
+            item2.setOnAction(e -> setUIValue(false));
+            item3.setOnAction(e -> desconectar());
         }
     }
 
+    /**
+     * Asigna el valor al pin por el metodo grafico.
+     *
+     * @param valor true o false.
+     */
+    private void setUIValue(boolean valor) {
+        if (!(conectado)){
+            this.valor = valor;
+            this.asignado = (true);
+            setColorValue(valor);
+        }
+    }
+
+    /**
+     * Cambia el color segun el valor del pin. Blanco true, negro false.
+     *
+     * @param valor true o false.
+     */
+    void setColorValue(Boolean valor){
+        if (valor){
+            this.setFill(Color.WHITE);
+        }else{
+            this.setFill(Color.BLACK);
+        }
+    }
+
+    /**
+     * Este metodo es el encargado de la conexion de dos pines en la intefaz grafica. Instacia ademas la linea de conexion.
+     * @param e evento de mouse.
+     */
     public void select(MouseEvent e) {
         if (e.getButton() == MouseButton.PRIMARY) {
+            //         ________
+            //________/Deselect
             if (selected) {
                 setFill(color.deriveColor(1, 1, 1, 0.5));
-                //System.out.println(this.getCenterX());
                 selectedPin = null;
+
+                //         ______
+                //________/Select
             } else {
                 setFill(color.deriveColor(1, 1, 100, 10));
                 if (selectedPin == null) {
@@ -288,7 +245,10 @@ import static java.lang.System.out;
                     boolean selectedType = selectedPin.isIn();
                     out.println(compatibles(this, selectedPin));
                     if (compatibles(this, selectedPin)) {
-                        if (selectedType) {  //si la anterior es In
+
+                        //         ______________________________
+                        //________/El anterior es un pin de Input
+                        if (selectedType) {
                             selectedPin.setFill(this.color.deriveColor(1, 1, 100, 10));
                             selectedPin.setStroke(this.color);
                             setFill(color.deriveColor(1, 1, 100, 10));
@@ -306,13 +266,13 @@ import static java.lang.System.out;
                                 selectedPin.setMyLine(newLine);
                                 Controller.getController().Circuito.getChildren().add(newLine);
                             }
-
-
                             selected = !selected;
                             selectedPin.setSelected(false);
                             selectedPin = null;
 
-                        } else {  // la anterior es out
+                            //         _______________________________
+                            //________/El anterior es un pin de Output
+                        } else {
                             setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
                             setStroke(selectedPin.color);
 
@@ -330,13 +290,13 @@ import static java.lang.System.out;
                                 this.myLine = newLine;
                                 Controller.getController().Circuito.getChildren().add(newLine);
                             }
-
-
                             selected = !selected;
                             selectedPin.setSelected(false);
                             selectedPin = null;
                         }
 
+                        //         __________________
+                        //________/No son compatibles
                     } else {
                         setFill(color.deriveColor(1, 1, 1, 0.5));
                         selectedPin.setFill(selectedPin.color.deriveColor(1, 1, 1, 0.5));
@@ -350,8 +310,7 @@ import static java.lang.System.out;
         }
     }
 
-
-    public boolean compatibles(Pin pin1, Pin pin2){
+    boolean compatibles(Pin pin1, Pin pin2){
         if (pin1.Input != pin2.Input & pin1.miCompuerta != pin2.miCompuerta){
             if (pin1.Input) {
                 return pin2.compatiblesAux(pin1, pin2);
@@ -363,7 +322,7 @@ import static java.lang.System.out;
         }
     }
 
-    public boolean compatiblesAux(Pin In , Pin Out) {
+    private boolean compatiblesAux(Pin In, Pin Out) {
         if (!In.conectado) {
             ListaEnlazada listaIn = Out.miCompuerta.getPinesIn();
             Compuerta CompuertaDeIn = In.miCompuerta;
@@ -379,6 +338,42 @@ import static java.lang.System.out;
             return currentPin.compuerta != CompuertaDeIn;
         }
         return false;
+    }
+
+    //         ______________
+    //________/OTROS METODOS
+
+    /**
+     *Se encarga de desconectar un pin Input de quien le este dando Output.
+     */
+    void desconectar() {
+        if (conectado) {
+            dador.miCompuerta.compuertasOut.eliminarX(miCompuerta);
+            if(dador.miCompuerta.compuertasOut.getSize() == 0){
+                dador.setAsignado(false);
+                dador.setConectado(false);
+            }
+
+            conectado = false;
+            Controller.getController().Circuito.getChildren().remove(myLine);
+            myLine = null;
+            dador = null;
+            compuerta = null;
+            setFill(color.deriveColor(1, 1, 1, 0.5));
+            setStroke(color);
+        }
+    }
+
+    /**
+     * Otorga un caracter String segun el tipo de pin.
+     * @return I para input, O para Output.
+     */
+    public String IdString() {
+        if (Input){
+            return "I"+pinId;
+        }else {
+            return "O"+(pinId+1);
+        }
     }
 
 }

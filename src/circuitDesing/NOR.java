@@ -4,14 +4,19 @@ import AbstractFactory.tipoCompuerta;
 import listas.ListaEnlazada;
 import listas.Node;
 
-public class NOR extends OR {
-
+/**
+ * Clase concreta que define las propiedades y metodos de una compuerta lógica tipo NOR.
+ *
+ * @author Jose Alejandro
+ * @since 31-08-19
+ */
+public class NOR extends Compuerta {
 
     /**
-     * Constructor de la clase
+     * Constructor de la clase.
      *
-     * @param ID identificador numérico para la compuerta
-     * @param entradas cantidad de entradas
+     * @param ID identificador numérico para la compuerta.
+     * @param entradas cantidad de entradas.
      */
     public NOR(int entradas, int ID, tipoCompuerta tipo) {
 
@@ -19,8 +24,9 @@ public class NOR extends OR {
     }
 
     /**
-     * Operacion logica de NOR
-     * @return true or false segun la operacion
+     * Operacion logica de NOR.
+     *
+     * @return true or false segun la operacion.
      */
     @Override
     public boolean operar() {

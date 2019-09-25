@@ -4,13 +4,19 @@ import AbstractFactory.tipoCompuerta;
 import listas.ListaEnlazada;
 import listas.Node;
 
-public class NAND extends AND {
+/**
+ * Clase concreta que define las propiedades y metodos de una compuerta lógica tipo NAND.
+ *
+ * @author Jose Alejandro
+ * @since 31-08-19
+ */
+public class NAND extends Compuerta {
 
     /**
-     * Constructor de la clase
+     * Constructor de la clase.
      *
-     * @param ID identificador numérico para la compuerta
-     * @param entradas cantidad de entradas
+     * @param ID identificador numérico para la compuerta.
+     * @param entradas cantidad de entradas.
      */
     public NAND(int entradas,int ID, tipoCompuerta tipo) {
 
@@ -18,8 +24,9 @@ public class NAND extends AND {
     }
 
     /**
-     * Operacion logica de NAND
-     * @return true or false segun la operacion
+     * Operacion logica de NAND.
+     *
+     * @return true or false segun la operacion.
      */
     @Override
     public boolean operar(){

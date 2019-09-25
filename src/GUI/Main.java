@@ -6,9 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 /**
- * Clase main par el diseñador de circuitos, desde aqui se inicialiaza la interfaz principal desde un archivo 
+ * Clase main par el diseñador de circuitos, desde aqui se inicialiaza la interfaz principal desde un archivo .fxml.
+ *
  * @author Jose Alejandro
  * @since 31-08-19
  */

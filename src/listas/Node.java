@@ -1,6 +1,8 @@
 package listas;
+
 /**
- * Clase que contiene lo necesario para hacer un nodo
+ * Clase que contiene lo necesario para hacer un nodo.
+ *
  * @author Jose Alejandro
  * @since 31-08-19
  */
@@ -11,14 +13,15 @@ public class Node {
     private Object data2;
 
     /**
-     * Constructor de la clase
+     * Constructor de la clase.
      */
     public Node(Object data){
         this.next = null;
         this.data = data;
     }
 
-
+    //         ____________________
+    //________/Getters and Setters
     public Object getData() {
         return data;
     }
@@ -35,11 +38,7 @@ public class Node {
         this.next = next;
     }
 
-    public Object getData2() {
-        return data2;
-    }
+    public Object getData2() { return data2; }
 
-    public void setData2(Object data2) {
-        this.data2 = data2;
-    }
+    public void setData2(Object data2) { this.data2 = data2; }
 }
