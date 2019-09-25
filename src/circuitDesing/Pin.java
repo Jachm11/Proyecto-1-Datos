@@ -15,7 +15,6 @@ import listas.Node;
 import java.util.Optional;
 
 import static circuitDesing.Circuito.selectedPin;
-import static java.lang.System.out;
 
 /**
  * Clase dependiente de compuerta, se encarga de almancenar las conexiones y valores de las entradas de una compuerta.
@@ -26,23 +25,23 @@ import static java.lang.System.out;
  public class Pin extends Circle {
 
     int pinId;
-    private boolean valor;
     boolean conectado;
-    private Compuerta compuerta;
-    private Pin dador;
     Compuerta miCompuerta;
-    private boolean Input;
-    private boolean selected;
     Color color;
-    private final double xI;
-    private final double yI;
     DoubleProperty x;
     DoubleProperty y;
+    Boolean inBigPin;
+    private Compuerta compuerta;
+    private Pin dador;
+    private boolean valor;
     private boolean simulating;
     private boolean simValue;
     private boolean asignado;
     private CircuitLine myLine;
-    Boolean inBigPin;
+    private boolean Input;
+    private boolean selected;
+    private final double xI;
+    private final double yI;
 
     /**
      *Constructor de la clase.
@@ -224,6 +223,7 @@ import static java.lang.System.out;
 
     /**
      * Este metodo es el encargado de la conexion de dos pines en la intefaz grafica. Instacia ademas la linea de conexion.
+     *
      * @param e evento de mouse.
      */
     public void select(MouseEvent e) {
@@ -240,10 +240,8 @@ import static java.lang.System.out;
                 setFill(color.deriveColor(1, 1, 100, 10));
                 if (selectedPin == null) {
                     selectedPin = (Pin) e.getSource();
-                    out.println(selectedPin);
                 } else {
                     boolean selectedType = selectedPin.isIn();
-                    out.println(compatibles(this, selectedPin));
                     if (compatibles(this, selectedPin)) {
 
                         //         ______________________________
@@ -255,11 +253,7 @@ import static java.lang.System.out;
                             selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta, this);
                             if (selectedPin.inBigPin){
                                 BigPin hisBigPin = (selectedPin.getMiCompuerta()).getBigPin();
-                                hisBigPin.setFill(this.color.deriveColor(1, 1, 100, 10));
-                                hisBigPin.setStroke(this.color);
-                                CircuitLine newLine = new CircuitLine(x, y, hisBigPin.x, hisBigPin.y, this.color);
-                                selectedPin.setMyLine(newLine);
-                                Controller.getController().Circuito.getChildren().add(newLine);
+                                inputInBigPin(hisBigPin, this.color, x, y);
                             }
                             else{
                                 CircuitLine newLine = new CircuitLine(x, y, selectedPin.x, selectedPin.y, this.color);
@@ -310,6 +304,33 @@ import static java.lang.System.out;
         }
     }
 
+    /**
+     * Metodo para evitar repeticion innecesaria de codigo. Corre cuando un input se encuentra en un BigPin y desea realizarse una conexion.
+     *
+     * @param hisBigPin Big pin del input al que se quiere conectar.
+     * @param color color del Output.
+     * @param x Posicion en X del output.
+     * @param y Posicion en Y del output.
+     */
+    static void inputInBigPin(BigPin hisBigPin, Color color, DoubleProperty x, DoubleProperty y) {
+        hisBigPin.setFill(color.deriveColor(1, 1, 100, 10));
+        hisBigPin.setStroke(color);
+        CircuitLine newLine = new CircuitLine(x, y, hisBigPin.x, hisBigPin.y, color);
+        selectedPin.setMyLine(newLine);
+        Controller.getController().Circuito.getChildren().add(newLine);
+    }
+
+    /**
+     * Metodo que compara dos pines para ver si con compatibles para realizar una conexion.
+     * Criterios:
+     * Si no esta conectado a otro Pin (si en input).
+     * Que no este conectado a esta misma compuerta pero por sentido contrario.
+     * Que no sean del mismo tipo de pin.
+     *
+     * @param pin1 Pin a comparar con otro.
+     * @param pin2 Pin con el que se compara.
+     * @return True or false para compatibilidad.
+     */
     boolean compatibles(Pin pin1, Pin pin2){
         if (pin1.Input != pin2.Input & pin1.miCompuerta != pin2.miCompuerta){
             if (pin1.Input) {
@@ -322,6 +343,13 @@ import static java.lang.System.out;
         }
     }
 
+    /**
+     * Metodo auxiliar que recibe los pines por tipo. Realiza las comparaciones por los criterios de compatibilidad.
+     *
+     * @param In Pin tipo Input
+     * @param Out Pint tipo Output
+     * @return true or false
+     */
     private boolean compatiblesAux(Pin In, Pin Out) {
         if (!In.conectado) {
             ListaEnlazada listaIn = Out.miCompuerta.getPinesIn();

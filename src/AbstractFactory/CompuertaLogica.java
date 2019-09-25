@@ -1,7 +1,5 @@
 package AbstractFactory;
 
-import java.io.IOException;
-
 /**
  * Interfaz basica de los metodos par una cmpuerta logica.
  *
@@ -9,8 +7,8 @@ import java.io.IOException;
  * @since 1-09-19
  */
 public interface CompuertaLogica {
-    boolean output() throws IOException;
-    void askPins() throws IOException;
+    boolean output();
+    void askPins();
     boolean checkEntries();
     int xop();
     boolean operar();

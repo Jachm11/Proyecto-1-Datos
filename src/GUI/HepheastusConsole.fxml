@@ -75,11 +75,11 @@
         </MenuBar>
         <SplitPane dividerPositions="0.8184855233853007" focusTraversable="true" pickOnBounds="false" prefWidth="902.0" style="-fx-border-color: BLACK;" VBox.vgrow="ALWAYS">
             <items>
-            <TabPane prefHeight="200.0" prefWidth="200.0" stylesheets="@TabPaneStylesheet.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="200.0" prefWidth="200.0" stylesheets="@CSS%20archives/TabPaneStylesheet.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                   <Tab text="Circuit Board">
                      <content>
-                            <ScrollPane fx:id="scrollPane" pickOnBounds="false" style="-fx-border-color: BLACK;" stylesheets="@ScrollPaneStylesheet.css">
+                            <ScrollPane fx:id="scrollPane" pickOnBounds="false" style="-fx-border-color: BLACK;" stylesheets="@CSS%20archives/ScrollPaneStylesheet.css">
                                 <content>
                                     <AnchorPane id="Content" focusTraversable="true" minHeight="-1.0" minWidth="-1.0" prefHeight="4000.0" prefWidth="4000.0" style="-fx-background-color: #252526;">
                                         <children>
@@ -228,7 +228,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: BLACK;">
                            <children>
-                              <TextArea fx:id="Console" prefHeight="507.0" prefWidth="747.0" promptText="Hephaestus Circuit Designer V1.0" style="-fx-background-color: BLack;" stylesheets="@TextAreaStyleSheet.css" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TextArea fx:id="Console" prefHeight="507.0" prefWidth="747.0" promptText="Hephaestus Circuit Designer V1.0" style="-fx-background-color: BLack;" stylesheets="@CSS%20archives/TextAreaStyleSheet.css" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -244,9 +244,9 @@
                                         <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="13.0" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #383734;" text="Logic Gates" textAlignment="CENTER" textFill="#f2993d" wrapText="false" />
                                         <Accordion layoutX="39.0" layoutY="41.0" prefHeight="349.0" prefWidth="403.0" style="-fx-background-color: #383734;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                             <panes>
-                                                <TitledPane prefHeight="205.0" prefWidth="139.0" style="-fx-background-color: #041f5e;" stylesheets="@TittledPaneStylesheet.css" text="Default Gates">
+                                                <TitledPane prefHeight="205.0" prefWidth="139.0" style="-fx-background-color: #041f5e;" stylesheets="@CSS%20archives/TittledPaneStylesheet.css" text="Default Gates">
                                                     <content>
-                                                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" stylesheets="@ScrollPaneStylesheet.css">
+                                                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" stylesheets="@CSS%20archives/ScrollPaneStylesheet.css">
                                                             <content>
                                                                 <VBox prefHeight="547.0" prefWidth="583.0" spacing="15.0" style="-fx-background-color: #383734;">
                                                                     <children>
@@ -315,9 +315,9 @@
                                                         </ScrollPane>
                                                     </content>
                                                 </TitledPane>
-                                                <TitledPane stylesheets="@TittledPaneStylesheet.css" text="Custom Gates">
+                                                <TitledPane stylesheets="@CSS%20archives/TittledPaneStylesheet.css" text="Custom Gates">
                                                     <content>
-                                                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" stylesheets="@ScrollPaneStylesheet.css">
+                                                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" stylesheets="@CSS%20archives/ScrollPaneStylesheet.css">
                                                             <content>
                                                                 <VBox fx:id="customVbox" prefHeight="695.0" prefWidth="349.0" style="-fx-background-color: #383734;" />
                                                             </content>

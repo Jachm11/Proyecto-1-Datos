@@ -15,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -28,7 +27,7 @@ import java.util.ResourceBundle;
 
 /**
  * Clase controller para el UI2, en ella se manejan la mayoria de las interacciones en pantalla. Y se
- * definen los tags para los elementos del fxml
+ * definen los tags para los elementos del fxml.
  * @author Jose Alejandro
  * @since 31-08-19
  */
@@ -181,7 +180,7 @@ public class Controller implements Initializable {
         newCompuerta.setImage(ImageXNOR);
         setCompuerta(newCompuerta);
     }
-    public void clickedOnCustom(MouseEvent t){
+    void clickedOnCustom(MouseEvent t){
         SavedCircuit savedCircuit = (SavedCircuit) (t.getSource());
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas(),savedCircuit.getTablaDeVerdad()));
         newCompuerta.setImage(CustomImg);
@@ -195,7 +194,7 @@ public class Controller implements Initializable {
 
         Circuito.getChildren().add(newCompuerta);
 
-        System.out.println("soy tipo:"+(newCompuerta.getTipo().toString()));
+        System.out.println("Nueva compuerta "+(newCompuerta.getTipo().toString())+ "creada");
         if(newCompuerta.getTipo() != tipoCompuerta.Custom & newCompuerta.getNumEntradas()<4) {
             listas.Node current = newCompuerta.getPinesIn().getHead();
             while (current.getNext() != null) {

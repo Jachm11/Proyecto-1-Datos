@@ -51,10 +51,10 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         //         ________________________________________
         //________/Ciclo para creacion de pines por entrada
         while (cont < entradas) {
-            DoubleProperty startY = new SimpleDoubleProperty((this.getY()+(cont*40))+20);
+            DoubleProperty startY = new SimpleDoubleProperty(((cont * 40) + 20)*2/numEntradas);
             Color colorRandomIn = Color.color(Math.random(),Math.random(),Math.random());
             if (numEntradas < 4 & this.tipo != tipoCompuerta.Custom) {
-                Pin pin = new Pin(colorRandomIn, startX, this.getX(), startY, this.getY() + (cont * 40) + 20, cont, this, true,false);
+                Pin pin = new Pin(colorRandomIn, startX, this.getX(), startY, this.getY() + (((cont * 40) + 20)*2/numEntradas), cont, this, true,false);
                 this.pinesIn.insertarInicio(pin);
             }
             else {
@@ -88,9 +88,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         this.tipo = tipo;
     }
 
-    public int getID() {
-        return ID;
-    }
+    public int getID() { return ID; }
 
     public void setID(int ID) {
         this.ID = ID;
@@ -130,6 +128,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
 
     //         ____________________
     //________/METODOS ABSTRACTOS
+
     /**
      * Metodo abstracto que se sobreescribe segun el tipo de compuerta.
      *
@@ -224,17 +223,26 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         conectando.setDador(dador);
         compuerta.getPinOut().setConectado(true);
         compuerta.getCompuertasOut().insertarInicio(this);
-
     }
 
     /**
-     * Busca un pin por su ID en la lista de pines de Input
+     * Busca un pin por su ID en la lista de pines de Input.
      *
      * @param IDpin Id del pin a buscar.
      * @return la instacia del pin con dicho ID.
      */
     public Pin buscarIDP(int IDpin){
         Node current = this.pinesIn.getHead();
+        return getPin(IDpin, current);
+    }
+
+    /**
+     * Busca pin en una lista
+     * @param IDpin ID del pin a buscar.
+     * @param current Nodo con la cabeza de la lista de pines.
+     * @return la instacia del pin con dicho ID.
+     */
+    static Pin getPin(int IDpin, Node current) {
         Pin PinNode = (Pin) current.getData();
         while (current.getNext() != null){
             if (PinNode.getPinId() != IDpin) {
@@ -323,7 +331,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
      * @param listaDePines La lista de pines a analizar.
      * @return un numero entero con la cantidad de pines desconectados.
      */
-    public int getUnpluggeds(ListaEnlazada listaDePines) {
+    int getUnpluggeds(ListaEnlazada listaDePines) {
         Node current = listaDePines.getHead();
         int unplugged = 0;
         while (current.getNext() != null){
@@ -340,7 +348,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         return unplugged;
     }
 
-    //         ______________
+    //         _____________
     //________/OTROS METODOS
 
     /**
@@ -348,7 +356,6 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
      * @return retorna la cantidad de entradas verdaderas a la compuerta
      */
     public int xop(){
-        // Solo para compuertas X
         int factorX = 0;
         Node current = this.entradas.getHead();
         while( current.getNext() != null) {

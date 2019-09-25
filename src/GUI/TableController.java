@@ -6,19 +6,15 @@ import circuitDesing.Compuerta;
 import circuitDesing.CustomGate;
 import circuitDesing.Pin;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableIntegerValue;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.util.Callback;
 import listas.ListaEnlazada;
 import listas.Node;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.ResourceBundle;
@@ -26,10 +22,13 @@ import java.util.ResourceBundle;
 public class TableController implements Initializable {
     private static TableController instance = new TableController();
 
-
-
     @FXML
     private TableView<ObservableList<Integer>> TruthTable;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TruthTable.getStylesheets().add("GUI/DarkTheme.css");
+    }
 
     public TableController() {
         instance = this;
@@ -88,7 +87,6 @@ public class TableController implements Initializable {
             Compuerta currentGate = (Compuerta) current.getData();
             int salidas;
             if (!(currentGate.getTipo() == tipoCompuerta.Custom)) {
-                //System.out.println();
                 salidas = 1;
             }
             else{
@@ -238,9 +236,5 @@ public class TableController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        TruthTable.getStylesheets().add("GUI/DarkTheme.css");
-    }
 }
 

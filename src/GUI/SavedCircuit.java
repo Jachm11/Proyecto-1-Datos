@@ -1,27 +1,39 @@
 package GUI;
 
-import circuitDesing.Circuito;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import listas.ListaEnlazada;
-
 import javax.swing.*;
 
+/**
+ * Clase que almacena las propiedades de un circuito, para mas tarde ser creado como una custom Gate.
+ *
+ * @author Jose Alejandro
+ * @since 16-09-19
+ */
 public class SavedCircuit extends ImageView {
-    int entradas;
-    int salidas;
-    TableView<ObservableList<Integer>> TablaDeVerdad;
-    String nombre;
 
+    String nombre;
+    private int entradas;
+    private int salidas;
+    private TableView<ObservableList<Integer>> TablaDeVerdad;
+
+    /**
+     * Constructor de la clase.
+     *
+     * @param entradas cantidad de entradas del circuito a guardar.
+     * @param salidas catidad de salidas del circuito a guardar.
+     * @param TablaDeVerdad tabla de verdad del ciruito.
+     * @param image imagen con la que se va a representar el circuito.
+     */
     public SavedCircuit(int entradas, int salidas, TableView<ObservableList<Integer>> TablaDeVerdad, Image image) {
         this.entradas = entradas;
         this.salidas = salidas;
         this.TablaDeVerdad = TablaDeVerdad;
-        String nomine = (JOptionPane.showInputDialog("Nombre su nueva compuerta"));
+        String nomine = (JOptionPane.showInputDialog("Give a name to your new Custom Gate:"));
         this.nombre = nomine;
         this.setCursor(Cursor.HAND);
         this.setImage(image);
@@ -29,6 +41,8 @@ public class SavedCircuit extends ImageView {
         setOnMouseClicked(e ->Controller.getController().clickedOnCustom(e));
     }
 
+    //         ___________________
+    //________/Getters and Setters
     public int getEntradas() {
         return entradas;
     }
@@ -41,20 +55,7 @@ public class SavedCircuit extends ImageView {
         return salidas;
     }
 
-    public void setSalidas(int salidas) {
-        this.salidas = salidas;
-    }
-
     public TableView<ObservableList<Integer>> getTablaDeVerdad() {
         return TablaDeVerdad;
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
 }

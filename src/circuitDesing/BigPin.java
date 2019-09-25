@@ -1,6 +1,5 @@
 package circuitDesing;
 
-
 import GUI.Controller;
 
 import javafx.beans.property.DoubleProperty;
@@ -13,36 +12,51 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeType;
 import listas.ListaEnlazada;
-
 import javax.swing.*;
 
 import static circuitDesing.Circuito.selectedPin;
 
+/**
+ * Clase hija de pin, que se engarga de encapsular n cantidad de pines. (n>3).
+ *
+ * @author Jose Alejandro
+ * @since 31-08-19
+ */
 public class BigPin extends Pin {
-    ListaEnlazada pines;
-    Boolean Input;
-    int size;
-    Compuerta miCompuerta;
-    Boolean selected;
+
     Color color;
-    final double xI;
-    final double yI;
     DoubleProperty x;
     DoubleProperty y;
+    private ListaEnlazada pines;
+    private Boolean Input;
+    private int size;
+    private Compuerta miCompuerta;
+    private Boolean selected;
 
-    public BigPin (Color color, DoubleProperty x, double xI, DoubleProperty y, double yI, Compuerta miCompuerta, boolean In,ListaEnlazada pines){
 
-        super(color,x,xI,y,yI,0,miCompuerta,In,false);
+    /**
+     * Constructor de la clase.
+     *
+     * @param color color que tendra el pin.
+     * @param x Propiedad doble para la posicion en X.
+     * @param xI Valor doble para la posicion en X.
+     * @param y Propiedad doble para la posicion en Y.
+     * @param yI Valor doble para la posicion en Y.
+     * @param miCompuerta Compuerta a la que pertenece el pin.
+     * @param Input Boleano para saber si es un pin de tipo Input.
+     * @param pines Lista de pines que en capsula.
+     */
+    public BigPin (Color color, DoubleProperty x, double xI, DoubleProperty y, double yI, Compuerta miCompuerta, boolean Input,ListaEnlazada pines){
+
+        super(color,x,xI,y,yI,0,miCompuerta,Input,false);
         this.miCompuerta = miCompuerta;
-        this.Input = In;
+        this.Input = Input;
         this.selected = false;
         this.color = color;
-        this.xI = xI;
-        this.yI = yI;
         this.x = x;
         this.y = y;
         this.pines = pines;
-        if (In) {
+        if (Input) {
             this.size = miCompuerta.getNumEntradas();
         }else {
             CustomGate thisCast = (CustomGate) miCompuerta;
@@ -55,21 +69,30 @@ public class BigPin extends Pin {
         setStrokeType(StrokeType.OUTSIDE);
         setCursor(Cursor.HAND);
 
-
         setOnMouseClicked(this::SpecialSelect);
         specialEntryMethod();
 
         x.bind(centerXProperty());
         y.bind(centerYProperty());
-
     }
 
+    //         ___________________
+    //________/Getters and Setters
+    public int getSize() {
+        return size;
+    }
+
+    //         _____________________
+    //________/IMPLEMETACION GRAFICA
+    /**
+     * Metodo que crea el menu con submenus y asigana las funciones para controlar las funciones de un big pin de input en la intefaz grafica.
+     */
     private void specialEntryMethod() {
         if (Input) {
             ContextMenu bigPinMenu = new ContextMenu();
             int cont = 0;
             while (cont < pines.getSize()) {
-                Menu inputMenu = new Menu("Input "+cont);
+                Menu inputMenu = new Menu("Input "+ cont);
                 MenuItem childMenuItem1 = new MenuItem("1");
                 MenuItem childMenuItem2 = new MenuItem("0");
                 MenuItem childMenuItem3 = new MenuItem("Disconnect");
@@ -85,6 +108,12 @@ public class BigPin extends Pin {
         }
 }
 
+    /**
+     * Asigna el valor al pin por el metodo grafico.
+     *
+     * @param b true o false.
+     * @param id Id del pin al cualdarle el valor b.
+     */
     private void setUIValue(boolean b, int id) {
         Pin pinToSet = (Pin) pines.serchByIndex(id);
         pinToSet.setValor(b);
@@ -93,43 +122,43 @@ public class BigPin extends Pin {
 
     }
 
-
-    public int getSize() {
-        return size;
-    }
-
-    public void SpecialSelect(MouseEvent e) {
+    /**
+     * Este metodo es el encargado de la conexion de dos pines en la intefaz grafica. Instacia ademas la linea de conexion. Pero para cuando el pin selecionado es un BigPin.
+     *
+     * @param e evento de mouse.
+     */
+    private void SpecialSelect(MouseEvent e) {
         if (e.getButton() == MouseButton.PRIMARY) {
+            //         ________
+            //________/Deselect
             if (selected) {
                 setFill(color.deriveColor(1, 1, 1, 0.5));
-                //System.out.println(this.getCenterX());
                 selectedPin = null;
+
+                //         ________
+                //________/Select
             } else {
                 setFill(color.deriveColor(1, 1, 100, 10));
-                int P = Integer.parseInt(JOptionPane.showInputDialog("Escoja su pin"));
+                int P = Integer.parseInt(JOptionPane.showInputDialog("Choose the pin"));
                 if (0 <= P & P <= this.size - 1) {
-
                     Pin aConectar = (Pin) this.pines.serchByIndex(P);
-
                     if (selectedPin == null) {
                         selectedPin = aConectar;
-                        System.out.println(selectedPin);
 
                     } else {
                         boolean selectedType = selectedPin.isIn();
                         System.out.println(compatibles(aConectar, selectedPin));
                         if (compatibles(aConectar, selectedPin)) {
-                            if (selectedType) {  //si la anterior es In
+
+                            //         ________________________
+                            //________/El pin anterior es Input
+                            if (selectedType) {
 
                                 selectedPin.miCompuerta.conectarPin(selectedPin.getPinId(), this.miCompuerta, aConectar);
 
                                 if (selectedPin.inBigPin) {
                                     BigPin hisBigPin = selectedPin.getMiCompuerta().getBigPin();
-                                    hisBigPin.setFill(this.color.deriveColor(1, 1, 100, 10));
-                                    hisBigPin.setStroke(this.color);
-                                    CircuitLine newLine = new CircuitLine(x, y, hisBigPin.x, hisBigPin.y, this.color);
-                                    selectedPin.setMyLine(newLine);
-                                    Controller.getController().Circuito.getChildren().add(newLine);
+                                    Pin.inputInBigPin(hisBigPin, this.color, x, y);
                                 }else {
                                     selectedPin.setFill(this.color);
                                     selectedPin.setStroke(this.color);
@@ -142,7 +171,9 @@ public class BigPin extends Pin {
                                 selectedPin.setSelected(false);
                                 selectedPin = null;
 
-                            } else {  // la anterior es out
+                                //         ________________________
+                                //________/El pin anterior es Output
+                            } else {
 
                                 this.miCompuerta.conectarPin(aConectar.getPinId(), selectedPin.miCompuerta, null);
                                 aConectar.setDador(selectedPin);
@@ -162,12 +193,13 @@ public class BigPin extends Pin {
                                     aConectar.setMyLine(newLine);
                                     Controller.getController().Circuito.getChildren().add(newLine);
                                 }
-
                                 selected = !selected;
                                 selectedPin.setSelected(false);
                                 selectedPin = null;
                             }
 
+                            //         ________________________________
+                            //________/El pin anterior no es compatible
                         } else {
                             setFill(color.deriveColor(1, 1, 1, 0.5));
                             selectedPin.setFill(selectedPin.color.deriveColor(1, 1, 1, 0.5));
