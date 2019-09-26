@@ -16,7 +16,6 @@ import listas.Node;
  *
  * @author Jose Alejandro
  * @since 31-08-19
- *
  */
 public class Circuito extends Pane {
 
@@ -244,6 +243,6 @@ public class Circuito extends Pane {
      * @return una instacia de Saved Ciruit con las caracteristicas del circuito actual.
      */
     public SavedCircuit saveThis(Image customImg) {
-        return new SavedCircuit(NumEntradas,NumSalidas,GUI.TableController.getController().createTable(),customImg);
+        return new SavedCircuit(NumEntradas,NumSalidas,GUI.TableController.getTController().createTable(),customImg);
     }
 }

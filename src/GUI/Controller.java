@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 /**
  * Clase controller para el fxml principal, en ella se manejan la mayoria de las interacciones en pantalla. Y se
  * definen los tags para los elementos del fxml.
+ *
  * @author Jose Alejandro
  * @since 31-08-19
  */
@@ -401,7 +402,7 @@ public class Controller implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load(), 400, 250));
             stage.show();
-            TableController.getController().setTable();
+            TableController.getTController().setTable();
         }
     }
 
