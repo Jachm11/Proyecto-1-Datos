@@ -221,7 +221,7 @@ public abstract class Compuerta extends ImageView implements CompuertaLogica {
         conectando.setCompuerta(compuerta);
         conectando.setConectado(true);
         conectando.setDador(dador);
-        compuerta.getPinOut().setConectado(true);
+        dador.setConectado(true);
         compuerta.getCompuertasOut().insertarInicio(this);
     }
 

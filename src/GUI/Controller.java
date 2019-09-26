@@ -13,20 +13,17 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 /**
- * Clase controller para el UI2, en ella se manejan la mayoria de las interacciones en pantalla. Y se
+ * Clase controller para el fxml principal, en ella se manejan la mayoria de las interacciones en pantalla. Y se
  * definen los tags para los elementos del fxml.
  * @author Jose Alejandro
  * @since 31-08-19
@@ -46,21 +43,21 @@ public class Controller implements Initializable {
     private Image CustomImg = new Image("GUI/gates/custom.png");
     private static Controller instance = null;
 
+    /**
+     * Constructor de la clase que guarda su instacia como unica.
+     */
     public Controller() {
         instance = this;
     }
+
+    /**
+     * Metodo para acceder al controller.
+     *
+     * @return retorna la instacia del controller.
+     */
     public static Controller getController(){
             return instance;
         }
-
-        @FXML
-        private Label Title;
-
-        @FXML // fx:id="x1"
-        private Font x1; // Value injected by FXMLLoader
-
-        @FXML // fx:id="x2"
-        private Color x2; // Value injected by FXMLLoader
 
         @FXML // fx:id="AND"
         private ImageView AND; // Value injected by FXMLLoader
@@ -83,47 +80,17 @@ public class Controller implements Initializable {
         @FXML // fx:id="XNOR"
         private ImageView XNOR; // Value injected by FXMLLoader
 
-        @FXML // fx:id="ShowGrid"
-        private CheckBox ShowGrid; // Value injected by FXMLLoader
-
-        @FXML // fx:id="x3"
-        private Font x3; // Value injected by FXMLLoader
-
-        @FXML // fx:id="x4"
-        private Color x4; // Value injected by FXMLLoader
-
         @FXML// fx:id="Grid"
-        private GridPane Grid;
+        private GridPane Grid; // Value injected by FXMLLoader
 
         @FXML // fx:id="Circuito"
         public Circuito Circuito; // Value injected by FXMLLoader
 
-        @FXML
-        private AnchorPane Content;
+        @FXML // fx:id "Console"
+        public TextArea Console; // Value injected by FXMLLoader
 
-        @FXML // fx:id="GateEntries"
-        private MenuButton GateEntries; // Value injected by FXMLLoader
-
-        @FXML // fx:id="DosEntradas"
-        private MenuItem DosEntradas; // Value injected by FXMLLoader
-
-        @FXML // fx:id="TresEntradas"
-        private MenuItem TresEntradas; // Value injected by FXMLLoader
-
-        @FXML // fx:id="CuatroEntradas"
-        private MenuItem CuatroEntradas; // Value injected by FXMLLoader
-
-        @FXML // fx:id="CustomEntradas"
-        private MenuItem CustomEntradas; // Value injected by FXMLLoader
-
-        @FXML // fx:id="Run"
-        private Button Run; // Value injected by FXMLLoader
-
-        @FXML
-        public TextArea Console;
-
-        @FXML
-        private VBox customVbox;
+        @FXML // fx:id "customVbox"
+        private VBox customVbox; // Value injected by FXMLLoader
 
 
     @Override
@@ -137,11 +104,16 @@ public class Controller implements Initializable {
         Tooltip.install(NOT, new Tooltip("NOT"));
         Tooltip.install(XOR, new Tooltip("XOR"));
         Tooltip.install(XNOR, new Tooltip("XNOR"));
-
     }
 
+    //         _______________________
+    //________/METODOS PARA COMPUERTAS
 
-
+    /**
+     * Metodo que se ejecuta al solicitar la creacion de una compuerta AND desde la interfaz grafica.
+     *
+     * @param t evento de mouse.
+     */
     public void clickedOnAND(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,entradasDefault,1,null));
         System.out.println(newCompuerta);
@@ -149,37 +121,77 @@ public class Controller implements Initializable {
         setCompuerta(newCompuerta);
     }
 
+    /**
+     * Metodo que se ejecuta al solicitar la creacion de una compuerta NAND desde la interfaz grafica.
+     *
+     * @param t evento de mouse.
+     */
     public void clickedOnNAND(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NAND,entradasDefault,1,null));
         newCompuerta.setImage(ImageNAND);
         setCompuerta(newCompuerta);
     }
+
+    /**
+     * Metodo que se ejecuta al solicitar la creacion de una compuerta OR desde la interfaz grafica.
+     *
+     * @param t evento de mouse.
+     */
     public void clickedOnOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.OR,entradasDefault,1,null));
         newCompuerta.setImage(ImageOR);
         setCompuerta(newCompuerta);
     }
+
+    /**
+     * Metodo que se ejecuta al solicitar la creacion de una compuerta NOR desde la interfaz grafica.
+     *
+     * @param t evento de mouse.
+     */
     public void clickedOnNOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOR,entradasDefault,1,null));
         newCompuerta.setImage(ImageNOR);
         setCompuerta(newCompuerta);
     }
+
+    /**
+     * Metodo que se ejecuta al solicitar la creacion de una compuerta NOT desde la interfaz grafica.
+     *
+     * @param t evento de mouse.
+     */
     public void clickedOnNOT(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,1,1,null));
         newCompuerta.setImage(ImageNOT);
         setCompuerta(newCompuerta);
     }
+
+    /**
+     * Metodo que se ejecuta al solicitar la creacion de una compuerta XOR desde la interfaz grafica.
+     *
+     * @param t evento de mouse.
+     */
     public void clickedOnXOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,entradasDefault,1,null));
         newCompuerta.setImage(ImageXOR);
         setCompuerta(newCompuerta);
     }
 
+    /**
+     * Metodo que se ejecuta al solicitar la creacion de una compuerta XNOR desde la interfaz grafica.
+     *
+     * @param t evento de mouse.
+     */
     public void clickedOnXNOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XNOR,entradasDefault,1,null));
         newCompuerta.setImage(ImageXNOR);
         setCompuerta(newCompuerta);
     }
+
+    /**
+     * Metodo que se ejecuta al solicitar la creacion de una compuerta CUSTOM desde la interfaz grafica.
+     *
+     * @param t evento de mouse.
+     */
     void clickedOnCustom(MouseEvent t){
         SavedCircuit savedCircuit = (SavedCircuit) (t.getSource());
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas(),savedCircuit.getTablaDeVerdad()));
@@ -187,14 +199,21 @@ public class Controller implements Initializable {
         Tooltip.install(newCompuerta, new Tooltip(savedCircuit.nombre));
         ((CustomGate)newCompuerta).setNombre(savedCircuit.nombre);
         setCompuerta(newCompuerta);
-
     }
 
+    /**
+     * Metodo que se encarga del agregado grafico de las partes de la compuerta que se desean.
+     *
+     * @param newCompuerta nueva compuerta creada.
+     */
     private void setCompuerta(Compuerta newCompuerta){
 
         Circuito.getChildren().add(newCompuerta);
+        Circuito.getCompuertas().insertarInicio(newCompuerta);
+        System.out.println("Nueva compuerta "+(newCompuerta.getTipo().toString())+ " agregada");
 
-        System.out.println("Nueva compuerta "+(newCompuerta.getTipo().toString())+ "creada");
+        //         _________________
+        //________/Aparecer Pines In
         if(newCompuerta.getTipo() != tipoCompuerta.Custom & newCompuerta.getNumEntradas()<4) {
             listas.Node current = newCompuerta.getPinesIn().getHead();
             while (current.getNext() != null) {
@@ -217,6 +236,8 @@ public class Controller implements Initializable {
             Circuito.getChildren().add(bigPin);
             Tooltip.install(bigPin, new Tooltip((bigPin.getMiCompuerta().getTipo().toString())+"_x"+bigPin.getSize()+"I"));
 
+            //         _________________
+            //________/Aparecer Pines Out
         }//BigPin
         if(newCompuerta.getTipo()==tipoCompuerta.Custom){
             DoubleProperty startX = new SimpleDoubleProperty(newCompuerta.getX()+133);
@@ -234,37 +255,44 @@ public class Controller implements Initializable {
             Tooltip.install(pinOut, new Tooltip((pinOut.getMiCompuerta().getTipo().toString()) + pinOut.getMiCompuerta().getID() + "_" + pinOut.IdString()));
         }
 
-        Circuito.getCompuertas().insertarInicio(newCompuerta);
+        //         ____________
+        //________/Propiedades
         newCompuerta.setCursor(Cursor.HAND);
         newCompuerta.setOnMousePressed(this::handle);
         newCompuerta.setOnMouseDragged(this::handle2);
-
 
         ContextMenu compuertaMenu = new ContextMenu();
         MenuItem item1 = new MenuItem("Save Circuit as Custom Gate");
         MenuItem item2 = new MenuItem("Delete");
         compuertaMenu.getItems().addAll(item1, item2);
-        newCompuerta.setOnContextMenuRequested(event -> compuertaMenu.show(newCompuerta,event.getScreenX(), event.getScreenY()));
+        newCompuerta.setOnContextMenuRequested(e -> compuertaMenu.show(newCompuerta, e.getScreenX(), e.getScreenY()));
         item1.setOnAction(e -> saveCurrentCircuit());
         item2.setOnAction(e -> delete(newCompuerta));
     }
 
-
-    public void delete(Compuerta compuerta){
-        compuerta.deleteCompuerta();
-
-    }
-
-
-        //FRAGMENTO NO ORIGINAL
+    /**
+     * Metodo encargado de trasladar las compuertas en la interfaz al ejecutarse un click en alguna compuerta.
+     *
+     * Adaptado por: Jose Alejandro
+     * Adaptado de:
+     * @author Java Buddy
+     * @web http://java-buddy.blogspot.com/
+     */
     public void handle(MouseEvent t) {
         orgSceneX = t.getSceneX();
         orgSceneY = t.getSceneY();
         orgTranslateX = ((Compuerta)(t.getSource())).getTranslateX();
         orgTranslateY = ((Compuerta)(t.getSource())).getTranslateY();
-
     }
 
+    /**
+     * Metodo encargado de trasladar las compuertas en la interfaz al ejecutarse un drag and drop en alguna compuerta.
+     *
+     * Adaptado por: Jose Alejandro
+     * Adaptado de:
+     * @author Java Buddy
+     * @web http://java-buddy.blogspot.com/
+     */
     private void handle2(MouseEvent t) {
         double offsetX = t.getSceneX() - orgSceneX;
         double offsetY = t.getSceneY() - orgSceneY;
@@ -294,6 +322,7 @@ public class Controller implements Initializable {
             pin.setCenterX(newTranslateX + pin.getxI());
             pin.setCenterY(newTranslateY + pin.getyI());
         }
+
         if (compuerta.getTipo() == tipoCompuerta.Custom){
             CustomGate thisCustomGate = (CustomGate) compuerta;
             BigPin bigPin =  thisCustomGate.getBigPinOut();
@@ -301,28 +330,57 @@ public class Controller implements Initializable {
             bigPin.setCenterY(newTranslateY + bigPin.getyI());
             }
         else {
-            Pin pinOut = (Pin) ((Compuerta) (t.getSource())).getPinOut();
+            Pin pinOut = ((Compuerta) (t.getSource())).getPinOut();
             pinOut.setCenterX(newTranslateX + pinOut.getxI());
             pinOut.setCenterY(newTranslateY + pinOut.getyI());
             }
         }
 
-
+    /**
+     * Cambia la visibilidad de las lineas en patalla.
+     *
+     * @param event evento de mouse.
+     */
     public void showGrid(MouseEvent event){
         Grid.setGridLinesVisible(!Grid.isGridLinesVisible());
     }
 
+    //         ____________________
+    //________/METODOS PARA BOTONES
+    /**
+     * Cambia las entradas default de la compuerta a 2.
+     */
     public void its2Entries(){ this.entradasDefault = 2; }
-    public void its3Entries(){
-        this.entradasDefault = 3;
-    }
-    public void its4Entries(){
-        this.entradasDefault = 4;
-    }
-    public void itsXEntries(){int numEntrdas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de entradas"));
-    this.entradasDefault = numEntrdas;
+    /**
+     * Cambia las entradas default de la compuerta a 3.
+     */
+    public void its3Entries(){ this.entradasDefault = 3; }
+    /**
+     * Cambia las entradas default de la compuerta a 4.
+     */
+    public void its4Entries(){ this.entradasDefault = 4; }
+
+    /**
+     * Cambia las entradas default de la compuerta a n , pidiendo al usuario.
+     */
+    public void itsXEntries(){
+        this.entradasDefault = Integer.parseInt(JOptionPane.showInputDialog("Please enter the number of desired inputs"));
     }
 
+    /**
+     * Metodo que ejecuta el comando de borrado en la compuerta seleccionada
+     *
+     * @param compuerta compuerta que se va a eliminar.
+     */
+    public void delete(Compuerta compuerta){
+        compuerta.deleteCompuerta();
+    }
+
+    //         ______________________________
+    //________/METODOS CON LLAMADAS A CIRCUIT
+    /**
+     * Metodo que inicia los metodos que corren al usuarop
+     */
     public void runCircuit() {
 
         if (Circuito.checkCircuit()){
@@ -330,6 +388,11 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Inicializa un fxlm con la tabla de verdad que representa al circuito.
+     *
+     * @throws IOException
+     */
     public void generateTable() throws IOException {
 
         if (Circuito.checkCircuit()) {
@@ -342,16 +405,15 @@ public class Controller implements Initializable {
         }
     }
 
-
+    /**
+     * Llamada al metodo del circuito que inicia su encapsulacion para utilizarlo como compuerta custom.
+     */
     public void saveCurrentCircuit() {
 
         if(Circuito.checkCircuit()){
             SavedCircuit newCustomC = Circuito.saveThis(CustomImg);
             customVbox.getChildren().add(newCustomC);
-
         }
     }
-
-
 }
 

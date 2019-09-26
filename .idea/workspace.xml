@@ -2,57 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaLogica.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaLogica.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/tipoCompuerta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/tipoCompuerta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Hepheastus.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/HepheastusConsole.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/HepheastusConsole.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/HepheastusDark.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utilidades/untitled1/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Utilidades/untitled1/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/DarkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/DarkTheme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/SavedCircuit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/SavedCircuit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/ScrollPaneStylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/TabPaneStylesheet.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/TableController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/TableController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/TextAreaStyleSheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/TittledPaneStylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/gates/AND2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/setEntry.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/AND.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/AND.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/BigPin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/BigPin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CircuitLine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CircuitLine.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Compuerta.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CustomGate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CustomGate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/NAND.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/NAND.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/NOR.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/NOR.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/NOT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/NOT.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/OR.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/OR.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/XNOR.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/XNOR.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/XOR.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/XOR.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/listas/ListaEnlazada.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/listas/ListaEnlazada.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/listas/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/listas/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractFactory/CompuertaLogica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractFactory/CompuertaLogica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Hepheastus.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/HepheastusConsole.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/HepheastusConsole.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/HepheastusDark.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/SavedCircuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SavedCircuit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ScrollPaneStylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/TabPaneStylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/DarkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/DarkTheme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/TableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/TextAreaStyleSheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/TittledPaneStylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/gates/AND2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/setEntry.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/BigPin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/BigPin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/CircuitLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/CircuitLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Compuerta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/CustomGate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/CustomGate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/circuitDesing/NOT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/NOT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/circuitDesing/Pin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Pin.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -111,8 +81,8 @@
         <option value="FxmlFile" />
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -315,7 +285,8 @@
       <workItem from="1569168928141" duration="9182000" />
       <workItem from="1569216536589" duration="20954000" />
       <workItem from="1569279247509" duration="8208000" />
-      <workItem from="1569353957126" duration="23114000" />
+      <workItem from="1569353957126" duration="23887000" />
+      <workItem from="1569459113852" duration="8657000" />
     </task>
     <servers />
   </component>
@@ -343,14 +314,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GUI/Controller.java</url>
-          <line>253</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GUI/TableController.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="77" />
+          <line>84</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/circuitDesing/Compuerta.java</url>
+          <line>333</line>
+          <properties class="circuitDesing.Compuerta" method="getUnpluggeds">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="79" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

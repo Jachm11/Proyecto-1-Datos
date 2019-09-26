@@ -185,7 +185,7 @@ public class CustomGate extends Compuerta {
         }
     }
 
-    //         ___________________
+    //         _____________
     //________/OTROS METODOS
 
     /**

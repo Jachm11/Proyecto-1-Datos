@@ -14,11 +14,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import listas.ListaEnlazada;
 import listas.Node;
-
 import java.net.URL;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
+/**
+ * Clase controlador para la
+ */
 public class TableController implements Initializable {
     private static TableController instance = new TableController();
 
@@ -225,7 +227,7 @@ public class TableController implements Initializable {
     }
 
 
-    public void setTable() {
+    void setTable() {
         setTableAux(TruthTable);
     }
 

@@ -175,7 +175,7 @@ public class BigPin extends Pin {
                                 //________/El pin anterior es Output
                             } else {
 
-                                this.miCompuerta.conectarPin(aConectar.getPinId(), selectedPin.miCompuerta, null);
+                                this.miCompuerta.conectarPin(aConectar.getPinId(), selectedPin.miCompuerta, selectedPin);
                                 aConectar.setDador(selectedPin);
 
                                 if (selectedPin.inBigPin) {

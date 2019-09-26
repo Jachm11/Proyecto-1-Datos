@@ -7,6 +7,7 @@ import javafx.scene.shape.StrokeLineCap;
 
 /**
  * Clase que se encarga de la apariencia grafica de las unione entre circuitos.
+ *
  * @author Java Buddy
  * @source http://java-buddy.blogspot.com/
  *

@@ -270,7 +270,7 @@ import static circuitDesing.Circuito.selectedPin;
                             setFill(selectedPin.color.deriveColor(1, 1, 100, 10));
                             setStroke(selectedPin.color);
 
-                            this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta, null);
+                            this.miCompuerta.conectarPin(this.getPinId(), selectedPin.miCompuerta, selectedPin);
                             this.setDador(selectedPin);
 
                             if (selectedPin.inBigPin){
