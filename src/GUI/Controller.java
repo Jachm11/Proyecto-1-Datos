@@ -39,6 +39,7 @@ public class Controller implements Initializable {
     private Image ImageOR = new Image("GUI/gates/OR.png");
     private Image ImageNOR = new Image("GUI/gates/NOR.png");
     private Image ImageNOT = new Image("GUI/gates/NOT.png");
+    private Image ImageBuffer = new Image("GUI/gates/Buffer.png");
     private Image ImageXOR = new Image("GUI/gates/XOR.png");
     private Image ImageXNOR = new Image("GUI/gates/XNOR.png");
     private Image CustomImg = new Image("GUI/gates/custom.png");
@@ -80,6 +81,9 @@ public class Controller implements Initializable {
 
         @FXML // fx:id="XNOR"
         private ImageView XNOR; // Value injected by FXMLLoader
+
+        @FXML // fx:id="XNOR"
+        private ImageView Buffer; // Value injected by FXMLLoader
 
         @FXML// fx:id="Grid"
         private GridPane Grid; // Value injected by FXMLLoader
@@ -163,6 +167,17 @@ public class Controller implements Initializable {
     public void clickedOnNOT(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,1,1,null));
         newCompuerta.setImage(ImageNOT);
+        setCompuerta(newCompuerta);
+    }
+
+    /**
+            * Metodo que se ejecuta al solicitar la creacion de una compuerta NOT desde la interfaz grafica.
+            *
+            * @param t evento de mouse.
+            */
+    public void clickedOnBuffer(MouseEvent t){
+        Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Buffer,1,1,null));
+        newCompuerta.setImage(ImageBuffer);
         setCompuerta(newCompuerta);
     }
 

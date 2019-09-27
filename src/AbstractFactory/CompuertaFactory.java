@@ -20,6 +20,7 @@ public class CompuertaFactory implements AbsCompuertaFactory {
     private int XOR = 0;
     private int XNOR = 0;
     private int custom = 0;
+    private int buffer = 0;
     private static CompuertaFactory instance = null;
 
     /**
@@ -72,6 +73,10 @@ public class CompuertaFactory implements AbsCompuertaFactory {
             case Custom:
                 this.custom++;
                 return crearCustomGate(entradas,salidas,this.custom,circuito);
+
+            case Buffer:
+                this.buffer++;
+                return crearBuffer(this.buffer);
         }
         return null;
     }
@@ -128,6 +133,17 @@ public class CompuertaFactory implements AbsCompuertaFactory {
     @Override
     public Compuerta crearNOT(int ID) {
         return new NOT(ID,tipoCompuerta.NOT);
+    }
+
+    /**
+     * Proviene de la intefaz AbsCompuetaFactory, crea una compuerta tipo Buffer.
+     * @param ID Identificador para la compuerta.
+     * @return retorna una instacia de Buffer.
+     */
+
+    @Override
+    public Compuerta crearBuffer(int ID) {
+        return new Buffer(ID,tipoCompuerta.Buffer);
     }
 
     /**

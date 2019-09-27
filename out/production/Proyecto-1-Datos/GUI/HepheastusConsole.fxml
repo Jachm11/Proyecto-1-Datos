@@ -306,6 +306,14 @@
                                                                                 <Cursor fx:constant="HAND" />
                                                                             </cursor>
                                                                         </ImageView>
+                                                      <ImageView fx:id="Buffer" fitHeight="150.0" fitWidth="121.0" layoutX="10.0" layoutY="331.0" onMouseClicked="#clickedOnBuffer" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@gates/Buffer.png" />
+                                                         </image>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </ImageView>
                                                                     </children>
                                                                     <cursor>
                                                                         <Cursor fx:constant="DEFAULT" />

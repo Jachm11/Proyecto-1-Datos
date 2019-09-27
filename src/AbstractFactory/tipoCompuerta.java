@@ -7,5 +7,5 @@ package AbstractFactory;
  * @since 1-09-19
  */
 public enum tipoCompuerta {
-    AND, NAND, OR, NOR, NOT, XOR, XNOR, Custom
+    AND, NAND, OR, NOR, NOT, XOR, XNOR, Custom,Buffer
 }

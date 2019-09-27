@@ -17,6 +17,7 @@ public interface AbsCompuertaFactory {
     Compuerta crearOR(int entradas, int ID);
     Compuerta crearNOR(int entradas, int ID);
     Compuerta crearNOT(int ID);
+    Compuerta crearBuffer(int ID);
     Compuerta crearXOR(int entradas, int ID);
     Compuerta crearXNOR(int entradas, int ID);
     Compuerta crearCustomGate(int entradas, int salidas, int ID, TableView<ObservableList<Integer>> circuito);
