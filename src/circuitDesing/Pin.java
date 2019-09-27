@@ -119,6 +119,8 @@ import static circuitDesing.Circuito.selectedPin;
 
     public void setCompuerta(Compuerta compuerta) { this.compuerta = compuerta; }
 
+
+
     //         _____________________
     //________/SIMULACION DE SALIDAS
 
@@ -275,6 +277,8 @@ import static circuitDesing.Circuito.selectedPin;
 
                             if (selectedPin.inBigPin){
                                 BigPin hisBigPin = ((CustomGate)(selectedPin.getMiCompuerta())).getBigPinOut();
+                                setFill(hisBigPin.color.deriveColor(1, 1, 100, 10));
+                                setStroke(hisBigPin.color);
                                 CircuitLine newLine = new CircuitLine(hisBigPin.x, hisBigPin.y, x, y, hisBigPin.color);
                                 this.myLine = newLine;
                                 Controller.getController().Circuito.getChildren().add(newLine);

@@ -415,6 +415,8 @@ public class Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("TruthTable.fxml"));
             Stage stage = new Stage();
+            stage.getIcons().add(new Image("GUI/gates/icon.png"));
+            stage.setTitle("Truth Table");
             stage.setScene(new Scene(loader.load(), 400, 250));
             stage.show();
             TableController.getTController().setTable();

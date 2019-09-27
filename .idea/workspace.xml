@@ -6,20 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/circuitDesing/Buffer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/AbsCompuertaFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/AbsCompuertaFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/CompuertaFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/tipoCompuerta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/AbstractFactory/tipoCompuerta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/HepheastusConsole.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/HepheastusConsole.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractFactory/AbsCompuertaFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractFactory/AbsCompuertaFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractFactory/CompuertaFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractFactory/CompuertaFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractFactory/tipoCompuerta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractFactory/tipoCompuerta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/HepheastusConsole.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/HepheastusConsole.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Pin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Pin.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -289,7 +280,7 @@
       <workItem from="1569353957126" duration="23887000" />
       <workItem from="1569459113852" duration="9299000" />
       <workItem from="1569474722962" duration="27139000" />
-      <workItem from="1569623806940" duration="1153000" />
+      <workItem from="1569623806940" duration="2439000" />
     </task>
     <servers />
   </component>
