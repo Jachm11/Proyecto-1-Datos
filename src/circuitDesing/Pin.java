@@ -123,11 +123,30 @@ import static circuitDesing.Circuito.selectedPin;
     //________/SIMULACION DE SALIDAS
 
     /**
+     * Se encarga de llamar conseguir el valor para el pin, si esta conectado inicia de nuevo el ciclo. Y si no pide un input ya asigando.
+     *
+     * @return el valor de verdad del pin.
+     */
+    boolean isValor(){
+        if (conectado){
+            if (compuerta.getTipo() == tipoCompuerta.Custom){
+                return ((CustomGate)compuerta).customOutput(this.dador.pinId);
+            }
+            else {
+                return compuerta.output();
+            }
+        }
+        else{
+            return askForInput();
+        }
+    }
+
+    /**
      * Metodo que se encarga de retornar el valor especifico para una compueta input no conectada.
      *
      * @return retorna el valor ororgado por el usuario o el programa segun la condicion que se cumpla.
      */
-    private boolean askforinput(){
+    private boolean askForInput(){
         if (simulating) {
             return simValue;
         } else {
@@ -135,7 +154,7 @@ import static circuitDesing.Circuito.selectedPin;
                 return valor;
             } else {
                 //         _____________________
-                //________/Validacion de entradas
+                //________/Peticion de entrada
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Input Entry Confirmation");
                 alert.setHeaderText("Initial gates without inputs found");
@@ -147,32 +166,13 @@ import static circuitDesing.Circuito.selectedPin;
                 Optional<ButtonType>result = alert.showAndWait();
                 if (result.get() == uno){
                     setUIValue(true);
-                    return askforinput();
+                    return askForInput();
                 }else{
                     setUIValue(false);
-                    return askforinput();
+                    return askForInput();
                 }
             }
         }
-    }
-
-    /**
-     * Se encarga de llamar conseguir el valor para el pin, si esta conectado inicia de nuevo el ciclo. Y si no pide un input ya asigando.
-     *
-     * @return el valor de verdad del pin.
-     */
-    boolean isValor(){
-        if (conectado){
-            if (compuerta.getTipo() == tipoCompuerta.Custom){
-                return ((CustomGate)compuerta).CustomOutput(this.dador.pinId);
-            }
-            else {
-                return compuerta.output();
-            }
-        }
-        else{
-            return askforinput();
-            }
     }
 
 

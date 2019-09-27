@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="proyecto" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-1-Datos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-1-Datos.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/TableController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/GUI/TableController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/META-INF/Proyecto-1-Datos.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Circuito.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CustomGate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/CustomGate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-1-Datos/circuitDesing/Pin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/TableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Circuito.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/circuitDesing/XNOR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/XNOR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/circuitDesing/CustomGate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/CustomGate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/circuitDesing/Pin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/circuitDesing/Pin.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +78,7 @@
         <option value="Enum" />
         <option value="CSS File" />
         <option value="Class" />
+        <option value="module-info" />
       </list>
     </option>
   </component>
@@ -86,6 +96,9 @@
         <option value="C:\Users\Jose\Documents\TEC\Semestre II\Datos I\Proyecto 1\Proyecto-1-Datos\.idea" />
       </set>
     </option>
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="proyecto" pattern="file[Proyecto-1-Datos]:src/*||file[Proyecto-1-Datos]:src/AbstractFactory/*||file:src/AbstractFactory/AbsCompuertaFactory.java||file:src/AbstractFactory/CompuertaFactory.java||file:src/AbstractFactory/CompuertaLogica.java||file:src/AbstractFactory/tipoCompuerta.java||file[Proyecto-1-Datos]:src/circuitDesing/*||file:src/circuitDesing/AND.java||file:src/circuitDesing/BigPin.java||file:src/circuitDesing/CircuitLine.java||file:src/circuitDesing/Circuito.java||file:src/circuitDesing/Compuerta.java||file:src/circuitDesing/CustomGate.java||file:src/circuitDesing/NAND.java||file:src/circuitDesing/NOR.java||file:src/circuitDesing/NOT.java||file:src/circuitDesing/OR.java||file:src/circuitDesing/Pin.java||file:src/circuitDesing/XNOR.java||file:src/circuitDesing/XOR.java||file[Proyecto-1-Datos]:src/GUI/*||file:src/GUI/Controller.java||file:src/GUI/DarkTheme.css||file:src/GUI/HepheastusConsole.fxml||file:src/GUI/Main.java||file:src/GUI/SavedCircuit.java||file:src/GUI/TableController.java||file:src/GUI/TruthTable.fxml||file[Proyecto-1-Datos]:src/GUI/CSS archives/*||file:src/GUI/CSS archives/ScrollPaneStylesheet.css||file:src/GUI/CSS archives/TabPaneStylesheet.css||file:src/GUI/CSS archives/TextAreaStyleSheet.css||file:src/GUI/CSS archives/TittledPaneStylesheet.css||file[Proyecto-1-Datos]:src/GUI/gates/*||file:src/GUI/gates/AND.png||file:src/GUI/gates/custom.png||file:src/GUI/gates/customPnt.tif||file:src/GUI/gates/NAND.png||file:src/GUI/gates/NOR.png||file:src/GUI/gates/NOT.png||file:src/GUI/gates/OR.png||file:src/GUI/gates/XNOR.png||file:src/GUI/gates/XOR.png||file[Proyecto-1-Datos]:src/listas/*||file:src/listas/ListaEnlazada.java||file:src/listas/Node.java" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectId" id="1QCRov44X07nWn5YAFJ807aEFFH" />
@@ -107,10 +120,10 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/jphoenix/jfoenix-9.0.8.jar!/" />
+    <property name="last_opened_file_path" value="C:/Program Files/Java/javafx-sdk-13/lib/javafx.web.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -182,6 +195,7 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="13" />
       <option name="MAIN_CLASS_NAME" value="GUI.Main" />
       <module name="Proyecto-1-Datos" />
       <extension name="coverage">
@@ -273,7 +287,7 @@
       <workItem from="1569279247509" duration="8208000" />
       <workItem from="1569353957126" duration="23887000" />
       <workItem from="1569459113852" duration="9299000" />
-      <workItem from="1569474722962" duration="4367000" />
+      <workItem from="1569474722962" duration="27136000" />
     </task>
     <servers />
   </component>

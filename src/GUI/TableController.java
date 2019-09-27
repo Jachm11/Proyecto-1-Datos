@@ -190,7 +190,7 @@ public class TableController implements Initializable {
         //         ___________________________________
         //________/Ciclo para la creacion de las filas
         for(int i = 0 ; i < posibilidades; i++){
-            ObservableList<Integer> values = FXCollections.observableArrayList();
+            ObservableList<Integer> fila = FXCollections.observableArrayList();
 
             //         ________________________________________________
             //________/Ciclo que crea los valores de inputs en la tabla
@@ -198,12 +198,12 @@ public class TableController implements Initializable {
 
                 int IntDato = (Integer) valores.serchByIndex(j);
                 boolean BoolDato = toBool(IntDato);
-                values.add(IntDato);
+                fila.add(IntDato);
                 Pin currentPin = (Pin)Inputs.serchByIndex(j);
                 currentPin.setSimulating(true);
                 currentPin.setSimValue(BoolDato);
 
-                //         ____________________________________
+                //         _________________________________________________
                 //________/Condicion (validacion) para el cambio de variable
                 if ((int)(i%(posibilidades/Math.pow(2,j+1)))==0){
 
@@ -225,28 +225,28 @@ public class TableController implements Initializable {
                             Node current = customGate.getPinesOut().getHead();
                             while (current.getNext() != null) {
                                 Pin thisCurrentPin = (Pin) current.getData();
-                                boolean BoolDato2 = customGate.CustomOutput(thisCurrentPin.getPinId());
+                                boolean BoolDato2 = customGate.customOutput(thisCurrentPin.getPinId());
                                 int result = toInt(BoolDato2);
-                                values.add(result);
+                                fila.add(result);
 
                                 current = current.getNext();
                             }
                             Pin thisCurrentPin = (Pin) current.getData();
-                            boolean BoolDato2 = customGate.CustomOutput(thisCurrentPin.getPinId());
+                            boolean BoolDato2 = customGate.customOutput(thisCurrentPin.getPinId());
                             int result = toInt(BoolDato2);
-                            values.add(result);
+                            fila.add(result);
 
 
                         }else {
                             boolean BoolDato2 = currentGate.output();
                             int result = toInt(BoolDato2);
-                            values.add(result);
+                            fila.add(result);
                         }
                     }
                 }
             }
             //Agrega la fila
-            TruthTable.getItems().add(values);
+            TruthTable.getItems().add(fila);
         }
         //         _______________________________________________________
         //________/Ciclo que finaliza el estado de simulacion de los pines

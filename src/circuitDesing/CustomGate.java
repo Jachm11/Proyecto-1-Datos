@@ -98,7 +98,7 @@ public class CustomGate extends Compuerta {
      * @param numPin Id del pin del que se busca la salida.
      * @return retorna el valor del pin para la fila en la que se encuetra la configuracion actual de entradas del circuito.
      */
-    public boolean CustomOutput(Integer numPin) {
+    public boolean customOutput(Integer numPin) {
         setOperar();
         int num = (int) miFila.serchByIndex(numEntradas + numPin);
         return num == 1;
@@ -171,7 +171,7 @@ public class CustomGate extends Compuerta {
         while (current.getNext() != null) {
             Pin currentPin = (Pin) current.getData();
             if (!(currentPin.conectado)) {
-                boolean result = CustomOutput(currentPin.pinId);
+                boolean result = customOutput(currentPin.pinId);
                 System.out.println("Este es mi valor" + result);
                 Controller.getController().Console.appendText("        "+"Output #"+currentPin.pinId+ " result: " + result + "\n");
             }
@@ -179,7 +179,7 @@ public class CustomGate extends Compuerta {
         }
         Pin currentPin = (Pin) current.getData();
         if (!(currentPin.conectado)) {
-            boolean result = CustomOutput(currentPin.pinId);
+            boolean result = customOutput(currentPin.pinId);
             System.out.println("Este es mi valor" + result);
             Controller.getController().Console.appendText("        "+"Output #"+currentPin.pinId+ " result: " + result + "\n"+"\n");
         }
