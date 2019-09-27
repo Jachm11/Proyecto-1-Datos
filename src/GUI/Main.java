@@ -21,7 +21,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("HepheastusConsole.fxml"));
         root.getStylesheets().add("GUI/DarkTheme.css");
         primaryStage.setTitle("Hephaestus Circuit Designer");
-        primaryStage.getIcons().add(new Image("GUI/gates/icon.png"));
+        //primaryStage.getIcons().add(new Image("GUI/gates/icon.png"));
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
         System.out.println("hola");

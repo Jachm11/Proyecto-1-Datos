@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"ProyectoUnoDatos"}]
+moduleSearchIndex = [{"l":"Proyecto"}]
