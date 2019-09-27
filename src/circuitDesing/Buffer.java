@@ -3,7 +3,7 @@ package circuitDesing;
 import AbstractFactory.tipoCompuerta;
 import listas.ListaEnlazada;
 /**
-        * Clase concreta que define las propiedades y metodos de una compuerta lógica tipo NOT.
+        * Clase concreta que define las propiedades y metodos de una compuerta lógica tipo Buffer.
         *
         * @author Jose Alejandro
         * @since 31-08-19
@@ -22,9 +22,8 @@ public class Buffer extends Compuerta {
         pinOut.setTranslateY(-6);
     }
 
-
     /**
-     * Operacion logica de NOT.
+     * Operacion logica de Buffer.
      *
      * @return true or false segun la operacion.
      */
@@ -32,7 +31,8 @@ public class Buffer extends Compuerta {
     public boolean operar() {
         if (entradas.getHead().getData().equals(true)){
             this.entradas = new ListaEnlazada();
-            return true;}
+            return true;
+        }
         else{
             this.entradas = new ListaEnlazada();
             return false;
