@@ -114,7 +114,7 @@ public class TableController implements Initializable {
         //________/CREACION DE COLUMNAS PARA OUTPUTS
         cont = 0;
         current = Outputs.getHead();
-        System.out.println("estos son las compuertas con outputs " +Outputs.getSize());
+        System.out.println("Generando tabla");
         while (cont < Outputs.getSize()) {
             Compuerta currentGate = (Compuerta) current.getData();
             int salidas;
@@ -208,7 +208,6 @@ public class TableController implements Initializable {
                 if ((int)(i%(posibilidades/Math.pow(2,j+1)))==0){
 
                     valores.setByIndex(j,reverseIntBool((int)valores.serchByIndex(j)));
-                    System.out.println("valor " + j );
                 }
 
                 //         _______________________________________

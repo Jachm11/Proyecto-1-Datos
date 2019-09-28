@@ -34,15 +34,15 @@ public class Controller implements Initializable {
     private double orgSceneX, orgSceneY;
     private double orgTranslateX, orgTranslateY;
     private int entradasDefault = 2;
-    //private Image ImageAND = new Image("GUI/gates/AND.png");
-    //private Image ImageNAND = new Image("GUI/gates/NAND.png");
-    //private Image ImageOR = new Image("GUI/gates/OR.png");
-    //private Image ImageNOR = new Image("GUI/gates/NOR.png");
-    //private Image ImageNOT = new Image("GUI/gates/NOT.png");
-    //private Image ImageBuffer = new Image("GUI/gates/Buffer.png");
-    //private Image ImageXOR = new Image("GUI/gates/XOR.png");
-    //private Image ImageXNOR = new Image("GUI/gates/XNOR.png");
-    //private Image CustomImg = new Image("GUI/gates/custom.png");
+    private Image ImageAND = new Image("GUI/gates/AND.png");
+    private Image ImageNAND = new Image("GUI/gates/NAND.png");
+    private Image ImageOR = new Image("GUI/gates/OR.png");
+    private Image ImageNOR = new Image("GUI/gates/NOR.png");
+    private Image ImageNOT = new Image("GUI/gates/NOT.png");
+    private Image ImageBuffer = new Image("GUI/gates/Buffer.png");
+    private Image ImageXOR = new Image("GUI/gates/XOR.png");
+    private Image ImageXNOR = new Image("GUI/gates/XNOR.png");
+    private Image CustomImg = new Image("GUI/gates/custom.png");
     private static Controller instance = null;
 
     /**
@@ -109,6 +109,7 @@ public class Controller implements Initializable {
         Tooltip.install(NOT, new Tooltip("NOT"));
         Tooltip.install(XOR, new Tooltip("XOR"));
         Tooltip.install(XNOR, new Tooltip("XNOR"));
+        Tooltip.install(Buffer, new Tooltip("Buffer"));
     }
 
     //         _______________________
@@ -122,7 +123,7 @@ public class Controller implements Initializable {
     public void clickedOnAND(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.AND,entradasDefault,1,null));
         System.out.println(newCompuerta);
-        //newCompuerta.setImage(ImageAND);
+        newCompuerta.setImage(ImageAND);
         setCompuerta(newCompuerta);
     }
 
@@ -133,7 +134,7 @@ public class Controller implements Initializable {
      */
     public void clickedOnNAND(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NAND,entradasDefault,1,null));
-        //newCompuerta.setImage(ImageNAND);
+        newCompuerta.setImage(ImageNAND);
         setCompuerta(newCompuerta);
     }
 
@@ -144,7 +145,7 @@ public class Controller implements Initializable {
      */
     public void clickedOnOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.OR,entradasDefault,1,null));
-        //newCompuerta.setImage(ImageOR);
+        newCompuerta.setImage(ImageOR);
         setCompuerta(newCompuerta);
     }
 
@@ -155,7 +156,7 @@ public class Controller implements Initializable {
      */
     public void clickedOnNOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOR,entradasDefault,1,null));
-        //newCompuerta.setImage(ImageNOR);
+        newCompuerta.setImage(ImageNOR);
         setCompuerta(newCompuerta);
     }
 
@@ -166,7 +167,7 @@ public class Controller implements Initializable {
      */
     public void clickedOnNOT(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.NOT,1,1,null));
-        //newCompuerta.setImage(ImageNOT);
+        newCompuerta.setImage(ImageNOT);
         setCompuerta(newCompuerta);
     }
 
@@ -177,7 +178,7 @@ public class Controller implements Initializable {
      */
     public void clickedOnBuffer(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Buffer,1,1,null));
-        //newCompuerta.setImage(ImageBuffer);
+        newCompuerta.setImage(ImageBuffer);
         setCompuerta(newCompuerta);
     }
 
@@ -188,7 +189,7 @@ public class Controller implements Initializable {
      */
     public void clickedOnXOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XOR,entradasDefault,1,null));
-        //newCompuerta.setImage(ImageXOR);
+        newCompuerta.setImage(ImageXOR);
         setCompuerta(newCompuerta);
     }
 
@@ -199,7 +200,7 @@ public class Controller implements Initializable {
      */
     public void clickedOnXNOR(MouseEvent t){
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.XNOR,entradasDefault,1,null));
-        //newCompuerta.setImage(ImageXNOR);
+        newCompuerta.setImage(ImageXNOR);
         setCompuerta(newCompuerta);
     }
 
@@ -211,7 +212,7 @@ public class Controller implements Initializable {
     void clickedOnCustom(MouseEvent t){
         SavedCircuit savedCircuit = (SavedCircuit) (t.getSource());
         Compuerta newCompuerta = (CompuertaFactory.getInstance().crearCompuerta(tipoCompuerta.Custom,savedCircuit.getEntradas(),savedCircuit.getSalidas(),savedCircuit.getTablaDeVerdad()));
-        //newCompuerta.setImage(CustomImg);
+        newCompuerta.setImage(CustomImg);
         Tooltip.install(newCompuerta, new Tooltip(savedCircuit.nombre));
         ((CustomGate)newCompuerta).setNombre(savedCircuit.nombre);
         setCompuerta(newCompuerta);
@@ -429,8 +430,8 @@ public class Controller implements Initializable {
     public void saveCurrentCircuit() {
 
         if(Circuito.checkCircuit()){
-            //SavedCircuit newCustomC = Circuito.saveThis(CustomImg);
-            //customVbox.getChildren().add(newCustomC);
+            SavedCircuit newCustomC = Circuito.saveThis(CustomImg);
+            customVbox.getChildren().add(newCustomC);
         }
     }
 }
